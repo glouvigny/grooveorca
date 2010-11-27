@@ -1,0 +1,28 @@
+{
+  "name": "Deezer+",
+  "version": "0.7.3",
+  "description": "Étendez les possibilités de Deezer.",
+  "icons": { 
+	"128": "res/icons/Deezer_icon_128x128.png",
+	"16": "res/icons/Deezer_icon_16x16.png",
+	"32": "res/icons/Deezer_icon_32x32.png",
+	"48": "res/icons/Deezer_icon_48x48.png"
+	},
+  "browser_action": {
+    "default_icon": "res/icons/Deezer_icon_32x32.png",
+    "default_title": "Deezer+",
+    "default_popup": "popup.html"
+  },
+  "background_page": "bg.html",
+  "content_scripts": [
+    {
+      "matches": ["http://*.deezer.com/*"],
+      "js": ["scripts/interfaceTweaks.js", "scripts/page.js"]
+    }
+  ],
+  "plugins": [
+    { "path": "npDeezerPlusMSN.dll" }
+  ],
+  "options_page": "options.html",
+  "permissions": ["notifications", "tabs", "http://*.deezer.com/", "http://*.wikipedia.org/", "http://*.last.fm/", "http://ws.audioscrobbler.com/", "http://*.lyrdb.com/", "http://ax.phobos.apple.com.edgesuite.net/"] 
+}
