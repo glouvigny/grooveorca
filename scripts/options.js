@@ -11,6 +11,16 @@ var options = {
 				}
 			}
 		}
+		var views = document.getElementById("navigation").childNodes;
+		for(var i = 0; i < views.length; i++ ) {
+			if(views[i].nodeType == 1) {
+				if(views[i].nodeName == "LI" && views[i].id != 'nav-' + view) {
+					views[i].className = '';
+				} else {
+					views[i].className = 'selected';
+				}
+			}
+		}
 	},
 	init: function(source) {
 		lastfm.init('options');
@@ -20,7 +30,7 @@ var options = {
 		nowplaying.init('options');
 		
 		document.getElementById('LastFmLogin').addEventListener('click',lastfm.getAuth,true);
-		document.getElementById('LastFmVerifyLogin').addEventListener('click',lastfm.getSession,true);
+		//document.getElementById('LastFmVerifyLogin').addEventListener('click',lastfm.getSession,true);
 		document.getElementById('LastFmLogout').addEventListener('click',lastfm.destroySession,true);
 		document.getElementById('WikipediaLocale').addEventListener('input',wikipedia.changeLocale,true);
 		document.getElementById('notificationsDuration').addEventListener('input',notifications.toggleStatus,true);
@@ -28,7 +38,9 @@ var options = {
 		document.getElementById('activateScrobbling').addEventListener('change',lastfm.toggleStatus,true);
 		document.getElementById('activateNotifications').addEventListener('change',notifications.toggleStatus,true);
 		document.getElementById('activateInterfacesBlockTopBar').addEventListener('change',interfaceTweaks.toggleStatus,true);
-		document.getElementById('activateInterfacseBlockFooter').addEventListener('change',interfaceTweaks.toggleStatus,true);
+		document.getElementById('activateInterfacesBlockFooter').addEventListener('change',interfaceTweaks.toggleStatus,true);
+		document.getElementById('activateInterfacesExpendPlayer').addEventListener('change',interfaceTweaks.toggleStatus,true);
+		document.getElementById('activateInterfacesSinglePlayer').addEventListener('change',interfaceTweaks.toggleStatus,true);
 		document.getElementById('activateNowPlaying').addEventListener('change',nowplaying.toggleStatus,true);
 		
 		document.getElementById('lastfm-menu').addEventListener('click',options.switchView,true);

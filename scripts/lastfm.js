@@ -71,29 +71,7 @@ var lastfm = {
 	return argsString;
   },
   getAuth: function() {
-	var xhr = new XMLHttpRequest(); 
-
-	  xhr.onreadystatechange = function() { 
-		 if(xhr.readyState == 4) {
-			if(xhr.status == 200) { 
-				 var status = xhr.responseXML.getElementsByTagName('lfm');
-				 status = status[0].getAttribute('status');
-				 if(status == 'ok') {
-					 lastfm.token = xhr.responseXML.getElementsByTagName('token');
-					 lastfm.token = lastfm.token[0].textContent;
-					 window.open('http://www.last.fm/api/auth/?api_key=' + lastfm.api_key + '&token=' + lastfm.token,'lfm_login','location=yes,menubar=no,status=no,toolbar=no,resizable=yes,height=500,width=1000');
-					 document.getElementById('LastFmVerifyLogin').removeAttribute('disabled');
-				 }
-				 else
-					alert('ERR 001 : ' + this.err.code1);
-			}
-			else
-				alert('ERR 002 : ' + this.err.code2);
-		}
-	 }; 
-
-	 xhr.open("GET", "http://ws.audioscrobbler.com/2.0/?method=auth.gettoken&api_key=" + lastfm.api_key, true);                
-	 xhr.send(null); 
+	location.href = "http://www.last.fm/api/auth?api_key=a0c592c65238b60549d2d9060c7b77ac&cb=" + encodeURIComponent(chrome.extension.getURL("options.html"));
   },
   getSession: function() {
 	var xhr = new XMLHttpRequest(); 
@@ -140,13 +118,13 @@ var lastfm = {
 		
 		if(this.isLogged()) {
 			document.getElementById('LastFmLogin').setAttribute('disabled',true);
-			document.getElementById('LastFmVerifyLogin').setAttribute('disabled',true);
+			//document.getElementById('LastFmVerifyLogin').setAttribute('disabled',true);
 			document.getElementById('LastFmLogout').removeAttribute('disabled');
 			document.getElementById('lastffusername').textContent = this.user;
 		}
 		else {
 			document.getElementById('LastFmLogin').removeAttribute('disabled');
-			document.getElementById('LastFmVerifyLogin').setAttribute('disabled',true);
+			//document.getElementById('LastFmVerifyLogin').setAttribute('disabled',true);
 			document.getElementById('LastFmLogout').setAttribute('disabled',true);
 			document.getElementById('lastffusername').textContent = '';
 		}
