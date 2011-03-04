@@ -26,11 +26,11 @@
 		<span id="artist"></span>
 		<span id="song"></span>
 	</div>
-	<ul class="popup_nav">
-		<li class="popup_nav_item" id="wikiLink" onclick="popup.switchView('wikipedia');">Wikipédia</li>
-		<li class="popup_nav_item" id="lyricsLink" onclick="popup.switchView('lyrics');">Paroles</li>
-		<li class="popup_nav_item" id="linksLink" onclick="popup.switchView('links');">Deezer</li>
-		<li class="popup_nav_item popup_nav_right"><a href="options.html" target="_blank"><img src="res/popup/package_settings.png" alt="Paramètres"/></a></li>
+	<ul id="popup_nav">
+		<li class="selected" id="wikipediaLink" onclick="popup.switchView('wikipedia');">Wikipédia</li>
+		<li id="lyricsLink" onclick="popup.switchView('lyrics');">Paroles</li>
+		<li id="linksLink" onclick="popup.switchView('links');">Deezer</li>
+		<li class="popup_nav_right"><a href="options.html" target="_blank"><img src="res/popup/package_settings.png" alt="Paramètres"/></a></li>
 	</ul>
 	<div id="multipleview">
 		<div id="wikipedia">
@@ -63,7 +63,7 @@
 	</div>
 	<script>
 		wikipedia.init('popup');
-		window.setTimeout("wikipedia.refreshPopUp();lyrics.refreshPopUp();popup.refreshPopUp();", 100);
+		window.setTimeout(popup.refreshPopUp, 100);
 		window.addEventListener('load', popup.switchView('wikipedia'), false);
 		
 		chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
@@ -71,8 +71,6 @@
 			switch (request.name) {
 					case "updatePopup":
 						popup.refreshPopUp();
-						wikipedia.refreshPopUp();
-						lyrics.refreshPopUp();
 						sendResponse(true);
 					break;
 					case "clearPopup":

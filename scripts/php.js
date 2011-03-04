@@ -432,3 +432,26 @@ function nl2br (str, is_xhtml) {
 
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
+
+// Non php.js mais cool quand même.
+
+function displayLength(duration) {
+	var result = Math.floor(duration/60);
+	if(Math.floor(duration/60) < 10)
+		result = "0" + result;
+		result += ":";
+	if(duration%60 < 10)
+		result += "0";
+		result += (duration%60);
+	
+	return result;
+}
+
+function inArray(tab, target) {
+	var i = tab.length;
+	while(i) {
+		if(tab[i--] == target)
+			return true;
+	}
+	return false;
+}

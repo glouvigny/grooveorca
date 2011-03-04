@@ -1,9 +1,17 @@
+/***
+
+"Patch"
+	-- Un homme qui a honte.
+
+***/
+
 var songData = {
 	songInf: {
 		paused: null,
 		currentSong: null,
 		currentArtist: null,
 		currentAlbum: null,
+		currentSongId: null,
 		currentDuration: null,
 		currentPosition: null,
 		lastUpdate:null,
@@ -25,27 +33,45 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 				  notifications.init('dispatch');
 				  wikipedia.init('dispatch');
 				  nowplaying.init('dispatch');
-				  lyrics.init('dispatch');
+				  //lyrics.init('dispatch');
+				  //deezerAPI.init('dispatch');
 				  
 				  
-				  if(lastfm.status == true) {
+				  if(lastfm.status == true &&
+					((lastfm.lastNotification != songData.songInf.firstSeen) ||
+						(lastfm.lastScrobble != songData.songInf.firstSeen
+							&& (songData.songInf.currentPosition > (songData.songInf.currentDuration/2)
+								|| songData.songInf.currentPosition > 240)
+							&& songData.songInf.currentDuration >= 30))) {
 					lastfm.pushInformations();
 				  }
+				  
 				  if(notifications.status == true) {
 					notifications.pushInformations();
 				  }
 				  
-				  store.pushInformations();
-				  wikipedia.pushInformations();
+				  //store.pushInformations();
+				  if(wikipedia.lastArtist != songData.songInf.currentArtist)
+					wikipedia.pushInformations();
+					
+				  if(lyrics.lastArtist != songData.songInf.currentArtist
+					|| lyrics.lastSong != songData.songInf.currentSong)
 				  lyrics.pushInformations();
+				  
+				  deezerAPI.pushInformations();
 				  
 			  }
 			  if(nowplaying.status == true) {
 					nowplaying.pushInformations();
 			  }
+			  chrome.extension.sendRequest({name: "updatePopup", content: false}, function(response) { return true; });
 			  sendResponse(true);
               break;
+		   case "pushTime":
+		      songData.songInf.currentPosition = request.currentPosition;
+		      songData.songInf.currentDuration = request.currentDuration;
 			  
+			  break;
            case "unload":
 				  lastfm.unload();
 				  notifications.unload();
@@ -58,6 +84,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 					currentArtist: null,
 					currentAlbum: null,
 					currentDuration: null,
+					currentSongId: null,
 					currentPosition: null,
 					lastUpdate:null,
 					firstSeen:null,
@@ -72,13 +99,14 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 			  switch(request.resource) {
 				case "wikipedia":
 					sendResponse(
-					   {content: wikipedia.wikiArticle.innerHTML, 
+					   {content: wikipedia.wikiArticle, 
 						currentArtist: songData.songInf.currentArtist});
 					break;
 				case "popup":
 					sendResponse(
 					   {currentArtist: songData.songInf.currentArtist, 
 						currentSong: songData.songInf.currentSong,
+						currentSongId: songData.songInf.currentSongId,
 						paused: songData.songInf.paused});
 					break;
 				case "lyrics":
@@ -87,17 +115,46 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 					    currentArtist: songData.songInf.currentArtist, 
 						currentSong: songData.songInf.currentSong});
 					break;
-				case "store":
-					sendResponse(
-					   {content: store.contents, 
-					    currentArtist: songData.songInf.currentArtist, 
-						currentSong: songData.songInf.currentSong});
+				
+				case "deezerapi-plus":
+					switch(request.details.method) {
+						case "album":
+							deezerAPI.getArtistDetails(request.details.artistid, false);
+							deezerAPI.getAlbumDetails(request.details.albumid, false);
+							sendResponse(deezerAPI.artists[request.details.artistid].albums[request.details.albumid]);
+						break;
+						case "artist":
+							deezerAPI.getArtistDetails(request.details.artistid, false);
+							sendResponse(deezerAPI.artists[request.details.artistid]);
+						break;
+					}
 					break;
+				case "deezerapi":
+					var deezerArtistId = deezerAPI.tracks[songData.songInf.currentSongId].artist;
+					var deezerAlbumId = deezerAPI.tracks[songData.songInf.currentSongId].album;
+					var i = deezerAPI.artists[deezerArtistId].related.length;
+					var related = {};
+					while(i) {
+						i--;
+						related[i] = deezerAPI.artists[deezerAPI.artists[deezerArtistId].related[i]];
+					}
+					
+					sendResponse(
+					   {related: related, 
+					    artist: deezerAPI.artists[deezerArtistId], 
+						currentSongId: songData.songInf.currentSongId,
+						currentAlbumId: deezerAlbumId,
+						currentArtistId: deezerArtistId});
+					break;
+
 				case "interfaceTweaks":
 					interfaceTweaks.init('dispatch');
+					if(interfaceTweaks.singlePlayer)
+						interfaceTweaks.killDeezer();
 					sendResponse(
 					   {blockTopBar: interfaceTweaks.blockTopBar, 
-						blockFooter: interfaceTweaks.blockFooter});
+						blockFooter: interfaceTweaks.blockFooter,
+						expandPlayer: interfaceTweaks.expandPlayer});
 					break;
 			  }
               break;
