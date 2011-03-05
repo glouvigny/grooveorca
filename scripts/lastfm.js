@@ -1,4 +1,8 @@
 var lastfm = {
+  /**
+   * Errors code
+   * TODO : Use it more.
+   */
   err: {
 	code0 : 'No error :D',
 	code1 : 'Can\'t get a token, access denied',
@@ -8,14 +12,18 @@ var lastfm = {
 	code5 : 'Can\'t annonce track, access denied',
 	code6 : 'Can\'t annonce track, HTTP error',
   },
-  token: null,
-  session: null, 
-  user: null, 
-  lastNotification: null,
-  lastScrobble:null,
-  status: false,
-  api_key: "a0c592c65238b60549d2d9060c7b77ac",
-  api_sec: "3fad982f31d5fcff5fdcff2f4c7a3d26",
+  token: null, // Here goes the login token
+  session: null, // Here goes the session id.
+  user: null, // Username, only used on option page
+  lastNotification: null, // Last notified track
+  lastScrobble:null, // Last scrobbled track
+  status: false, // Is last.fm scrobbling enabled
+  api_key: "a0c592c65238b60549d2d9060c7b77ac", // My API Key
+  api_sec: "3fad982f31d5fcff5fdcff2f4c7a3d26", // My API Secret
+  /**
+   * Submit a track to last.fm
+   *	@param method either "track.updateNowPlaying" or "track.scrobble"
+   */
   submit: function(method){
 	var xhr = new XMLHttpRequest(); 
 	  xhr.onreadystatechange = function() { 
@@ -50,11 +58,22 @@ var lastfm = {
 	xhr.open("POST", "http://ws.audioscrobbler.com/2.0/?" + lastfm.serializeArgs(args), true);
 	xhr.send(lastfm.serializeArgs(args)); 
   },
+  /**
+   * Log the user out (delete session identifiant)
+   */
   destroySession: function() {
 	delete localStorage['lastFmSession'];
 	delete localStorage['lastFmUser'];
 	lastfm.init('options');
   },
+  /**
+   * Serialize arguments for passing it to the API
+   * Argument must be alphabetically ordered and 
+   * a MD5 hash must be passed to the API
+   * 	@param args associative array containing arguments passed to lastfm api
+   *	@param returnsig append sig to result
+   * 	@result ordered arguments in an URL friendly format
+   */
   serializeArgs: function(args,returnsig) {
 	if(isNaN(returnsig))
 		returnsig = 0;
@@ -70,6 +89,10 @@ var lastfm = {
 	argsString = argsString.substr(1) + '&api_sig=' + md5(sigString + lastfm.api_sec);
 	return argsString;
   },
+  /**
+   * Start the Authentification process
+   * Retrieves a token and open the login page
+   */
   getAuth: function() {
 	var xhr = new XMLHttpRequest(); 
 
@@ -95,6 +118,10 @@ var lastfm = {
 	 xhr.open("GET", "http://ws.audioscrobbler.com/2.0/?method=auth.gettoken&api_key=" + lastfm.api_key, true);                
 	 xhr.send(null); 
   },
+  /**
+   * Finishes the login process
+   * Saves the last.fm user and the session id to the localStorage
+   */
   getSession: function() {
 	var xhr = new XMLHttpRequest(); 
 	  xhr.onreadystatechange = function() { 
@@ -126,6 +153,10 @@ var lastfm = {
 	xhr.open("GET", "http://ws.audioscrobbler.com/2.0/?" + lastfm.serializeArgs(args), true);                
 	xhr.send(null); 
   },
+  /**
+   * Initalize the last.fm module
+   * @param source : either "option" page or "dispatch"
+   */
   init: function(source) {
 	this.session = localStorage.getItem('lastFmSession');
 	this.user = localStorage.getItem('lastFmUser');
@@ -157,14 +188,27 @@ var lastfm = {
 		}
 	}
   },
+  /**
+   * Returns if the user is logged or not
+   * @return boolean true if logged, false if not
+   */
   isLogged: function() {
 	if(this.session != null)
 		return true;
 	return false;
   },
+  /**
+   * When an option is changed this method is fired
+   * Saves settings
+   */
   toggleStatus: function() {
 	localStorage.setItem("lastFmStatus", document.getElementById("activateScrobbling").checked);
   },
+  /**
+   * Fired each time the counter is updated
+   * (in fact it's not, a check is done on the dispatcher)
+   * Fires lastfm.submit() if necessary
+   */
   pushInformations: function() {
 	if(lastfm.lastNotification != songData.songInf.firstSeen) {
 		lastfm.lastNotification = songData.songInf.firstSeen;
@@ -178,6 +222,9 @@ var lastfm = {
 		lastfm.submit('track.scrobble');
 	}
   },
+  /**
+   * Unloads vars from memory (maybe useless)
+   */
   unload: function() {
 	lastNotification = null;
 	lastScrobble = null;
