@@ -30,7 +30,7 @@ var options = {
 		nowplaying.init('options');
 		
 		document.getElementById('LastFmLogin').addEventListener('click',lastfm.getAuth,true);
-		//document.getElementById('LastFmVerifyLogin').addEventListener('click',lastfm.getSession,true);
+		document.getElementById('LastFmVerifyLogin').addEventListener('click',lastfm.getSession,true);
 		document.getElementById('LastFmLogout').addEventListener('click',lastfm.destroySession,true);
 		document.getElementById('WikipediaLocale').addEventListener('input',wikipedia.changeLocale,true);
 		document.getElementById('notificationsDuration').addEventListener('input',notifications.toggleStatus,true);
