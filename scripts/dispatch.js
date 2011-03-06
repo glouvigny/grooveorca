@@ -5,6 +5,19 @@
 
 ***/
 
+var deezerControl = function(action) {
+	chrome.windows.getAll({populate : true},function(windows) {
+		for(var i = 0; i < windows.length; i++) {
+			var j = 0;
+			for(var dumb in windows[i].tabs) {
+				chrome.tabs.sendRequest(windows[i].tabs[j].id, {name: "controlDeezer", action: action}, function(response) { closeNotif(); return true; });
+				j++;
+			}
+		}
+	});	
+}
+
+
 var songData = {
 	songInf: {
 		paused: null,
@@ -159,6 +172,9 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 					break;
 			  }
               break;
+			  case "control":
+				deezerControl(request.action);
+			  break;
         }
      });
 	 
