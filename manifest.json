@@ -1,6 +1,6 @@
 {
   "name": "Deezer+",
-  "version": "0.8.2",
+  "version": "0.9.1",
   "description": "Étendez les possibilités de Deezer.",
   "icons": { 
 	"128": "res/icons/Deezer_icon_128x128.png",
