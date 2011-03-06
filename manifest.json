@@ -1,6 +1,6 @@
 {
   "name": "Deezer+",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Étendez les possibilités de Deezer.",
   "icons": { 
 	"128": "res/icons/Deezer_icon_128x128.png",
@@ -18,7 +18,12 @@
     {
       "matches": ["http://*.deezer.com/*"],
       "js": ["scripts/interfaceTweaks.js", "scripts/page.js"]
-    }
+    },{
+	  "run_at": "document_start",
+      "all_frames": false,
+      "js": [ "scripts/mediakeys.js"],
+      "matches": [ "http://*/*", "https://*/*" ]
+   }
   ],
   "plugins": [
     { "path": "npDeezerPlusMSN.dll" }
