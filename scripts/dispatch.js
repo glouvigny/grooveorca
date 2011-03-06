@@ -33,6 +33,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 				  notifications.init('dispatch');
 				  wikipedia.init('dispatch');
 				  nowplaying.init('dispatch');
+				  //omnibox.init('dispatch');
 				  //lyrics.init('dispatch');
 				  //deezerAPI.init('dispatch');
 				  
