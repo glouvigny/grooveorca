@@ -1,15 +1,3 @@
-var deezerControl = function(action) {
-	chrome.windows.getAll({populate : true},function(windows) {
-		for(var i = 0; i < windows.length; i++) {
-			var j = 0;
-			for(var dumb in windows[i].tabs) {
-				chrome.tabs.sendRequest(windows[i].tabs[j].id, {name: "controlDeezer", action: action}, function(response) { closeNotif(); return true; });
-				j++;
-			}
-		}
-	});	
-}
-
 chrome.omnibox.onInputChanged.addListener(
     function (text, suggest) {
         var suggestions = [{ content: "p", description: "play : Commencer la lecture (alternatives : p, lecture)" },
