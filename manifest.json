@@ -1,6 +1,6 @@
 {
   "name": "Deezer+",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Étendez les possibilités de Deezer.",
   "icons": { 
 	"128": "res/icons/Deezer_icon_128x128.png",
@@ -23,6 +23,10 @@
   "plugins": [
     { "path": "npDeezerPlusMSN.dll" }
   ],
+  "omnibox": { "keyword" : "d+" },
+  "icons": {
+    "16": "res/icons/Deezer_icon_16x16.png"
+  },
   "options_page": "options.html",
   "permissions": ["notifications", "tabs", "http://*.deezer.com/", "http://*.wikipedia.org/", "http://*.last.fm/", "http://ws.audioscrobbler.com/", "http://*.lyrdb.com/", "http://ax.phobos.apple.com.edgesuite.net/"] 
 }
