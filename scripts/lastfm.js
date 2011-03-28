@@ -14,44 +14,53 @@ var lastfm = {
   },
   token: null, // Here goes the login token
   session: null, // Here goes the session id.
-  user: null, // Username, only used on option page
+  user: null, // Username
   lastNotification: null, // Last notified track
   lastScrobble:null, // Last scrobbled track
   status: false, // Is last.fm scrobbling enabled
-  api_key: "a0c592c65238b60549d2d9060c7b77ac", // My API Key
+  api_key: "a0c592c65238b60549d2d9060c7b77ac", // My API Key     Please don't reuse it! You can ask one for free from http://last.fm/api/
   api_sec: "3fad982f31d5fcff5fdcff2f4c7a3d26", // My API Secret
+  loved: false,
   /**
    * Submit a track to last.fm
-   *	@param method either "track.updateNowPlaying" or "track.scrobble"
+   *	@param method either "track.updateNowPlaying", "track.love", "track.unlove" or "track.scrobble"
    */
   submit: function(method){
 	var xhr = new XMLHttpRequest(); 
+	xhr.method = method;
 	  xhr.onreadystatechange = function() { 
 		 if(xhr.readyState == 4) {
 			if(xhr.status == 200) { 
 				 var status = xhr.responseXML.getElementsByTagName('lfm');
 				 status = status[0].getAttribute('status');
 				 if(status == 'ok') {
+					if(xhr.method == "track.love" || xhr.method == "track.unlove")
+						lastfm.loved = !lastfm.loved;
 				 }
 			}
 		}
 	 }; 
 	var args = {};
 	if(method == "track.updateNowPlaying") {	
-			args['method'] = method;
-			args['artist'] = songData.songInf.currentArtist;
-			args['album'] = songData.songInf.currentAlbum;
-			args['track'] = songData.songInf.currentSong;
-			args['api_key'] = lastfm.api_key;
-			args['sk'] = lastfm.session;
-	}
-	else if(method == "track.scrobble") {
+		args['method'] = method;
+		args['artist'] = songData.songInf.currentArtist;
+		args['album'] = songData.songInf.currentAlbum;
+		args['track'] = songData.songInf.currentSong;
+		args['api_key'] = lastfm.api_key;
+		args['sk'] = lastfm.session;
+	} else if(method == "track.scrobble") {
 		args['method'] = method;
 		args['artist[0]'] = songData.songInf.currentArtist;
 		args['album[0]'] = songData.songInf.currentAlbum;
 		args['track[0]'] = songData.songInf.currentSong;
 		args['duration[0]'] = songData.songInf.currentDuration;
 		args['timestamp[0]'] = songData.songInf.firstSeenPlaying;
+		args['api_key'] = lastfm.api_key;
+		args['sk'] = lastfm.session;
+	} else if(method == "track.love" || method == "track.unlove") {
+		args['method'] = method;
+		args['artist'] = songData.songInf.currentArtist;
+		args['track'] = songData.songInf.currentSong;
 		args['api_key'] = lastfm.api_key;
 		args['sk'] = lastfm.session;
 	}
@@ -181,10 +190,16 @@ var lastfm = {
 			document.getElementById('LastFmLogout').setAttribute('disabled',true);
 			document.getElementById('lastffusername').textContent = '';
 		}
-	}
-	else if(source == 'dispatch') {
+	} else if(source == 'dispatch') {
 		if(!this.isLogged()) {
 			lastfm.status = false;
+		}
+	} else if(source == 'popup') {
+		if(!this.isLogged()) {
+			lastfm.status = false;
+		}
+		if(lastfm.status == false) {
+			document.getElementById('lovebutton').style.display = 'none';
 		}
 	}
   },
@@ -208,11 +223,30 @@ var lastfm = {
    * Fired each time the counter is updated
    * (in fact it's not, a check is done on the dispatcher)
    * Fires lastfm.submit() if necessary
+   * Retrieves data from Last.fm to know if user love the track
    */
   pushInformations: function() {
+  
 	if(lastfm.lastNotification != songData.songInf.firstSeen) {
 		lastfm.lastNotification = songData.songInf.firstSeen;
 		lastfm.submit('track.updateNowPlaying');
+		
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() { 
+		 if(xhr.readyState == 4) {
+			if(xhr.status == 200) { 
+				var temp;
+				temp = xhr.responseXML.getElementsByTagName('userloved');
+					if(temp.length)
+						lastfm.loved = (temp[0].textContent == 1);
+					else
+						lastfm.loved = false;
+				} else
+					lastfm.loved = false;
+			}
+		}; 
+		xhr.open("GET", "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&autocorrect=1&api_key=b25b959554ed76058ac220b7b2e0a026&artist=" + encodeURIComponent(songData.songInf.currentArtist) + "&track=" + encodeURIComponent(songData.songInf.currentSong) + "&album=" + encodeURIComponent(songData.songInf.currentAlbum) + "&username=" + encodeURIComponent(lastfm.user), false);
+		xhr.send(); 
 	}
 	else if (lastfm.lastScrobble != songData.songInf.firstSeen
 	&& (songData.songInf.currentPosition > (songData.songInf.currentDuration/2)
@@ -229,5 +263,30 @@ var lastfm = {
 	lastNotification = null;
 	lastScrobble = null;
 	status = false;
+  },
+  /**
+   * Fire love method from the background page
+   * Changes action on the button (to undo it)
+   */
+  love: function() {
+	// Want to unlove ?
+	if(document.getElementById('lovebutton').className == 'unlovebutton') {
+		chrome.extension.getBackgroundPage().lastfm.submit("track.unlove");
+		document.getElementById('lovebutton').className = '';
+	} else {
+		chrome.extension.getBackgroundPage().lastfm.submit("track.love");
+		document.getElementById('lovebutton').className = 'unlovebutton';
+	}
+  },
+  /**
+   * Empty for now
+   */
+  refreshPopUp: function() {
+	lastfm.loved = chrome.extension.getBackgroundPage().lastfm.loved;
+	if(lastfm.loved == false && document.getElementById('lovebutton').className == 'unlovebutton') {
+		document.getElementById('lovebutton').className = '';
+	} else if(lastfm.loved == true && document.getElementById('lovebutton').className == '') {
+		document.getElementById('lovebutton').className = 'unlovebutton';
+	}
   }
 }

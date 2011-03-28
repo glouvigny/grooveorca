@@ -5,6 +5,7 @@
 	<title>Popup Deezer+</title>
 	<link href="res/popup.css" rel="stylesheet" type="text/css"/>
 	<script src="scripts/popup.js"></script>
+	<script src="scripts/lastfm.js"></script>
 	<script src="scripts/wikipedia.js"></script>
 	<script src="scripts/lyrics.js"></script>
 	<script src="scripts/deezerapi.js"></script>
@@ -34,6 +35,9 @@
 		<li id="track_infosLink" onclick="popup.switchView('track_infos');">Piste</li>
 		<li id="siteLink" onclick="popup.switchView('site');">Site</li>
 		<li class="popup_nav_right"><a href="options.html" target="_blank"><img src="res/popup/package_settings.png" alt="Paramètres"/></a></li>
+		<li class="popup_nav_right">
+			<span id="lovebutton" title="Ajouter aux favoris Last.fm" onclick="lastfm.love()">&nbsp;</span>
+		</li>
 	</ul>
 	<div id="multipleview">
 		<div id="artist_infos">
@@ -114,6 +118,7 @@
 		
 		window.addEventListener('load', function() {
 			wikipedia.init('popup');
+			lastfm.init('popup');
 			popup.refreshPopUp();
 			popup.switchView('artist_infos')
 		}, false);
