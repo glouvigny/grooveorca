@@ -48,5 +48,6 @@ var options = {
 		document.getElementById('wikipedia-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('interface-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('wlm-menu').addEventListener('click',options.switchView,true);
+		document.getElementById('donations-menu').addEventListener('click',options.switchView,true);
 	}
 }

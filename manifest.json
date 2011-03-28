@@ -1,7 +1,7 @@
 {
-  "name": "Deezer+",
-  "version": "0.9.1",
-  "description": "Étendez les possibilités de Deezer.",
+  "name": "Deezer +",
+  "version": "0.9.3",
+  "description": "Wikipédia, Paroles, Scrobbling Last.fm, pseudo MSN, notifications.\n\nÉtendez les possibilités de Deezer.",
   "icons": { 
 	"128": "res/icons/Deezer_icon_128x128.png",
 	"16": "res/icons/Deezer_icon_16x16.png",
@@ -20,7 +20,7 @@
       "js": ["scripts/interfaceTweaks.js", "scripts/page.js"]
     },{
 	  "run_at": "document_start",
-      "all_frames": false,
+      "all_frames": true,
       "js": [ "scripts/mediakeys.js"],
       "matches": [ "http://*/*", "https://*/*" ]
    }
