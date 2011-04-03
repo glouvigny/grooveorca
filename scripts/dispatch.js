@@ -173,7 +173,9 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 			  }
               break;
 			  case "control":
-				deezerControl(request.action);
+				mediakeys.init('dispatch');
+				if(typeof request.source == "undefined" || mediakeys.status == true)
+					deezerControl(request.action);
 			  break;
         }
      });

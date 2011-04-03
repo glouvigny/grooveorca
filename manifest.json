@@ -1,6 +1,6 @@
 {
   "name": "Deezer +",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Wikipédia, Paroles, Scrobbling Last.fm, pseudo MSN, notifications.\n\nÉtendez les possibilités de Deezer.",
   "icons": { 
 	"128": "res/icons/Deezer_icon_128x128.png",
@@ -11,7 +11,7 @@
   "browser_action": {
     "default_icon": "res/icons/Deezer_icon_32x32.png",
     "default_title": "Deezer+",
-    "default_popup": "popup2.html"
+    "default_popup": "popup.html"
   },
   "background_page": "bg.html",
   "content_scripts": [
