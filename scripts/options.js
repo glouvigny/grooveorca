@@ -28,6 +28,7 @@ var options = {
 		wikipedia.init('options');
 		interfaceTweaks.init('options');
 		nowplaying.init('options');
+		mediakeys.init('options');
 		
 		document.getElementById('LastFmLogin').addEventListener('click',lastfm.getAuth,true);
 		document.getElementById('LastFmVerifyLogin').addEventListener('click',lastfm.getSession,true);
@@ -42,11 +43,13 @@ var options = {
 		document.getElementById('activateInterfacesExpendPlayer').addEventListener('change',interfaceTweaks.toggleStatus,true);
 		document.getElementById('activateInterfacesSinglePlayer').addEventListener('change',interfaceTweaks.toggleStatus,true);
 		document.getElementById('activateNowPlaying').addEventListener('change',nowplaying.toggleStatus,true);
+		document.getElementById('activateMediaKeys').addEventListener('change',mediakeys.toggleStatus,true);
 		
 		document.getElementById('lastfm-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('notifications-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('wikipedia-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('interface-menu').addEventListener('click',options.switchView,true);
+		document.getElementById('mediakeys-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('wlm-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('donations-menu').addEventListener('click',options.switchView,true);
 	}
