@@ -52,5 +52,6 @@ var options = {
 		document.getElementById('mediakeys-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('wlm-menu').addEventListener('click',options.switchView,true);
 		document.getElementById('donations-menu').addEventListener('click',options.switchView,true);
+		
 	}
 }

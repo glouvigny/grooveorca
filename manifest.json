@@ -1,7 +1,7 @@
 {
-  "name": "Deezer +",
+  "name": "__MSG_extName__",
   "version": "0.9.4",
-  "description": "Wikipédia, Paroles, Scrobbling Last.fm, pseudo MSN, notifications.\n\nÉtendez les possibilités de Deezer.",
+  "description": "__MSG_extDesc__",
   "icons": { 
 	"128": "res/icons/Deezer_icon_128x128.png",
 	"16": "res/icons/Deezer_icon_16x16.png",
@@ -21,7 +21,7 @@
     },{
 	  "run_at": "document_start",
       "all_frames": true,
-      "js": [ "scripts/mediakeys.js"],
+      "js": [ "scripts/extensionsParams.js", "scripts/mediakeys.js"],
       "matches": [ "http://*/*", "https://*/*" ]
    }
   ],
@@ -33,5 +33,6 @@
     "16": "res/icons/Deezer_icon_16x16.png"
   },
   "options_page": "options.html",
+  "default_locale" : "fr",
   "permissions": ["notifications", "tabs", "http://*.deezer.com/", "http://*.wikipedia.org/", "http://*.last.fm/", "http://ws.audioscrobbler.com/", "http://*.lyrdb.com/", "http://ax.phobos.apple.com.edgesuite.net/"] 
 }

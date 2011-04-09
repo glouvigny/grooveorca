@@ -182,13 +182,13 @@ var lastfm = {
 			document.getElementById('LastFmLogin').setAttribute('disabled',true);
 			document.getElementById('LastFmVerifyLogin').setAttribute('disabled',true);
 			document.getElementById('LastFmLogout').removeAttribute('disabled');
-			document.getElementById('lastffusername').textContent = this.user;
+			document.getElementById('LastFmLogout').textContent = chrome.i18n.getMessage("LastFmLogout", this.user);
 		}
 		else {
 			document.getElementById('LastFmLogin').removeAttribute('disabled');
 			document.getElementById('LastFmVerifyLogin').setAttribute('disabled',true);
 			document.getElementById('LastFmLogout').setAttribute('disabled',true);
-			document.getElementById('lastffusername').textContent = '';
+			document.getElementById('LastFmLogout').textContent = chrome.i18n.getMessage("LastFmLogout", "");
 		}
 	} else if(source == 'dispatch') {
 		if(!this.isLogged()) {

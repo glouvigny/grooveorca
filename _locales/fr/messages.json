@@ -1,0 +1,224 @@
+{
+	"extName": {
+		"message": "Deezer +",
+		"description": "Extension name"
+	},
+	"extDesc": {
+		"message": "Wikipédia, Paroles, Scrobbling Last.fm, pseudo MSN, notifications.\n\nÉtendez les possibilités de Deezer.",
+		"description": "Extension description"
+	},
+	"lastFm": {
+		"message": "Last.fm"
+	},
+	"mediakeys": {
+		"message": "Raccourcis"
+	},
+	"wikipedia": {
+		"message": "Wikipédia"
+	},
+	"notifications": {
+		"message": "Notifications"
+	},
+	"liveMessenger": {
+		"message": "Live Messenger"
+	},
+	"interface": {
+		"message": "Interface"
+	},
+	"plusSymbol": {
+		"message": "+"
+	},
+	"lastfmOptionHint": {
+		"message": "Deezer+ peut mettre à jour votre profil Last.fm automatiquement en fonction de la musique que vous écouterez sur Deezer. Pour cela cochez la case suivante et connectez vous à Last.fm."
+	},
+	"activateScrobbling": {
+		"message": "Activer le scrobbling."
+	},
+	"LastFmLogin": {
+		"message" : "Connexion à Last.fm"
+	},
+	"LastFmVerifyLogin": {
+		"message" : "Vérification de la connexion à Last.fm"
+	},
+	"LastFmLogout": {
+		"message" : "Déconnecter $USER$ de Last.fm",
+		"placeholders": {
+			"user": {
+				"content": "$1",
+				"example": "Guillaumel"
+			}
+		}
+	},
+	"wikipediaHint": {
+		"message" : "Pour que Wikipédia s'affiche dans votre langue il faut que vous renseigniez le champ suivant, correspondant au code de votre langue. Vous le trouverez dans l'url de la page d'accueil de Wikipédia. Les articles pourront ainsi être récupérés."
+	},
+	"wikipediaTry": {
+		"message" : "Pour tester que la valeur que vous avez renseigné est correcte essayez d'afficher cet article : "
+	},
+	"wikipediaLicence": {
+		"message" : "Les articles de Wikipédia sont distribués sous les termes de la licence <a href=\"http://creativecommons.org/licenses/by-sa/3.0/legalcode\">Creative Commons Paternité-Partage des Conditions Initiales à l'Identique 3.0 Unported (CC-BY-SA 3.0 Unported)</a> et de la licence de <a href=\"http://www.gnu.org/copyleft/fdl.html\">documentation libre GNU (GFDL)</a>."
+	},
+	"notificationsHint": {
+		"message" : "Deezer+ peut afficher une pop-up avec le nom du morceau en cours de lecture."
+	},
+	"activateNotifications": {
+		"message" : "Activer les notifications"
+	},
+	"notificationsDuration": {
+		"message" : "Durée d'affichage des notifications en secondes"
+	},
+	"notificationsLicence": {
+		"message" : "Last.fm sera utilisé pour récuperer les pochettes d'album affichées dans les notifications pour la musique que vous avez envoyé sur Deezer."
+	},
+	"mediakeysHint": {
+		"message" : "Deezer+ permet de contrôler la lecture avec les touches multimédia du clavier (Play, Pause, Suivant etc.) quand Chrome est l'application active."
+	},
+	"activateMediaKeys": {
+		"message" : "Activer les touches multimédia"
+	},
+	"wlmHint": {
+		"message" : "Activez l'intégration de Windows Live Messenger."
+	},
+	"activateNowPlaying": {
+		"message" : "Afficher ce que j'écoute sur Messenger."
+	},
+	"interfaceHint": {
+		"message" : "Certaines parties de l'interface de Deezer sont inutiles et méritent d'être bannies de l'écran."
+	},
+	"activateInterfacesBlockTopBar": {
+		"message" : "Barre du haut <em>(La connexion, déconnexion, consultation des messages et le renouvellement d'abonnement pourront se faire via le Pop-up ou la page d'options)</em>"
+	},
+	"activateInterfacesBlockFooter": {
+		"message" : "Footer"
+	},
+	"interfaceHint2": {
+		"message" : "Vous pouvez également étendre l'affichage du player à votre fenêtre."
+	},
+	"activateInterfacesExpendPlayer": {
+		"message" : "Étendre le player"
+	},
+	"activateInterfacesSinglePlayer": {
+		"message" : "N'autoriser qu'une seule instance de Deezer"
+	},
+	"optionsPlusHint": {
+		"message" : "N'oubliez pas de noter l'extension sur la galerie !"
+	},
+	"optionsPlusHint2": {
+		"message" : "Vous avez aimé cette extension ? Faites un don !"
+	},
+	"give1Euro": {
+		"message" : "Donner 1 euro"
+	},
+	"giveRandomEuros": {
+		"message" : "Montant libre"
+	},
+	"artist": {
+		"message" : "Artiste"
+	},
+	"album": {
+		"message" : "Album"
+	},
+	"track": {
+		"message" : "Piste"
+	},
+	"albumTracks": {
+		"message" : "Les pistes de l'album"
+	},
+	"site": {
+		"message" : "Site"
+	},
+	"discography": {
+		"message" : "Discographie"
+	},
+	"theDiscography": {
+		"message" : "La discographie"
+	},
+	"relatedArtists": {
+		"message" : "Les artistes similaires"
+	},
+	"paneCantBeLoaded": {
+		"message" : "$ITEM$ ne peut être chargée car aucun onglet avec <a href=\"http://www.deezer.com/\" target=\"_blank\">Deezer</a> n'est ouvert.",
+		"placeholders": {
+			"item": {
+				"content": "$1",
+				"example": "Wikipédia"
+			}
+		}
+	},
+	"paneCantBeLoadedPlural": {
+		"message" : "$ITEM$ ne peuvent être chargés car aucun onglet avec <a href=\"http://www.deezer.com/\" target=\"_blank\">Deezer</a> n'est ouvert.",
+		"placeholders": {
+			"item": {
+				"content": "$1",
+				"example": "Les paroles"
+			}
+		}
+	},
+	"content": {
+		"message" : "Contenu"
+	},
+	"buy": {
+		"message" : "Acheter"
+	},
+	"links": {
+		"message" : "Liens"
+	},
+	"openNewPlayer": {
+		"message" : "Ouvrir un nouveau lecteur"
+	},
+	"options": {
+		"message" : "Options"
+	},
+	"lastFmLove": {
+		"message" : "Ajouter aux favoris Last.fm"
+	},
+	"linksToOnlineStores": {
+		"message" : "Les liens vers les boutiques en ligne"
+	},
+	"lyrics": {
+		"message" : "Paroles"
+	},
+	"lyricsPhrase": {
+		"message" : "Les paroles"
+	},
+	"prev": {
+		"message": "&lt; Précédente"
+	},
+	"pause": {
+		"message": "Pause"
+	},
+	"next": {
+		"message": "Suivante &gt;"
+	},
+	"wikipediaPleaseStartPlaying": {
+		"message": "Lancez la lecture pour afficher l'article Wikipédia correspondant à cet artiste."
+	},
+	"wikipediaCurrentlySearching": {
+		"message": "L'article Wikipédia de $ARTIST$ est en cours de recherche...",
+		"placeholders": {
+			"artist": {
+				"content": "$1",
+				"example": "The Beatles"
+			}
+		}
+	},
+	"wikipediaCantBeFound": {
+		"message": "L'article Wikipédia de $ARTIST$ est introuvable.",
+		"placeholders": {
+			"artist": {
+				"content": "$1",
+				"example": "The Beatles"
+			}
+		}
+	},
+	"lyricsPleaseStartPlaying": {
+		"message": "Lancez la lecture pour afficher les paroles."
+	},
+	"lyricsCantBeFound": {
+		"message": "Paroles introuvables pour cette chanson."
+	},
+	"lyricsSearching": {
+		"message": "Paroles en cours de recherche..."
+	}
+	
+}
