@@ -10,6 +10,7 @@
 	<script src="scripts/lyrics.js"></script>
 	<script src="scripts/deezerapi.js"></script>
 	<script src="scripts/php.js"></script>
+	<script src="scripts/i18n.js"></script>
 	<style type="text/css">
 	body {
 		width: 340px;
@@ -30,67 +31,67 @@
 		<span id="song"></span>
 	</div>
 	<ul id="popup_nav">
-		<li class="selected" id="artist_infosLink" onclick="popup.switchView('artist_infos');">Artiste</li>
-		<li id="album_infosLink" onclick="popup.switchView('album_infos');">Album</li>
-		<li id="track_infosLink" onclick="popup.switchView('track_infos');">Piste</li>
-		<li id="siteLink" onclick="popup.switchView('site');">Site</li>
+		<li class="selected" id="artist_infosLink" onclick="popup.switchView('artist_infos');"><span class="i18n">artist</span></li>
+		<li id="album_infosLink" onclick="popup.switchView('album_infos');"><span class="i18n">album</span></li>
+		<li id="track_infosLink" onclick="popup.switchView('track_infos');"><span class="i18n">track</span></li>
+		<li id="siteLink" onclick="popup.switchView('site');"><span class="i18n">site</span></li>
 		<li class="popup_nav_right"><a href="options.html" target="_blank"><img src="res/popup/package_settings.png" alt="Paramètres"/></a></li>
 		<li class="popup_nav_right">
-			<span id="lovebutton" title="Ajouter aux favoris Last.fm" onclick="lastfm.love()">&nbsp;</span>
+			<span id="lovebutton" title=" " onclick="lastfm.love()">&nbsp;</span>
 		</li>
 	</ul>
 	<div id="multipleview">
 		<div id="artist_infos">
 			<ul id="artist_infos_nav" class="popup_nav_second">
-				<li class="selected" id="wikipediaLink" onclick="popup.switchSecondView('artist_infos','wikipedia');">Wikipédia</li>
-				<li id="discoLink" onclick="popup.switchSecondView('artist_infos','disco');">Discographie</li>
-				<li id="relatedLink" onclick="popup.switchSecondView('artist_infos','related');">Similaires</li>
+				<li class="selected" id="wikipediaLink" onclick="popup.switchSecondView('artist_infos','wikipedia');"><span class="i18n">wikipedia</span></li>
+				<li id="discoLink" onclick="popup.switchSecondView('artist_infos','disco');"><span class="i18n">discography</span></li>
+				<li id="relatedLink" onclick="popup.switchSecondView('artist_infos','related');"><span class="i18n">related</span></li>
 			</ul>
 			<div id="wikipedia">
-				Wikipédia ne peut être chargée car aucun onglet avec <a href="http://www.deezer.com/" target="_blank">Deezer</a> n'est ouvert.
+				<span class="i18n">paneCantBeLoaded wikipedia</span>
 			</div>
 			<div id="disco" style="display:none;">
-				La discographie ne peut être chargée car aucun onglet avec <a href="http://www.deezer.com/" target="_blank">Deezer</a> n'est ouvert.
+				<span class="i18n">paneCantBeLoaded theDiscography</span>
 			</div>
 			<div id="disco-focus" style="display:none;">
-				La discographie ne peut être chargée car aucun onglet avec <a href="http://www.deezer.com/" target="_blank">Deezer</a> n'est ouvert.
+				<span class="i18n">paneCantBeLoaded theDiscography</span>
 			</div>
 			<div id="disco-foreign" style="display:none;">
-				La discographie ne peut être chargée car aucun onglet avec <a href="http://www.deezer.com/" target="_blank">Deezer</a> n'est ouvert.
+				<span class="i18n">paneCantBeLoaded theDiscography</span>
 			</div>
 			<div id="related" style="display:none;">
-				Les artistes similaires ne peuvent être chargés car aucun onglet avec <a href="http://www.deezer.com/" target="_blank">Deezer</a> n'est ouvert.
+				<span class="i18n">paneCantBeLoadedPlural albumTracks</span>
 			</div>
 		</div>
 		<div id="album_infos">
 			<ul id="album_infos_nav" class="popup_nav_second">
-				<li class="selected" id="albumcontentsLink" onclick="popup.switchSecondView('album_infos','albumcontents');">Contenu</li>
-				<!--li id="buy_albumLink" onclick="popup.switchSecondView('album_infos','buy_album');">Acheter</li-->
+				<li class="selected" id="albumcontentsLink" onclick="popup.switchSecondView('album_infos','albumcontents');"><span class="i18n">content</span></li>
+				<!--li id="buy_albumLink" onclick="popup.switchSecondView('album_infos','buy_album');"><span class="i18n">buy</span></li-->
 			</ul>
 			<div id="albumcontents">
-				Les paroles ne peuvent être chargées car aucun onglet avec <a href="http://www.deezer.com/" target="_blank">Deezer</a> n'est ouvert.
+				<span class="i18n">paneCantBeLoadedPlural albumTracks</span>
 			</div>
 			<div id="buy_album" style="display:none;">
-				Les liens vers les boutiques en ligne ne peuvent être affichés car j'ai eu la flemme de les implémenter pour le moment.
+				<span class="i18n">paneCantBeLoadedPlural linksToOnlineStores</span>
 			</div>
 		</div>
 		<div id="track_infos">
 			<ul id="track_infos_nav" class="popup_nav_second">
-				<li class="selected" id="lyricsLink" onclick="popup.switchSecondView('track_infos','lyrics');">Paroles</li>
-				<!--li id="buy_trackLink" onclick="popup.switchSecondView('track_infos','buy_track');">Acheter</li-->
+				<li class="selected" id="lyricsLink" onclick="popup.switchSecondView('track_infos','lyrics');"><span class="i18n">lyrics</span></li>
+				<!--li id="buy_trackLink" onclick="popup.switchSecondView('track_infos','buy_track');"><span class="i18n">buy</span></li-->
 			</ul>
 			<div id="lyrics">
-				Les paroles ne peuvent être chargées car aucun onglet avec <a href="http://www.deezer.com/" target="_blank">Deezer</a> n'est ouvert.
+				<span class="i18n">paneCantBeLoaded lyricsPhrase</span>
 			</div>
 			<div id="buy_track" style="display:none;">
-				Les liens vers les boutiques en ligne ne peuvent être affichés car j'ai eu la flemme de les implémenter pour le moment.
+				<span class="i18n">paneCantBeLoadedPlural linksToOnlineStores</span>
 			</div>
 		</div>
 		<div id="site">
 			<ul id="site_nav" class="popup_nav_second">
-				<li class="selected" id="site_accountLink" onclick="popup.switchSecondView('site','site_account');">Liens</li>
+				<li class="selected" id="site_accountLink" onclick="popup.switchSecondView('site','site_account');"><span class="i18n">links</span></li>
 				<!--li id="site_searchLink" onclick="popup.switchSecondView('site','site_search');">Recherche</li-->
-				<li class="popup_nav_right"><a href="http://www.deezer.com/" target="_blank"><img src="res/popup/open_player.png" alt="Ouvrir un nouveau lecteur"/></a></li>
+				<li class="popup_nav_right"><a href="http://www.deezer.com/" target="_blank"><img src="res/popup/open_player.png" alt=" "/></a></li>
 			</ul>
 			<div id="site_search" style="display:none;">
 				<input type="search" name=""/>
@@ -119,6 +120,7 @@
 		window.addEventListener('load', function() {
 			wikipedia.init('popup');
 			lastfm.init('popup');
+			i18n.init('popup');
 			popup.refreshPopUp();
 			popup.switchView('artist_infos')
 		}, false);

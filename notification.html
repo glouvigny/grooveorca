@@ -5,6 +5,8 @@
 	<title>Deezer+ Notification</title>
 	<link href="./res/notification.css" rel="stylesheet"/>
 	<script src="./scripts/notifpopup.js"></script>
+	<script src="scripts/php.js"></script>
+	<script src="scripts/i18n.js"></script>
 </head>
 <body id="body" onmouseover="handleMouseOver()" onmouseout="handleMouseOut()">
 <div id="popupServices">
@@ -15,9 +17,12 @@
 <h1 id="song">Song title</h1>
 <h2 id="artist">Artist</h2>
 <div id="playerControls">
-	<span id="prev">&lt; Précédente</span>
-	<span id="pause">Pause</span>
-	<span id="next">Suivante &gt;</span>
+	<span id="prev"><span class="i18n">prev</span></span>
+	<span id="pause"><span class="i18n">pause</span></span>
+	<span id="next"><span class="i18n">next</span></span>
 </div>
+<script>
+	i18n.init('notification');
+</script>
 </body>
 </html>

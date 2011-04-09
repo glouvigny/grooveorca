@@ -1,0 +1,224 @@
+{
+	"extName": {
+		"message": "Deezer +",
+		"description": "Extension name"
+	},
+	"extDesc": {
+		"message": "Wikipedia, Lyrics, Last.fm Scrobbling, Live Messenger \"now playing\", notifications.\n\nExtend Deezer capabilities.",
+		"description": "Extension description"
+	},
+	"lastFm": {
+		"message": "Last.fm"
+	},
+	"mediakeys": {
+		"message": "Multimedia keys"
+	},
+	"wikipedia": {
+		"message": "Wikipedia"
+	},
+	"notifications": {
+		"message": "Notifications"
+	},
+	"liveMessenger": {
+		"message": "Live Messenger"
+	},
+	"interface": {
+		"message": "Interface"
+	},
+	"plusSymbol": {
+		"message": "+"
+	},
+	"lastfmOptionHint": {
+		"message": "Deezer+ can update your Last.fm profile automatically based on the music you listen on Deezer. For this check the following box and connect to Last.fm."
+	},
+	"activateScrobbling": {
+		"message": "Enable scrobbling."
+	},
+	"LastFmLogin": {
+		"message" : "Log in to Last.fm"
+	},
+	"LastFmVerifyLogin": {
+		"message" : "Checking connection to Last.fm"
+	},
+	"LastFmLogout": {
+		"message" : "Disconnect $USER$ from Last.fm",
+		"placeholders": {
+			"user": {
+				"content": "$1",
+				"example": "Guillaumel"
+			}
+		}
+	},
+	"wikipediaHint": {
+		"message" : "If you want Wikipedia to appears in your language you must complete the following field, corresponding to your language code. You'll find it in the url of the Wikipedia's homepage."
+	},
+	"wikipediaTry": {
+		"message" : "To check the value you provided is correct, try to display this article:"
+	},
+	"wikipediaLicence": {
+		"message" : "Wikipedia articles are distributed under the terms of the <a href=\"http://creativecommons.org/licenses/by-sa/3.0/legalcode\">CC-BY-SA 3.0 Unported</a> license and the <a href=\"http://www.gnu.org/copyleft/fdl.html\">GFDL</a> license."
+	},
+	"notificationsHint": {
+		"message" : "Deezer+ can display a pop-up with the name of the song being played."
+	},
+	"activateNotifications": {
+		"message" : "Enable notifications"
+	},
+	"notificationsDuration": {
+		"message" : "Notifications display time in seconds"
+	},
+	"notificationsLicence": {
+		"message" : "Last.fm will be used to retrieve album art displayed in the notifications for the music you have sent on Deezer."
+	},
+	"mediakeysHint": {
+		"message" : "Deezer+ allows you to control playback with multimedia keyboard buttons (Play, Pause, Next, etc.). when Chrome is the active application."
+	},
+	"activateMediaKeys": {
+		"message" : "Enable multimedia buttons"
+	},
+	"wlmHint": {
+		"message" : "Enable the integration of Windows Live Messenger."
+	},
+	"activateNowPlaying": {
+		"message" : "Show what I listen on Messenger."
+	},
+	"interfaceHint": {
+		"message" : "Parts of the Deezer interface are useless and deserve to be banished from the screen."
+	},
+	"activateInterfacesBlockTopBar": {
+		"message" : "Top bar <em>(The login, logout, counseling of the messages and subscription renewals can be made via the Pop-up or the options page)</em>"
+	},
+	"activateInterfacesBlockFooter": {
+		"message" : "Footer"
+	},
+	"interfaceHint2": {
+		"message" : "You can also extend the player to fit your Chrome window"
+	},
+	"activateInterfacesExpendPlayer": {
+		"message" : "Extend the player"
+	},
+	"activateInterfacesSinglePlayer": {
+		"message" : "Only allow a single instance of Deezer"
+	},
+	"optionsPlusHint": {
+		"message" : "Don't forget to rate the extension on the Chrome Webstore!"
+	},
+	"optionsPlusHint2": {
+		"message" : "Did you liked the extension? Make a donation!"
+	},
+	"give1Euro": {
+		"message" : "Give 1 euro"
+	},
+	"giveRandomEuros": {
+		"message" : "Give more or less"
+	},
+	"artist": {
+		"message" : "Artist"
+	},
+	"album": {
+		"message" : "Album"
+	},
+	"track": {
+		"message" : "Track"
+	},
+	"albumTracks": {
+		"message" : "Album tracks"
+	},
+	"site": {
+		"message" : "Site"
+	},
+	"discography": {
+		"message" : "Discography"
+	},
+	"theDiscography": {
+		"message" : "Discography"
+	},
+	"relatedArtists": {
+		"message" : "Related artists"
+	},
+	"paneCantBeLoaded": {
+		"message" : "$ITEM$ can't be loaded as no <a href=\"http://www.deezer.com/\" target=\"_blank\">Deezer</a> tab is opened.",
+		"placeholders": {
+			"item": {
+				"content": "$1",
+				"example": "Wikipedia"
+			}
+		}
+	},
+	"paneCantBeLoadedPlural": {
+		"message" : "$ITEM$ can't be loaded as no <a href=\"http://www.deezer.com/\" target=\"_blank\">Deezer</a> tab is opened.",
+		"placeholders": {
+			"item": {
+				"content": "$1",
+				"example": "Lyrics"
+			}
+		}
+	},
+	"content": {
+		"message" : "Content"
+	},
+	"buy": {
+		"message" : "Buy"
+	},
+	"links": {
+		"message" : "Links"
+	},
+	"openNewPlayer": {
+		"message" : "Open a new player"
+	},
+	"options": {
+		"message" : "Options"
+	},
+	"lastFmLove": {
+		"message" : "Add to Last.fm loved tracks"
+	},
+	"linksToOnlineStores": {
+		"message" : "Links to online shops"
+	},
+	"lyrics": {
+		"message" : "Lyrics"
+	},
+	"lyricsPhrase": {
+		"message" : "Lyrics"
+	},
+	"prev": {
+		"message": "&lt; Previous"
+	},
+	"pause": {
+		"message": "Pause"
+	},
+	"next": {
+		"message": "Next &gt;"
+	},
+	"wikipediaPleaseStartPlaying": {
+		"message": "Start playing to display the Wikipedia article for this artist."
+	},
+	"wikipediaCurrentlySearching": {
+		"message": "The Wikipedia article for $ARTIST$ is loading...",
+		"placeholders": {
+			"artist": {
+				"content": "$1",
+				"example": "The Beatles"
+			}
+		}
+	},
+	"wikipediaCantBeFound": {
+		"message": "The Wikipedia article for $ARTIST$ couldn't be found.",
+		"placeholders": {
+			"artist": {
+				"content": "$1",
+				"example": "The Beatles"
+			}
+		}
+	},
+	"lyricsPleaseStartPlaying": {
+		"message": "Start playing to display lyrics for this song."
+	},
+	"lyricsCantBeFound": {
+		"message": "I can't find lyrics for this song."
+	},
+	"lyricsSearching": {
+		"message": "Loading lyrics..."
+	}
+	
+}
