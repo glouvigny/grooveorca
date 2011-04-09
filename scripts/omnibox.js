@@ -14,24 +14,24 @@ chrome.omnibox.onInputEntered.addListener(
 			case "play":
 			case "lecture":
 			case "p":
-				deezerControl("play");
+				playerControl("play");
 			break;
 			case "pause":
 			case "stop":
 			case "s":
-				deezerControl("pause");
+				playerControl("pause");
 			break;
 			case "next":
 			case "suite":
 			case "suiv":
 			case "n":
-				deezerControl("next");
+				playerControl("next");
 			break;
 			case "prev":
 			case "prec":
 			case "precedente":
 			case "pp":
-				deezerControl("prev");
+				playerControl("prev");
 			break;
 		}
     }

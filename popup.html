@@ -5,10 +5,11 @@
 	<title>Popup Deezer+</title>
 	<link href="res/popup.css" rel="stylesheet" type="text/css"/>
 	<script src="scripts/popup.js"></script>
+	<script src="scripts/extensionsParams.js"></script>
 	<script src="scripts/lastfm.js"></script>
 	<script src="scripts/wikipedia.js"></script>
 	<script src="scripts/lyrics.js"></script>
-	<script src="scripts/deezerapi.js"></script>
+	<script src="scripts/playerapi.js"></script>
 	<script src="scripts/php.js"></script>
 	<script src="scripts/i18n.js"></script>
 	<style type="text/css">
@@ -22,10 +23,10 @@
 <body>
 	<div id="nowplaying">
 		<span class="controls">
-			<img src="res/popup/media-seek-backward.png" alt="Prev" onclick="popup.deezerControl('prev');" id="controlPrev"/>
-			<img src="res/popup/media-playback-start.png" alt="Play" onclick="popup.deezerControl('play');" id="controlPlay"/>
-			<img src="res/popup/media-playback-pause.png" alt="Pause" onclick="popup.deezerControl('pause');" id="controlPause"/>
-			<img src="res/popup/media-seek-forward.png" alt="Next" onclick="popup.deezerControl('next');" id="controlNext"/>
+			<img src="res/popup/media-seek-backward.png" alt="Prev" onclick="popup.playerControl('prev');" id="controlPrev"/>
+			<img src="res/popup/media-playback-start.png" alt="Play" onclick="popup.playerControl('play');" id="controlPlay"/>
+			<img src="res/popup/media-playback-pause.png" alt="Pause" onclick="popup.playerControl('pause');" id="controlPause"/>
+			<img src="res/popup/media-seek-forward.png" alt="Next" onclick="popup.playerControl('next');" id="controlNext"/>
 		</span>
 		<span id="artist"></span>
 		<span id="song"></span>
@@ -90,8 +91,8 @@
 		<div id="site">
 			<ul id="site_nav" class="popup_nav_second">
 				<li class="selected" id="site_accountLink" onclick="popup.switchSecondView('site','site_account');"><span class="i18n">links</span></li>
-				<!--li id="site_searchLink" onclick="popup.switchSecondView('site','site_search');">Recherche</li-->
-				<li class="popup_nav_right"><a href="http://www.deezer.com/" target="_blank"><img src="res/popup/open_player.png" alt=" "/></a></li>
+				<!--li id="site_searchLink" onclick="popup.switchSecondView('site','site_search');"><span class="i18n">search</span></li-->
+				<li class="popup_nav_right"><a href="#" target="_blank" id="openPlayer"><img src="res/popup/open_player.png" alt=" "/></a></li>
 			</ul>
 			<div id="site_search" style="display:none;">
 				<input type="search" name=""/>
@@ -100,14 +101,14 @@
 				</div>
 			</div>
 			<div id="site_account">
-				<ul class="deezerLinks">
-					<li onclick="popup.deezerControl('subscription');"><img src="res/popup/stock_calendar-view-month.png" alt="" /></li>
-					<li onclick="popup.deezerControl('login');"><img src="res/popup/pidgin-tray-available.png" alt="" /></li>
-					<li onclick="popup.deezerControl('logout');"><img src="res/popup/pidgin-tray-busy.png" alt="" /></li>
-					<li onclick="popup.deezerControl('register');"><img src="res/popup/list-add.png" alt="" /></li>
-					<li onclick="popup.deezerControl('friends');"><img src="res/popup/applications-chat-panel.png" alt="" /></li>
-					<li onclick="popup.deezerControl('inbox');"><img src="res/popup/internet-group-chat.png" alt="" /></li>
-					<li onclick="popup.deezerControl('home');"><img src="res/popup/gtk-home.png" alt="" /></li>
+				<ul class="playerLinks">
+					<li onclick="popup.playerControl('subscription');"><img src="res/popup/stock_calendar-view-month.png" alt="" /></li>
+					<li onclick="popup.playerControl('login');"><img src="res/popup/pidgin-tray-available.png" alt="" /></li>
+					<li onclick="popup.playerControl('logout');"><img src="res/popup/pidgin-tray-busy.png" alt="" /></li>
+					<li onclick="popup.playerControl('register');"><img src="res/popup/list-add.png" alt="" /></li>
+					<li onclick="popup.playerControl('friends');"><img src="res/popup/applications-chat-panel.png" alt="" /></li>
+					<li onclick="popup.playerControl('inbox');"><img src="res/popup/internet-group-chat.png" alt="" /></li>
+					<li onclick="popup.playerControl('home');"><img src="res/popup/gtk-home.png" alt="" /></li>
 				</ul>
 			</div>
 
