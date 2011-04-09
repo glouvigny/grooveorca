@@ -1,4 +1,4 @@
-var deezerAPI = {
+var playerAPI = {
 	artists: {},
 	tracks: {},
 	currentTrack: 0,
@@ -23,8 +23,8 @@ var deezerAPI = {
 		return total;
 	},
 	presentArtist: function(idArtist,source) {
-		chrome.extension.sendRequest({name: "getInfos", resource:"deezerapi-plus", details: {method:"artist", artistid: idArtist}}, function(artist) {
-			deezerAPI.renderArtistDiscography(artist,document.getElementById('disco-foreign'),source);
+		chrome.extension.sendRequest({name: "getInfos", resource:"playerapi-plus", details: {method:"artist", artistid: idArtist}}, function(artist) {
+			playerAPI.renderArtistDiscography(artist,document.getElementById('disco-foreign'),source);
 			
 			document.getElementById('disco-focus').style.display = 'none';
 			document.getElementById('disco-foreign').style.display = 'block';
@@ -34,8 +34,8 @@ var deezerAPI = {
 		});
 	},
 	presentAlbum: function(idArtist,idAlbum, source) {
-		chrome.extension.sendRequest({name: "getInfos", resource:"deezerapi-plus", details: {method:"album", artistid: idArtist, albumid: idAlbum}}, function(album) {
-			deezerAPI.renderAlbumListing(album,document.getElementById('disco-focus'),source,idArtist);
+		chrome.extension.sendRequest({name: "getInfos", resource:"playerapi-plus", details: {method:"album", artistid: idArtist, albumid: idAlbum}}, function(album) {
+			playerAPI.renderAlbumListing(album,document.getElementById('disco-focus'),source,idArtist);
 			
 			document.getElementById('disco-focus').style.display = 'block';
 			document.getElementById('disco-foreign').style.display = 'none';
@@ -52,13 +52,13 @@ var deezerAPI = {
 		if(typeof source != "undefined") {
 			switch(source) {
 				case "artist":
-					ctns += "<div class='backbutton' onclick='deezerAPI.presentArtist(" + backToDisco + ")'>Retour</div>";
+					ctns += "<div class='backbutton' onclick='playerAPI.presentArtist(" + backToDisco + ")'>Retour</div>";
 				break;
 				case "artist-related":
-					ctns += "<div class='backbutton' onclick='deezerAPI.presentArtist(" + backToDisco + ",\"related\")'>Retour</div>";
+					ctns += "<div class='backbutton' onclick='playerAPI.presentArtist(" + backToDisco + ",\"related\")'>Retour</div>";
 				break;
 				case "artist-search":
-					ctns += "<div class='backbutton' onclick='deezerAPI.presentArtist(" + backToDisco + ",\"search\")'>Retour</div>";
+					ctns += "<div class='backbutton' onclick='playerAPI.presentArtist(" + backToDisco + ",\"search\")'>Retour</div>";
 				break;
 				case "search":
 					ctns += "<div class='backbutton' onclick='popup.switchSecondView(\"site\",\"search\")'>Retour</div>";
@@ -70,7 +70,7 @@ var deezerAPI = {
 		
 		var j = 0;
 		for (var i in album.tracks) {
-			ctns += "<li " + ((i == deezerAPI.currentTrack)?"class='currentTrack'":"") + " onclick='popup.deezerControl(\"playAlbum\",{album: " + album.id + ", index: " + j +  "})'>" + album.tracks[i].name + " <span class='duration'>" + displayLength(album.tracks[i].duration) + "</span></li>";
+			ctns += "<li " + ((i == playerAPI.currentTrack)?"class='currentTrack'":"") + " onclick='popup.playerControl(\"playAlbum\",{album: " + album.id + ", index: " + j +  "})'>" + album.tracks[i].name + " <span class='duration'>" + displayLength(album.tracks[i].duration) + "</span></li>";
 			j++;
 		}
 
@@ -97,11 +97,11 @@ var deezerAPI = {
 		ctns += "<ul>";
 		
 		for (var i in artist.albums) {
-			ctns += "<li onclick='deezerAPI.presentAlbum("+artist.id+","+ i +",\""+returnto+"\");'>";
+			ctns += "<li onclick='playerAPI.presentAlbum("+artist.id+","+ i +",\""+returnto+"\");'>";
 				ctns += "<img src='" + artist.albums[i].img + "' alt='Pochette de " + artist.albums[i].name + "' >";
 				ctns += "<div>" + artist.albums[i].name + "</div>";
-				ctns += "<div><b>" + deezerAPI.getTotalTracks(artist.albums[i]) + "</b> pistes </div>";
-				ctns += "<div> Durée : <b>" + displayLength(deezerAPI.getTotalLength(artist.albums[i])) + "</b> </div>";
+				ctns += "<div><b>" + playerAPI.getTotalTracks(artist.albums[i]) + "</b> pistes </div>";
+				ctns += "<div> Durée : <b>" + displayLength(playerAPI.getTotalLength(artist.albums[i])) + "</b> </div>";
 			ctns += "</li>";
 		}
 		
@@ -113,7 +113,7 @@ var deezerAPI = {
 		var ctns = "<ul>";
 		
 		for (var i in artists) {
-			ctns += "<li onclick='deezerAPI.presentArtist(" + artists[i].id + ",\"related\");'>";
+			ctns += "<li onclick='playerAPI.presentArtist(" + artists[i].id + ",\"related\");'>";
 				ctns += "<img src='" + artists[i].img + "' alt='Image de " + artists[i].name + "' >";
 				ctns += "<span>"+ artists[i].name + "</span>";
 			ctns += "</li>";
@@ -124,36 +124,36 @@ var deezerAPI = {
 		
 	},
 	pushInformations: function() {
-		if(deezerAPI.currentTrack != songData.songInf.currentSongId
+		if(playerAPI.currentTrack != songData.songInf.currentSongId
 		&& songData.songInf.currentSongId != 0) {
-			deezerAPI.currentTrack = songData.songInf.currentSongId;
-			deezerAPI.getTrackDetails(songData.songInf.currentSongId);
+			playerAPI.currentTrack = songData.songInf.currentSongId;
+			playerAPI.getTrackDetails(songData.songInf.currentSongId);
 		} else if(songData.songInf.currentSongId == 0){
-			deezerAPI.currentTrack = 0;
+			playerAPI.currentTrack = 0;
 		}
 	},
 	refreshPopUp: function() {
-		chrome.extension.sendRequest({name: "getInfos", resource:"deezerapi"}, function(response) {
-			if(deezerAPI.currentTrack != response.currentSongId) {
-				deezerAPI.currentTrack = response.currentSongId;
-				deezerAPI.currentArtist = response.currentArtistId;
-				deezerAPI.currentAlbum = response.currentAlbumId;
+		chrome.extension.sendRequest({name: "getInfos", resource:"playerapi"}, function(response) {
+			if(playerAPI.currentTrack != response.currentSongId) {
+				playerAPI.currentTrack = response.currentSongId;
+				playerAPI.currentArtist = response.currentArtistId;
+				playerAPI.currentAlbum = response.currentAlbumId;
 				
-				deezerAPI.renderAlbumListing(response.artist.albums[response.currentAlbumId],document.getElementById('albumcontents'));
-				deezerAPI.renderArtistDiscography(response.artist,document.getElementById('disco'));
-				deezerAPI.renderRelatedArtists(response.related,document.getElementById('related'));
+				playerAPI.renderAlbumListing(response.artist.albums[response.currentAlbumId],document.getElementById('albumcontents'));
+				playerAPI.renderArtistDiscography(response.artist,document.getElementById('disco'));
+				playerAPI.renderRelatedArtists(response.related,document.getElementById('related'));
 				
 			}
 		});
 	},
 	unload: function() {
-		deezerAPI.artists = {};
-		deezerAPI.tracks = {};
-		deezerAPI.currentTrack = 0;
+		playerAPI.artists = {};
+		playerAPI.tracks = {};
+		playerAPI.currentTrack = 0;
 	},
 	getTrackDetails: function(trackId, async) {			
-		if(deezerAPI.tracks.length < trackId
-		  || typeof deezerAPI.tracks[trackId] === "undefined") {
+		if(playerAPI.tracks.length < trackId
+		  || typeof playerAPI.tracks[trackId] === "undefined") {
 			if(typeof async == "undefined")
 				async = true;
 			var xhr = new XMLHttpRequest();
@@ -162,11 +162,11 @@ var deezerAPI = {
 					if(xhr.status == 200) { 
 						var infos = JSON.parse(xhr.responseText);
 						
-						deezerAPI.pushArtist(infos.track.artist);
-						deezerAPI.pushAlbum(infos.track.album,infos.track.artist.id);
-						deezerAPI.pushTrack(infos.track,infos.track.artist.id,infos.track.album.id);
-						deezerAPI.getArtistDetails(infos.track.artist.id);
-						deezerAPI.getAlbumDetails(infos.track.album.id);
+						playerAPI.pushArtist(infos.track.artist);
+						playerAPI.pushAlbum(infos.track.album,infos.track.artist.id);
+						playerAPI.pushTrack(infos.track,infos.track.artist.id,infos.track.album.id);
+						playerAPI.getArtistDetails(infos.track.artist.id);
+						playerAPI.getAlbumDetails(infos.track.album.id);
 					}
 				}
 			}
@@ -183,24 +183,24 @@ var deezerAPI = {
 				if(xhr.status == 200) { 
 					var infos = JSON.parse(xhr.responseText);
 					
-					deezerAPI.pushArtist(infos.artist);
+					playerAPI.pushArtist(infos.artist);
 					var i = infos.artist.similar_artists.artist.length;
 					
 					while(i) {
 						i--;
-						deezerAPI.pushArtist(infos.artist.similar_artists.artist[i]);
-						deezerAPI.pushSimilar(artistId, infos.artist.similar_artists.artist[i].id);
+						playerAPI.pushArtist(infos.artist.similar_artists.artist[i]);
+						playerAPI.pushSimilar(artistId, infos.artist.similar_artists.artist[i].id);
 					}
 					
 					i = infos.artist.discography.album.length;
 					
 					while(i) {
 						i--;
-						deezerAPI.pushAlbum(infos.artist.discography.album[i],artistId);
+						playerAPI.pushAlbum(infos.artist.discography.album[i],artistId);
 						var j = infos.artist.discography.album[i].tracks.track.length;
 						while(j) {
 							j--;
-							deezerAPI.pushTrack(infos.artist.discography.album[i].tracks.track[j],artistId,infos.artist.discography.album[i].id);
+							playerAPI.pushTrack(infos.artist.discography.album[i].tracks.track[j],artistId,infos.artist.discography.album[i].id);
 						}
 					}					
 				}
@@ -217,11 +217,11 @@ var deezerAPI = {
 			if(xhr.readyState == 4) {
 				if(xhr.status == 200) { 
 					var infos = JSON.parse(xhr.responseText);
-					// useless > delete deezerAPI.artists[infos.album.artist.id].albums[albumId].tracks[deezerAPI.currentTrack];
+					// useless > delete playerAPI.artists[infos.album.artist.id].albums[albumId].tracks[playerAPI.currentTrack];
 					var i = infos.album.tracks.track.length;
 					while(i) {
 						i--;
-						deezerAPI.pushTrack(infos.album.tracks.track[i],infos.album.artist.id,albumId);
+						playerAPI.pushTrack(infos.album.tracks.track[i],infos.album.artist.id,albumId);
 					}
 				}
 			}
@@ -230,8 +230,8 @@ var deezerAPI = {
 		xhr.send(null);	
 	},
 	pushArtist: function(artist_array) {
-		if(typeof deezerAPI.artists[artist_array.id] === "undefined") {
-			deezerAPI.artists[artist_array.id] = {
+		if(typeof playerAPI.artists[artist_array.id] === "undefined") {
+			playerAPI.artists[artist_array.id] = {
 				id: artist_array.id,
 				name: artist_array.name,
 				img: artist_array.image,
@@ -244,11 +244,11 @@ var deezerAPI = {
 		return false;
 	},
 	pushAlbum: function(album_array,artist_id) {
-		if(typeof deezerAPI.artists[artist_id].albums[album_array.id] === "undefined") {
-			deezerAPI.artists[artist_id].albums[album_array.id] = {
+		if(typeof playerAPI.artists[artist_id].albums[album_array.id] === "undefined") {
+			playerAPI.artists[artist_id].albums[album_array.id] = {
 				id: album_array.id,
 				name: album_array.name,
-				artistName: deezerAPI.artists[artist_id].name,
+				artistName: playerAPI.artists[artist_id].name,
 				img: album_array.image,
 				url: album_array.url,
 				tracks: {}
@@ -258,9 +258,9 @@ var deezerAPI = {
 			return false;
 	},
 	pushTrack: function(track_array,artist_id,album_id) {
-		if(typeof deezerAPI.artists[artist_id].albums[album_id].tracks[track_array.id] === "undefined") {
+		if(typeof playerAPI.artists[artist_id].albums[album_id].tracks[track_array.id] === "undefined") {
 			
-			deezerAPI.artists[artist_id].albums[album_id].tracks[track_array.id] = {
+			playerAPI.artists[artist_id].albums[album_id].tracks[track_array.id] = {
 				id:track_array.id,
 				name:track_array.name,
 				url:track_array.url,
@@ -268,19 +268,19 @@ var deezerAPI = {
 				rank:track_array.rank
 			}
 			
-			deezerAPI.tracks[track_array.id] = {
+			playerAPI.tracks[track_array.id] = {
 				artist: artist_id,
 				album: album_id
 			}
 		}
 	},
 	pushSimilar: function(artist_a, artist_b) {
-		if(typeof deezerAPI.artists[artist_a] !== "undefined"
-		  && typeof deezerAPI.artists[artist_b] !== "undefined") {
-			if(!inArray(deezerAPI.artists[artist_a].related,artist_b))
-				deezerAPI.artists[artist_a].related.push(artist_b);
-			if(!inArray(deezerAPI.artists[artist_b].related,artist_a))
-				deezerAPI.artists[artist_b].related.push(artist_a);
+		if(typeof playerAPI.artists[artist_a] !== "undefined"
+		  && typeof playerAPI.artists[artist_b] !== "undefined") {
+			if(!inArray(playerAPI.artists[artist_a].related,artist_b))
+				playerAPI.artists[artist_a].related.push(artist_b);
+			if(!inArray(playerAPI.artists[artist_b].related,artist_a))
+				playerAPI.artists[artist_b].related.push(artist_a);
 			return true;
 		  }
 		  return false;

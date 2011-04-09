@@ -1,1 +1,1 @@
-var settings = {	lite: false}
+var settings = {	lite: false,	siteUrl: "http://www.deezer.com/"}

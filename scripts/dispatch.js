@@ -5,12 +5,12 @@
 
 ***/
 
-var deezerControl = function(action) {
+var playerControl = function(action) {
 	chrome.windows.getAll({populate : true},function(windows) {
 		for(var i = 0; i < windows.length; i++) {
 			var j = 0;
 			for(var dumb in windows[i].tabs) {
-				chrome.tabs.sendRequest(windows[i].tabs[j].id, {name: "controlDeezer", action: action}, function(response) { closeNotif(); return true; });
+				chrome.tabs.sendRequest(windows[i].tabs[j].id, {name: "controlPlayer", action: action}, function(response) { closeNotif(); return true; });
 				j++;
 			}
 		}
@@ -48,7 +48,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 				  nowplaying.init('dispatch');
 				  //omnibox.init('dispatch');
 				  //lyrics.init('dispatch');
-				  //deezerAPI.init('dispatch');
+				  //playerAPI.init('dispatch');
 				  
 				  
 				  if(lastfm.status == true &&
@@ -72,7 +72,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 					|| lyrics.lastSong != songData.songInf.currentSong)
 				  lyrics.pushInformations();
 				  
-				  deezerAPI.pushInformations();
+				  playerAPI.pushInformations();
 				  
 			  }
 			  if(nowplaying.status == true) {
@@ -130,41 +130,41 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 						currentSong: songData.songInf.currentSong});
 					break;
 				
-				case "deezerapi-plus":
+				case "playerapi-plus":
 					switch(request.details.method) {
 						case "album":
-							deezerAPI.getArtistDetails(request.details.artistid, false);
-							deezerAPI.getAlbumDetails(request.details.albumid, false);
-							sendResponse(deezerAPI.artists[request.details.artistid].albums[request.details.albumid]);
+							playerAPI.getArtistDetails(request.details.artistid, false);
+							playerAPI.getAlbumDetails(request.details.albumid, false);
+							sendResponse(playerAPI.artists[request.details.artistid].albums[request.details.albumid]);
 						break;
 						case "artist":
-							deezerAPI.getArtistDetails(request.details.artistid, false);
-							sendResponse(deezerAPI.artists[request.details.artistid]);
+							playerAPI.getArtistDetails(request.details.artistid, false);
+							sendResponse(playerAPI.artists[request.details.artistid]);
 						break;
 					}
 					break;
-				case "deezerapi":
-					var deezerArtistId = deezerAPI.tracks[songData.songInf.currentSongId].artist;
-					var deezerAlbumId = deezerAPI.tracks[songData.songInf.currentSongId].album;
-					var i = deezerAPI.artists[deezerArtistId].related.length;
+				case "playerapi":
+					var playerArtistId = playerAPI.tracks[songData.songInf.currentSongId].artist;
+					var playerAlbumId = playerAPI.tracks[songData.songInf.currentSongId].album;
+					var i = playerAPI.artists[playerArtistId].related.length;
 					var related = {};
 					while(i) {
 						i--;
-						related[i] = deezerAPI.artists[deezerAPI.artists[deezerArtistId].related[i]];
+						related[i] = playerAPI.artists[playerAPI.artists[playerArtistId].related[i]];
 					}
 					
 					sendResponse(
 					   {related: related, 
-					    artist: deezerAPI.artists[deezerArtistId], 
+					    artist: playerAPI.artists[playerArtistId], 
 						currentSongId: songData.songInf.currentSongId,
-						currentAlbumId: deezerAlbumId,
-						currentArtistId: deezerArtistId});
+						currentAlbumId: playerAlbumId,
+						currentArtistId: playerArtistId});
 					break;
 
 				case "interfaceTweaks":
 					interfaceTweaks.init('dispatch');
 					if(interfaceTweaks.singlePlayer)
-						interfaceTweaks.killDeezer();
+						interfaceTweaks.killPlayer();
 					sendResponse(
 					   {blockTopBar: interfaceTweaks.blockTopBar, 
 						blockFooter: interfaceTweaks.blockFooter,
@@ -175,7 +175,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 			  case "control":
 				mediakeys.init('dispatch');
 				if(typeof request.source == "undefined" || mediakeys.status == true)
-					deezerControl(request.action);
+					playerControl(request.action);
 			  break;
         }
      });
