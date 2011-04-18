@@ -230,23 +230,6 @@ var lastfm = {
 	if(lastfm.lastNotification != songData.songInf.firstSeen) {
 		lastfm.lastNotification = songData.songInf.firstSeen;
 		lastfm.submit('track.updateNowPlaying');
-		
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() { 
-		 if(xhr.readyState == 4) {
-			if(xhr.status == 200) { 
-				var temp;
-				temp = xhr.responseXML.getElementsByTagName('userloved');
-					if(temp.length)
-						lastfm.loved = (temp[0].textContent == 1);
-					else
-						lastfm.loved = false;
-				} else
-					lastfm.loved = false;
-			}
-		}; 
-		xhr.open("GET", "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&autocorrect=1&api_key=b25b959554ed76058ac220b7b2e0a026&artist=" + encodeURIComponent(songData.songInf.currentArtist) + "&track=" + encodeURIComponent(songData.songInf.currentSong) + "&album=" + encodeURIComponent(songData.songInf.currentAlbum) + "&username=" + encodeURIComponent(lastfm.user), false);
-		xhr.send(); 
 	}
 	else if (lastfm.lastScrobble != songData.songInf.firstSeen
 	&& (songData.songInf.currentPosition > (songData.songInf.currentDuration/2)
@@ -272,9 +255,11 @@ var lastfm = {
 	// Want to unlove ?
 	if(document.getElementById('lovebutton').className == 'unlovebutton') {
 		chrome.extension.getBackgroundPage().lastfm.submit("track.unlove");
+		chrome.extension.getBackgroundPage().playerControl('unlove');
 		document.getElementById('lovebutton').className = '';
 	} else {
 		chrome.extension.getBackgroundPage().lastfm.submit("track.love");
+		chrome.extension.getBackgroundPage().playerControl('love');
 		document.getElementById('lovebutton').className = 'unlovebutton';
 	}
   },
@@ -288,5 +273,23 @@ var lastfm = {
 	} else if(lastfm.loved == true && document.getElementById('lovebutton').className == '') {
 		document.getElementById('lovebutton').className = 'unlovebutton';
 	}
+  },
+  checkLove: function() {
+  var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() { 
+		 if(xhr.readyState == 4) {
+			if(xhr.status == 200) { 
+				var temp;
+				temp = xhr.responseXML.getElementsByTagName('userloved');
+					if(temp.length)
+						lastfm.loved = (temp[0].textContent == 1);
+					else
+						lastfm.loved = false;
+				} else
+					lastfm.loved = false;
+			}
+		}; 
+		xhr.open("GET", "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&autocorrect=1&api_key=b25b959554ed76058ac220b7b2e0a026&artist=" + encodeURIComponent(songData.songInf.currentArtist) + "&track=" + encodeURIComponent(songData.songInf.currentSong) + "&album=" + encodeURIComponent(songData.songInf.currentAlbum) + "&username=" + encodeURIComponent(lastfm.user), false);
+		xhr.send(); 
   }
 }

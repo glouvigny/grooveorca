@@ -1,10 +1,34 @@
 {
-	"extName": {
+	"extNameDeezer": {
 		"message": "Deezer +",
 		"description": "Extension name"
 	},
-	"extDesc": {
+	"extNameDeezerLite": {
+		"message": "Deezer+ - Lite",
+		"description": "Extension name"
+	},
+	"extDescDeezer": {
 		"message": "Wikipedia, Lyrics, Last.fm Scrobbling, Live Messenger \"now playing\", notifications.\n\nExtend Deezer capabilities.",
+		"description": "Extension description"
+	},
+	"extDescDeezerLite": {
+		"message": "Wikipedia, Lyrics, Last.fm Scrobbling, notifications.\n\nExtend Deezer capabilities.",
+		"description": "Extension description"
+	},
+	"extNameGrooveshark": {
+		"message": "GrooveOrca",
+		"description": "Extension name"
+	},
+	"extNameGroovesharkLite": {
+		"message": "GrooveOrca - Lite",
+		"description": "Extension name"
+	},
+	"extDescGrooveshark": {
+		"message": "Wikipedia, Lyrics, free Last.fm Scrobbling, Live Messenger \"now playing\", notifications.\n\nExtend Grooveshark capabilities.",
+		"description": "Extension description"
+	},
+	"extDescGroovesharkLite": {
+		"message": "Wikipedia, Lyrics, free Last.fm Scrobbling, notifications.\n\nExtend Grooveshark capabilities.",
 		"description": "Extension description"
 	},
 	"lastFm": {
@@ -29,7 +53,17 @@
 		"message": "+"
 	},
 	"lastfmOptionHint": {
-		"message": "Deezer+ can update your Last.fm profile automatically based on the music you listen on Deezer. For this check the following box and connect to Last.fm."
+		"message": "$EXT$ can update your Last.fm profile automatically based on the music you listen on $SITE$. For this check the following box and connect to Last.fm.",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "GS+"
+			},
+			"site": {
+				"content": "$2",
+				"example": "GS"
+			}
+		}
 	},
 	"activateScrobbling": {
 		"message": "Enable scrobbling."
@@ -59,7 +93,13 @@
 		"message" : "Wikipedia articles are distributed under the terms of the <a href=\"http://creativecommons.org/licenses/by-sa/3.0/legalcode\">CC-BY-SA 3.0 Unported</a> license and the <a href=\"http://www.gnu.org/copyleft/fdl.html\">GFDL</a> license."
 	},
 	"notificationsHint": {
-		"message" : "Deezer+ can display a pop-up with the name of the song being played."
+		"message" : "$EXT$ can display a pop-up with the name of the song being played.",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "GS+"
+			}
+		}
 	},
 	"activateNotifications": {
 		"message" : "Enable notifications"
@@ -68,10 +108,16 @@
 		"message" : "Notifications display time in seconds"
 	},
 	"notificationsLicence": {
-		"message" : "Last.fm will be used to retrieve album art displayed in the notifications for the music you have sent on Deezer."
+		"message" : "Last.fm will be used to retrieve album art displayed in the notifications."
 	},
 	"mediakeysHint": {
-		"message" : "Deezer+ allows you to control playback with multimedia keyboard buttons (Play, Pause, Next, etc.). when Chrome is the active application."
+		"message" : "$EXT$ allows you to control playback with multimedia keyboard buttons (Play, Pause, Next, etc.). when Chrome is the active application.",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "GS+"
+			}
+		}
 	},
 	"activateMediaKeys": {
 		"message" : "Enable multimedia buttons"
@@ -83,7 +129,13 @@
 		"message" : "Show what I listen on Messenger."
 	},
 	"interfaceHint": {
-		"message" : "Parts of the Deezer interface are useless and deserve to be banished from the screen."
+		"message" : "Parts of the $SITE$ interface are useless and deserve to be banished from the screen.",
+		"placeholders": {
+			"site": {
+				"content": "$1",
+				"example": "GS"
+			}
+		}
 	},
 	"activateInterfacesBlockTopBar": {
 		"message" : "Top bar <em>(The login, logout, counseling of the messages and subscription renewals can be made via the Pop-up or the options page)</em>"
@@ -98,10 +150,22 @@
 		"message" : "Extend the player"
 	},
 	"activateInterfacesSinglePlayer": {
-		"message" : "Only allow a single instance of Deezer"
+		"message" : "Only allow a single instance of $SITE$",
+		"placeholders": {
+			"site": {
+				"content": "$1",
+				"example": "Deezer"
+			}
+		}
 	},
 	"optionsPlusHint": {
-		"message" : "Don't forget to rate the extension on the Chrome Webstore!"
+		"message" : "Don't forget to rate $EXT$ on the Chrome Webstore!",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "Deezer+"
+			}
+		}
 	},
 	"optionsPlusHint2": {
 		"message" : "Did you liked the extension? Make a donation!"
@@ -127,6 +191,9 @@
 	"site": {
 		"message" : "Site"
 	},
+	"queue": {
+		"message" : "Queue"
+	},
 	"discography": {
 		"message" : "Discography"
 	},
@@ -136,22 +203,41 @@
 	"relatedArtists": {
 		"message" : "Related artists"
 	},
+	"related": {
+		"message": "Related"
+	},
 	"paneCantBeLoaded": {
-		"message" : "$ITEM$ can't be loaded as no <a href=\"http://www.deezer.com/\" target=\"_blank\">Deezer</a> tab is opened.",
+		"message" : "$ITEM$ can't be loaded as no <a href=\"$SITELINK$\" target=\"_blank\"/>$SITE$</a> tab is opened.",
 		"placeholders": {
 			"item": {
 				"content": "$1",
 				"example": "Wikipedia"
-			}
+			},
+			"sitelink": {
+				"content": "$2",
+				"example": "http://deezer.com/"
+			},
+			"site": {
+				"content": "$3",
+				"example": "Deezer"
+ 			}
 		}
 	},
 	"paneCantBeLoadedPlural": {
-		"message" : "$ITEM$ can't be loaded as no <a href=\"http://www.deezer.com/\" target=\"_blank\">Deezer</a> tab is opened.",
+		"message" : "$ITEM$ can't be loaded as no <a href=\"$SITELINK$\" target=\"_blank\"/>$SITE$</a> tab is opened.",
 		"placeholders": {
 			"item": {
 				"content": "$1",
 				"example": "Lyrics"
-			}
+			},
+			"sitelink": {
+				"content": "$2",
+				"example": "http://deezer.com/"
+			},
+			"site": {
+				"content": "$3",
+				"example": "Deezer"
+ 			}
 		}
 	},
 	"content": {

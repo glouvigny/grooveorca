@@ -1,10 +1,34 @@
 {
-	"extName": {
+	"extNameDeezer": {
 		"message": "Deezer +",
 		"description": "Extension name"
 	},
-	"extDesc": {
+	"extNameDeezerLite": {
+		"message": "Deezer+ - Lite",
+		"description": "Extension name"
+	},
+	"extDescDeezer": {
 		"message": "Wikipédia, Paroles, Scrobbling Last.fm, pseudo MSN, notifications.\n\nÉtendez les possibilités de Deezer.",
+		"description": "Extension description"
+	},
+	"extDescDeezerLite": {
+		"message": "Wikipédia, Paroles, Scrobbling Last.fm, notifications.\n\nÉtendez les possibilités de Deezer.",
+		"description": "Extension description"
+	},
+	"extNameGrooveshark": {
+		"message": "GrooveOrca",
+		"description": "Extension name"
+	},
+	"extNameGroovesharkLite": {
+		"message": "GrooveOrca - Lite",
+		"description": "Extension name"
+	},
+	"extDescGrooveshark": {
+		"message": "Wikipédia, Paroles, Scrobbling Last.fm, pseudo MSN, notifications.\n\nÉtendez les possibilités de Grooveshark.",
+		"description": "Extension description"
+	},
+	"extDescGroovesharkLite": {
+		"message": "Wikipédia, Paroles, Scrobbling Last.fm, notifications.\n\nÉtendez les possibilités de Grooveshark.",
 		"description": "Extension description"
 	},
 	"lastFm": {
@@ -29,7 +53,17 @@
 		"message": "+"
 	},
 	"lastfmOptionHint": {
-		"message": "Deezer+ peut mettre à jour votre profil Last.fm automatiquement en fonction de la musique que vous écouterez sur Deezer. Pour cela cochez la case suivante et connectez vous à Last.fm."
+		"message": "$EXT$ peut mettre à jour votre profil Last.fm automatiquement en fonction de la musique que vous écouterez sur $SITE$. Pour cela cochez la case suivante et connectez vous à Last.fm.",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "GS+"
+			},
+			"site": {
+				"content": "$2",
+				"example": "GS"
+			}
+		}
 	},
 	"activateScrobbling": {
 		"message": "Activer le scrobbling."
@@ -59,7 +93,13 @@
 		"message" : "Les articles de Wikipédia sont distribués sous les termes de la licence <a href=\"http://creativecommons.org/licenses/by-sa/3.0/legalcode\">Creative Commons Paternité-Partage des Conditions Initiales à l'Identique 3.0 Unported (CC-BY-SA 3.0 Unported)</a> et de la licence de <a href=\"http://www.gnu.org/copyleft/fdl.html\">documentation libre GNU (GFDL)</a>."
 	},
 	"notificationsHint": {
-		"message" : "Deezer+ peut afficher une pop-up avec le nom du morceau en cours de lecture."
+		"message" : "$EXT$ peut afficher une pop-up avec le nom du morceau en cours de lecture.",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "Deezer+"
+			}
+		}
 	},
 	"activateNotifications": {
 		"message" : "Activer les notifications"
@@ -68,10 +108,16 @@
 		"message" : "Durée d'affichage des notifications en secondes"
 	},
 	"notificationsLicence": {
-		"message" : "Last.fm sera utilisé pour récuperer les pochettes d'album affichées dans les notifications pour la musique que vous avez envoyé sur Deezer."
+		"message" : "Last.fm sera utilisé pour récuperer les pochettes d'album affichées dans les notifications."
 	},
 	"mediakeysHint": {
-		"message" : "Deezer+ permet de contrôler la lecture avec les touches multimédia du clavier (Play, Pause, Suivant etc.) quand Chrome est l'application active."
+		"message" : "$EXT$ permet de contrôler la lecture avec les touches multimédia du clavier (Play, Pause, Suivant etc.) quand Chrome est l'application active.",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "Deezer+"
+			}
+		}
 	},
 	"activateMediaKeys": {
 		"message" : "Activer les touches multimédia"
@@ -83,7 +129,13 @@
 		"message" : "Afficher ce que j'écoute sur Messenger."
 	},
 	"interfaceHint": {
-		"message" : "Certaines parties de l'interface de Deezer sont inutiles et méritent d'être bannies de l'écran."
+		"message" : "Certaines parties de l'interface de $SITE$ sont inutiles et méritent d'être bannies de l'écran.",
+		"placeholders": {
+			"site": {
+				"content": "$1",
+				"example": "Deezer"
+			}
+		}
 	},
 	"activateInterfacesBlockTopBar": {
 		"message" : "Barre du haut <em>(La connexion, déconnexion, consultation des messages et le renouvellement d'abonnement pourront se faire via le Pop-up ou la page d'options)</em>"
@@ -98,13 +150,31 @@
 		"message" : "Étendre le player"
 	},
 	"activateInterfacesSinglePlayer": {
-		"message" : "N'autoriser qu'une seule instance de Deezer"
+		"message" : "N'autoriser qu'une seule instance de $SITE$",
+		"placeholders": {
+			"site": {
+				"content": "$1",
+				"example": "Deezer"
+			}
+		}
 	},
 	"optionsPlusHint": {
-		"message" : "N'oubliez pas de noter l'extension sur la galerie !"
+		"message" : "N'oubliez pas de noter $EXT$ sur la galerie !",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "Deezer+"
+			}
+		}
 	},
 	"optionsPlusHint2": {
-		"message" : "Vous avez aimé cette extension ? Faites un don !"
+		"message" : "Vous avez aimé $EXT$ ? Faites un don !",
+		"placeholders": {
+			"ext": {
+				"content": "$1",
+				"example": "Deezer+"
+			}
+		}
 	},
 	"give1Euro": {
 		"message" : "Donner 1 euro"
@@ -127,6 +197,9 @@
 	"site": {
 		"message" : "Site"
 	},
+	"queue": {
+		"message" : "File d'attente"
+	},
 	"discography": {
 		"message" : "Discographie"
 	},
@@ -136,21 +209,40 @@
 	"relatedArtists": {
 		"message" : "Les artistes similaires"
 	},
+	"related": {
+		"message": "Similaires"
+	},
 	"paneCantBeLoaded": {
-		"message" : "$ITEM$ ne peut être chargée car aucun onglet avec <a href=\"http://www.deezer.com/\" target=\"_blank\">Deezer</a> n'est ouvert.",
+		"message" : "$ITEM$ ne peut être chargée car aucun onglet avec <a href=\"$SITELINK$\" target=\"_blank\"/>$SITE$</a> n'est ouvert.",
 		"placeholders": {
 			"item": {
 				"content": "$1",
 				"example": "Wikipédia"
+			},
+			"sitelink": {
+				"content": "$2",
+				"example": "http://deezer.com/"
+			},
+			"site": {
+				"content": "$3",
+				"example": "Deezer"
 			}
 		}
 	},
 	"paneCantBeLoadedPlural": {
-		"message" : "$ITEM$ ne peuvent être chargés car aucun onglet avec <a href=\"http://www.deezer.com/\" target=\"_blank\">Deezer</a> n'est ouvert.",
+		"message" : "$ITEM$ ne peuvent être chargés car aucun onglet avec <a href=\"$SITELINK$\" target=\"_blank\"/>$SITE$</a> n'est ouvert.",
 		"placeholders": {
 			"item": {
 				"content": "$1",
 				"example": "Les paroles"
+			},
+			"sitelink": {
+				"content": "$2",
+				"example": "<a hrf='http://deezer.com/' target='_blank'>Deezer</a>"
+			},
+			"site": {
+				"content": "$3",
+				"example": "Deezer"
 			}
 		}
 	},

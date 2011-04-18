@@ -12,6 +12,16 @@
 	<script src="scripts/playerapi.js"></script>
 	<script src="scripts/php.js"></script>
 	<script src="scripts/i18n.js"></script>
+	<script>
+	switch(settings.siteName) {
+		case "Deezer":
+			include('./scripts/popupDeezer.js');
+		break;
+		case "Grooveshark":
+			include('./scripts/popupGrooveshark.js');
+		break;
+	}
+	</script>
 	<style type="text/css">
 	body {
 		width: 340px;
@@ -20,13 +30,15 @@
 	}
 	</style>
 </head>
-<body>
+<body id="body">
 	<div id="nowplaying">
 		<span class="controls">
-			<img src="res/popup/media-seek-backward.png" alt="Prev" onclick="popup.playerControl('prev');" id="controlPrev"/>
-			<img src="res/popup/media-playback-start.png" alt="Play" onclick="popup.playerControl('play');" id="controlPlay"/>
-			<img src="res/popup/media-playback-pause.png" alt="Pause" onclick="popup.playerControl('pause');" id="controlPause"/>
-			<img src="res/popup/media-seek-forward.png" alt="Next" onclick="popup.playerControl('next');" id="controlNext"/>
+			<div class="player"> 
+				<img src="res/popup/media-seek-backward.png" alt="Prev" onclick="popup.playerControl('prev');" id="controlPrev"/>
+				<img src="res/popup/media-playback-start.png" alt="Play" onclick="popup.playerControl('play');" id="controlPlay"/>
+				<img src="res/popup/media-playback-pause.png" alt="Pause" onclick="popup.playerControl('pause');" id="controlPause"/>
+				<img src="res/popup/media-seek-forward.png" alt="Next" onclick="popup.playerControl('next');" id="controlNext"/>
+			</div>
 		</span>
 		<span id="artist"></span>
 		<span id="song"></span>
@@ -37,9 +49,8 @@
 		<li id="track_infosLink" onclick="popup.switchView('track_infos');"><span class="i18n">track</span></li>
 		<li id="siteLink" onclick="popup.switchView('site');"><span class="i18n">site</span></li>
 		<li class="popup_nav_right"><a href="options.html" target="_blank"><img src="res/popup/package_settings.png" alt="Paramètres"/></a></li>
-		<li class="popup_nav_right">
-			<span id="lovebutton" title=" " onclick="lastfm.love()">&nbsp;</span>
-		</li>
+		<li class="popup_nav_right"><span id="checkbutton" title=" " onclick="popupSite.checkSong()">&nbsp;</span></li>
+		<li class="popup_nav_right"><span id="lovebutton" title=" " onclick="lastfm.love()">&nbsp;</span></li>
 	</ul>
 	<div id="multipleview">
 		<div id="artist_infos">
@@ -49,19 +60,19 @@
 				<li id="relatedLink" onclick="popup.switchSecondView('artist_infos','related');"><span class="i18n">related</span></li>
 			</ul>
 			<div id="wikipedia">
-				<span class="i18n">paneCantBeLoaded wikipedia</span>
+				<span class="i18n">paneCantBeLoaded wikipedia ?siteUrl ?siteName</span>
 			</div>
 			<div id="disco" style="display:none;">
-				<span class="i18n">paneCantBeLoaded theDiscography</span>
+				<span class="i18n">paneCantBeLoaded theDiscography ?siteUrl ?siteName</span>
 			</div>
 			<div id="disco-focus" style="display:none;">
-				<span class="i18n">paneCantBeLoaded theDiscography</span>
+				<span class="i18n">paneCantBeLoaded theDiscography ?siteUrl ?siteName</span>
 			</div>
 			<div id="disco-foreign" style="display:none;">
-				<span class="i18n">paneCantBeLoaded theDiscography</span>
+				<span class="i18n">paneCantBeLoaded theDiscography ?siteUrl ?siteName</span>
 			</div>
 			<div id="related" style="display:none;">
-				<span class="i18n">paneCantBeLoadedPlural albumTracks</span>
+				<span class="i18n">paneCantBeLoadedPlural albumTracks ?siteUrl ?siteName</span>
 			</div>
 		</div>
 		<div id="album_infos">
@@ -70,10 +81,10 @@
 				<!--li id="buy_albumLink" onclick="popup.switchSecondView('album_infos','buy_album');"><span class="i18n">buy</span></li-->
 			</ul>
 			<div id="albumcontents">
-				<span class="i18n">paneCantBeLoadedPlural albumTracks</span>
+				<span class="i18n">paneCantBeLoadedPlural albumTracks ?siteUrl ?siteName</span>
 			</div>
 			<div id="buy_album" style="display:none;">
-				<span class="i18n">paneCantBeLoadedPlural linksToOnlineStores</span>
+				<span class="i18n">paneCantBeLoadedPlural linksToOnlineStores ?siteUrl ?siteName</span>
 			</div>
 		</div>
 		<div id="track_infos">
@@ -82,15 +93,16 @@
 				<!--li id="buy_trackLink" onclick="popup.switchSecondView('track_infos','buy_track');"><span class="i18n">buy</span></li-->
 			</ul>
 			<div id="lyrics">
-				<span class="i18n">paneCantBeLoaded lyricsPhrase</span>
+				<span class="i18n">paneCantBeLoaded lyricsPhrase ?siteUrl ?siteName</span>
 			</div>
 			<div id="buy_track" style="display:none;">
-				<span class="i18n">paneCantBeLoadedPlural linksToOnlineStores</span>
+				<span class="i18n">paneCantBeLoadedPlural linksToOnlineStores ?siteUrl ?siteName</span>
 			</div>
 		</div>
 		<div id="site">
 			<ul id="site_nav" class="popup_nav_second">
-				<li class="selected" id="site_accountLink" onclick="popup.switchSecondView('site','site_account');"><span class="i18n">links</span></li>
+				<li class="selected" id="site_queueLink" onclick="popup.switchSecondView('site','site_queue');"><span class="i18n">queue</span></li>
+				<li id="site_accountLink" onclick="popup.switchSecondView('site','site_account');"><span class="i18n">links</span></li>
 				<!--li id="site_searchLink" onclick="popup.switchSecondView('site','site_search');"><span class="i18n">search</span></li-->
 				<li class="popup_nav_right"><a href="#" target="_blank" id="openPlayer"><img src="res/popup/open_player.png" alt=" "/></a></li>
 			</ul>
@@ -100,7 +112,12 @@
 				<div id="searchresults"> 
 				</div>
 			</div>
-			<div id="site_account">
+			<div id="site_queue">
+				<ol id="queuecontents">
+					
+				</ol>
+			</div>
+			<div id="site_account" style="display:none;">
 				<ul class="playerLinks">
 					<li onclick="popup.playerControl('subscription');"><img src="res/popup/stock_calendar-view-month.png" alt="" /></li>
 					<li onclick="popup.playerControl('login');"><img src="res/popup/pidgin-tray-available.png" alt="" /></li>
@@ -122,6 +139,7 @@
 			wikipedia.init('popup');
 			lastfm.init('popup');
 			i18n.init('popup');
+			popupSite.init('popup');
 			popup.refreshPopUp();
 			popup.switchView('artist_infos')
 		}, false);
