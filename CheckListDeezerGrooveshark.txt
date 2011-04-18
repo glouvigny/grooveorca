@@ -1,0 +1,42 @@
+﻿L'extension utilise la même base pour Grooveshark et Deezer.
+
+Pour passer à l'un ou à l'autre des sites quelques 
+modifications rapides sont nécéssaires. Comme t'es intelligent 
+tu n'oubliera pas de faire une copie des fichier ;)
+
+1. Le manifest
+==============
+
+		Il suffit de changer les chaînes suivantes :
+
+[ ]		"name": "__MSG_extNameSite__",
+[ ]		"description": "__MSG_extDescSite__",
+[ ]		"default_title": "__MSG_extNameSite__",
+
+[ ] 		Il faut également supprimer les content scripts qui ne 
+		dépendent pas du site visé dans la section "content_scripts"
+		du manifest.
+
+[ ]		Enfin, toujours dans le manifest il faut changer le mot clé
+		utilisé pour les commandes de l'omnibar.
+
+2. Les icônes
+=============
+
+[ ]		On lance IconsDeezer.cmd ou IconsGrooveshark.cmd. Flemme 
+		de faire du tri, on up toutes les images.
+
+3. extensionsParams.js
+======================
+
+[ ] 		Là encore léger changement il faut modifier le nom du site de 
+		la chaîne siteName du fichier extensionsParams.js.
+
+
+4. Bonus : la version "lite"
+============================
+
+[ ]		Dans le manifest on supprime la référence au module NPAPI, on
+		supprime également le content script sur *://*.
+
+[ ]		Dans extensionsParams.js on positionne lite sur true.

@@ -27,6 +27,9 @@ var songData = {
 		currentSongId: null,
 		currentDuration: null,
 		currentPosition: null,
+		currentQueue: null,
+		currentQueueId: null,
+		currentQueuePosition: null,
 		lastUpdate:null,
 		firstSeen:null,
 		firstSeenPlaying:null,
@@ -58,6 +61,10 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 								|| songData.songInf.currentPosition > 240)
 							&& songData.songInf.currentDuration >= 30))) {
 					lastfm.pushInformations();
+				  }
+				  
+				  if(lastfm.session) {
+					lastfm.checkLove();
 				  }
 				  
 				  if(notifications.status == true) {
@@ -156,6 +163,9 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 					sendResponse(
 					   {related: related, 
 					    artist: playerAPI.artists[playerArtistId], 
+						currentQueue: songData.songInf.currentQueue,
+						currentQueueId: songData.songInf.currentQueueId,
+						currentQueuePosition: songData.songInf.currentQueuePosition,
 						currentSongId: songData.songInf.currentSongId,
 						currentAlbumId: playerAlbumId,
 						currentArtistId: playerArtistId});

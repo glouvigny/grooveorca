@@ -5,13 +5,35 @@ var DeezerPlus = {
 	onDomLoad: function(e) {
 		if (PlayerPlus.loaded != true) {
 			PlayerPlus.loaded = true;
+			document.getElementById('playerInfDom').setAttribute('site','Deezer');
+			
 			interfaceTweaks.init('page');
 			if(document.getElementById('artName') != null) {
 				if(document.getElementById('songTitle') != null) {
 				
 				 // Fonction injectée via un location.href chargée de mettre les infos dans PlayerPlus.
 				 location.href = "javascript:" +
+					
+					"function deezerQueueToExt(queue) {" +
+						"var queue_out = [];" +
+						"var i = queue.data.length;" +
+						"while(i) {" +
+							"i--;" +
+							"queue_out[i] = {" +
+								"artist: queue.data[i].artistName," +
+								"artistId: queue.data[i].artistId," +
+								"albumId: queue.data[i].albumId," +
+								"album: queue.data[i].albumName," +
+								"song:  queue.data[i].songName," +
+								"songId:  queue.data[i].songId," +
+								"duration: queue.data[i].duration" +
+							"};" +
+						"}" +
+						"return queue_out;" +
+					"}" +
+					
 					"function updatePlayerPlus() {" +
+							"dzPlayer.getQueue();"+
 							"playerInfDom = document.getElementById('playerInfDom');" +
 							"playerInfDom.setAttribute('playing',dzPlayer.isPlaying());" +
 							"playerInfDom.setAttribute('artist',dzPlayer.getArtistName());" +
@@ -22,6 +44,8 @@ var DeezerPlus = {
 							"playerInfDom.setAttribute('album',dzPlayer.getAlbumTitle());" +
 							"playerInfDom.setAttribute('volume',dzPlayer.getVolume());" +
 							"playerInfDom.setAttribute('paused',dzPlayer.isPaused());" +
+							"playerInfDom.setAttribute('queue',JSON.stringify(deezerQueueToExt(dzPlayer.queue)));" +
+							"playerInfDom.setAttribute('queuePosition',dzPlayer.getNumSong());" +
 							"document.getElementById('lastUpdate').removeAttribute('updated');" +
 							"document.getElementById('lastUpdate').setAttribute('updated',Math.floor(new Date().getTime()));" +
 					"};" +
@@ -88,6 +112,12 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 					break;
 					case "playAlbum":
 						location.href = "javascript:dzPlayer.playAlbum(" + request.options.album +"," + request.options.index + ");";
+					break;
+					case "playQueue":
+						location.href = "javascript:dzPlayer.playTrackAtIndex(" + request.options.index + ");";
+					break;
+					case "deleteQueueItem":
+						location.href = "javascript:dzPlayer.removeTracks([" + request.options.index + "]);";
 					break;
 				}
 		    break;

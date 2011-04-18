@@ -5,7 +5,7 @@ playerInfDom.style.display = 'none';
 var lastUpdateDom = document.createElement('div');
 lastUpdateDom.id = "lastUpdate"
 playerInfDom.appendChild(lastUpdateDom);
-document.getElementById('body').appendChild(playerInfDom);
+document.getElementsByTagName("body")[0].appendChild(playerInfDom);
 
 var PlayerPlus = {
 	playerPage: null,
@@ -13,12 +13,19 @@ var PlayerPlus = {
 	localLastUpdate:0,
 	songInf: {
 		paused: null,
+		site: null,
+		loved: null,
 		currentSong: null,
-		currentArtist: null,
-		currentAlbum: null,
 		currentSongId: null,
+		currentArtist: null,
+		currentArtistId: null,
+		currentAlbum: null,
+		currentAlbumId: null,
 		currentDuration: null,
 		currentPosition: null,
+		currentQueue: null,
+		currentQueueId: null,
+		currentQueuePosition: null,
 		currentVolume:null,
 		lastUpdate:null,
 		firstSeen:null,
@@ -45,10 +52,18 @@ var PlayerPlus = {
 			// On push pas, certaines infos seront peut-être modifiées de nouveau
 			return false;
 		}		
-		PlayerPlus.songInf.coverURL			= playerInfDom.getAttribute('coverurl');
-		PlayerPlus.songInf.currentSongId	= parseInt(playerInfDom.getAttribute('songid'));
-		PlayerPlus.songInf.currentDuration	= parseInt(playerInfDom.getAttribute('duration'));
-		PlayerPlus.songInf.currentPosition	= parseInt(playerInfDom.getAttribute('position'));
+		PlayerPlus.songInf.coverURL				= playerInfDom.getAttribute('coverurl');
+		PlayerPlus.songInf.currentSongId		= parseInt(playerInfDom.getAttribute('songid'));
+		PlayerPlus.songInf.currentAlbumId		= parseInt(playerInfDom.getAttribute('albumid'));
+		PlayerPlus.songInf.currentArtistId		= parseInt(playerInfDom.getAttribute('artistid'));
+		PlayerPlus.songInf.currentDuration		= parseInt(playerInfDom.getAttribute('duration'));
+		PlayerPlus.songInf.currentPosition		= parseInt(playerInfDom.getAttribute('position'));
+		PlayerPlus.songInf.currentUserId		= parseInt(playerInfDom.getAttribute('userid'));
+		PlayerPlus.songInf.loved				= parseInt(playerInfDom.getAttribute('loved'));
+		
+		PlayerPlus.songInf.currentQueueId		= md5(playerInfDom.getAttribute('queue'));
+		PlayerPlus.songInf.currentQueuePosition	= parseInt(playerInfDom.getAttribute('queuePosition'));
+		PlayerPlus.songInf.currentQueue			= JSON.parse(playerInfDom.getAttribute('queue'));
 		
 		if(playerInfDom.getAttribute('playing') == 'false')
 			PlayerPlus.songInf.paused = true;
@@ -61,7 +76,6 @@ var PlayerPlus = {
 		if((PlayerPlus.songInf.firstSeenPlaying == null && !isNaN(PlayerPlus.songInf.currentPosition) && PlayerPlus.songInf.currentPosition != 0))
 			PlayerPlus.songInf.firstSeenPlaying = Math.floor(new Date().getTime()/1000);
 		
-		//console.log(PlayerPlus.localLastUpdate);
 		if(PlayerPlus.localLastUpdate + 100 < (new Date().getTime())) {
 			PlayerPlus.localLastUpdate = new Date().getTime();
 			chrome.extension.sendRequest({name: "pushInfos", content: PlayerPlus.songInf}, function(response) { return true; });

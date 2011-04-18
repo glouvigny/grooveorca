@@ -13,8 +13,17 @@
 	<script src="scripts/mediakeys.js"></script>
 	<script src="scripts/wikipedia.js"></script>
 	<script src="scripts/nowplaying.js"></script>
-	<script src="scripts/playerapi.js"></script>
-	<script src="scripts/omnibox.js"></script>
+	<script src="scripts/omnibox.js"></script>	
+	<script>
+	switch(settings.siteName) {
+		case "Deezer":
+			include('./scripts/playerapiDeezer.js');
+		break;
+		case "Grooveshark":
+			include('./scripts/playerapiGrooveshark.js');
+		break;
+	}
+	</script>
 	<script src="scripts/dispatch.js"></script>
 	
 	<script>

@@ -1,1 +1,1 @@
-var settings = {	lite: false,	siteUrl: "http://www.deezer.com/"}
+var settings = {	lite: false,	siteName: "Deezer"}if(settings.siteName == 'Grooveshark') {	var siteUrl = "http://listen.grooveshark.com/";	var extName = chrome.i18n.getMessage("extNameGrooveshark");} else if (settings.siteName == 'Deezer') {	var siteUrl = "http://www.deezer.com/";	var extName = chrome.i18n.getMessage("extNameDeezer");}var siteName = settings.siteName;
