@@ -54,18 +54,20 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse)
 				  //playerAPI.init('dispatch');
 				  
 				  
-				  if(lastfm.status == true &&
-					((lastfm.lastNotification != songData.songInf.firstSeen) ||
+				 if ((lastfm.lastNotification != songData.songInf.firstSeen) ||
 						(lastfm.lastScrobble != songData.songInf.firstSeen
 							&& (songData.songInf.currentPosition > (songData.songInf.currentDuration/2)
 								|| songData.songInf.currentPosition > 240)
-							&& songData.songInf.currentDuration >= 30))) {
-					lastfm.pushInformations();
-				  }
+							&& songData.songInf.currentDuration >= 30)) {
+								if(lastfm.session) {
+									lastfm.checkLove();
+								}
+								if(lastfm.status == true) {
+									lastfm.pushInformations();
+								}
+							}
 				  
-				  if(lastfm.session) {
-					lastfm.checkLove();
-				  }
+				
 				  
 				  if(notifications.status == true) {
 					notifications.pushInformations();
