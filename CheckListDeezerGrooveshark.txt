@@ -20,11 +20,10 @@ tu n'oubliera pas de faire une copie des fichier ;)
 [ ]		Enfin, toujours dans le manifest il faut changer le mot clé
 		utilisé pour les commandes de l'omnibar.
 
-2. Les icônes
+2. Les icônes/scripts inutiles
 =============
 
-[ ]		On lance IconsDeezer.cmd ou IconsGrooveshark.cmd. Flemme 
-		de faire du tri, on up toutes les images.
+[ ]		On lance CleanDeezer.cmd ou CleanGrooveshark.cmd.
 
 3. extensionsParams.js
 ======================
