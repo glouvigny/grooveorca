@@ -1,6 +1,6 @@
 {
   "name": "__MSG_extNameDeezer__",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "__MSG_extDescDeezer__",
   "icons": { 
 	"128": "res/icons/Ext_icon_128x128.png",
@@ -16,11 +16,15 @@
   "background_page": "bg.html",
   "content_scripts": [
     {
-      "matches": ["http://*.deezer.com/*"],
+      "matches": ["http://beta.deezer.com/*"],
+      "js": ["scripts/page.js", "scripts/pageDeezerBeta.js", "scripts/php.js", "scripts/interfaceTweaksDeezerBeta.js"]
+    },
+    {
+      "matches": ["http://www.deezer.com/*"],
       "js": ["scripts/interfaceTweaksDeezer.js", "scripts/page.js", "scripts/pageDeezer.js", "scripts/php.js"]
     },
     {
-      "matches": ["http://listen.grooveshark.com/*"],
+      "matches": ["http://listen.grooveshark.com/*", "http://grooveshark.com/*", "http://www.grooveshark.com/*"],
       "js": ["scripts/interfaceTweaksGrooveshark.js", "scripts/page.js", "scripts/pageGrooveshark.js", "scripts/php.js"]
     },
 	{
