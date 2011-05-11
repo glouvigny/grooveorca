@@ -167,6 +167,12 @@ var lastfm = {
    * @param source : either "option" page or "dispatch"
    */
   init: function(source) {
+	// ugly code for GS API key
+	if(settings.siteName == "Grooveshark") {
+		lastfm.api_key = "4edd239f3b08515911d5622cd0d48fca"; // Use your own
+		lastfm.api_sec = "cefe831a985add762fa622b845165bc7";
+	}
+  
 	this.session = localStorage.getItem('lastFmSession');
 	this.user = localStorage.getItem('lastFmUser');
 	
