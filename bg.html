@@ -8,7 +8,6 @@
 	<script src="scripts/lastfm.js"></script>
 	<script src="scripts/store.js"></script>
 	<script src="scripts/lyrics.js"></script>
-	<script src="scripts/interfaceTweaks.js"></script>
 	<script src="scripts/notifications.js"></script>
 	<script src="scripts/mediakeys.js"></script>
 	<script src="scripts/wikipedia.js"></script>
@@ -18,9 +17,11 @@
 	switch(settings.siteName) {
 		case "Deezer":
 			include('./scripts/playerapiDeezer.js');
+			include('./scripts/interfaceTweaksDeezer.js');
 		break;
 		case "Grooveshark":
 			include('./scripts/playerapiGrooveshark.js');
+			include('./scripts/interfaceTweaksGrooveshark.js');
 		break;
 	}
 	</script>

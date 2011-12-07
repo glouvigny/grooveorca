@@ -8,32 +8,32 @@ var DeezerPlus = {
 			document.getElementById('playerInfDom').setAttribute('site','Deezer');
 			
 			interfaceTweaks.init('page');
-			if(document.getElementById('artName') != null) {
-				if(document.getElementById('songTitle') != null) {
+			
+			if(document.getElementById('current-artist') != null) {
+				if(document.getElementById('current-track') != null) {
 				
 				 // Fonction injectée via un location.href chargée de mettre les infos dans PlayerPlus.
 				 location.href = "javascript:" +
 					
 					"function deezerQueueToExt(queue) {" +
 						"var queue_out = [];" +
-						"var i = queue.data.length;" +
+						"var i = queue.length;" +
 						"while(i) {" +
 							"i--;" +
 							"queue_out[i] = {" +
-								"artist: queue.data[i].artistName," +
-								"artistId: queue.data[i].artistId," +
-								"albumId: queue.data[i].albumId," +
-								"album: queue.data[i].albumName," +
-								"song:  queue.data[i].songName," +
-								"songId:  queue.data[i].songId," +
-								"duration: queue.data[i].duration" +
+								"artist: queue[i].ART_NAME," +
+								"artistId: queue[i].ART_ID," +
+								"albumId: queue[i].ALB_ID," +
+								"album: queue[i].ALB_TITLE," +
+								"song:  queue[i].SNG_TITLE," +
+								"songId:  queue[i].SNG_ID," +
+								"duration: queue[i].DURATION" +
 							"};" +
 						"}" +
 						"return queue_out;" +
 					"}" +
-					
+
 					"function updatePlayerPlus() {" +
-							"dzPlayer.getQueue();"+
 							"playerInfDom = document.getElementById('playerInfDom');" +
 							"playerInfDom.setAttribute('playing',dzPlayer.isPlaying());" +
 							"playerInfDom.setAttribute('artist',dzPlayer.getArtistName());" +
@@ -44,14 +44,14 @@ var DeezerPlus = {
 							"playerInfDom.setAttribute('album',dzPlayer.getAlbumTitle());" +
 							"playerInfDom.setAttribute('volume',dzPlayer.getVolume());" +
 							"playerInfDom.setAttribute('paused',dzPlayer.isPaused());" +
-							"playerInfDom.setAttribute('queue',JSON.stringify(deezerQueueToExt(dzPlayer.queue)));" +
+							"playerInfDom.setAttribute('queue',JSON.stringify(deezerQueueToExt(dzPlayer.getTrackList())));" +
 							"playerInfDom.setAttribute('queuePosition',dzPlayer.getNumSong());" +
 							"document.getElementById('lastUpdate').removeAttribute('updated');" +
 							"document.getElementById('lastUpdate').setAttribute('updated',Math.floor(new Date().getTime()));" +
 					"};" +
-					"document.getElementById('songPosition').addEventListener('DOMSubtreeModified', updatePlayerPlus , false);" +
-					"document.getElementById('play').addEventListener('DOMSubtreeModified', updatePlayerPlus , false);" +
-					"document.getElementById('pause').addEventListener('DOMSubtreeModified', updatePlayerPlus , false);";
+					"document.getElementById('beggin-track').addEventListener('DOMSubtreeModified', updatePlayerPlus , false);" +
+					"document.getElementById('h_play').addEventListener('DOMSubtreeModified', updatePlayerPlus , false);" +
+					"document.getElementById('h_pause').addEventListener('DOMSubtreeModified', updatePlayerPlus , false);";
 					document.getElementById('lastUpdate').addEventListener('DOMSubtreeModified', PlayerPlus.getInformations , false);
 					window.onbeforeunload = function() {
 						DeezerPlus.onDomUnload();
@@ -125,5 +125,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
      });
 
 document.addEventListener('load', DeezerPlus.onDomLoad , true);
+
 //var timerPlayerPlus = setInterval("location.href='javascript:updatePlayerPlus();';",7500);
 
