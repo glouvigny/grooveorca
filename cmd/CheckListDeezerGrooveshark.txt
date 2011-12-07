@@ -13,7 +13,7 @@ tu n'oubliera pas de faire une copie des fichier ;)
 [ ]		"description": "__MSG_extDescSite__",
 [ ]		"default_title": "__MSG_extNameSite__",
 
-[ ] 		Il faut également supprimer les content scripts qui ne 
+[ ] 	Il faut également supprimer les content scripts qui ne 
 		dépendent pas du site visé dans la section "content_scripts"
 		du manifest.
 
@@ -21,21 +21,13 @@ tu n'oubliera pas de faire une copie des fichier ;)
 		utilisé pour les commandes de l'omnibar.
 
 2. Les icônes/scripts inutiles
-=============
+==============================
 
 [ ]		On lance CleanDeezer.cmd ou CleanGrooveshark.cmd.
 
-3. extensionsParams.js
-======================
 
-[ ] 		Là encore léger changement il faut modifier le nom du site de 
-		la chaîne siteName du fichier extensionsParams.js.
-
-
-4. Bonus : la version "lite"
+3. Bonus : la version "lite"
 ============================
 
 [ ]		Dans le manifest on supprime la référence au module NPAPI, on
 		supprime également le content script sur *://*.
-
-[ ]		Dans extensionsParams.js on positionne lite sur true.

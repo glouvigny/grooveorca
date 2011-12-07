@@ -1,6 +1,6 @@
 {
   "name": "__MSG_extNameDeezer__",
-  "version": "0.10.1",
+  "version": "0.11.1",
   "description": "__MSG_extDescDeezer__",
   "icons": { 
 	"128": "res/icons/Ext_icon_128x128.png",
@@ -16,16 +16,16 @@
   "background_page": "bg.html",
   "content_scripts": [
     {
-      "matches": ["http://beta.deezer.com/*"],
-      "js": ["scripts/page.js", "scripts/pageDeezerBeta.js", "scripts/php.js", "scripts/interfaceTweaksDeezerBeta.js"]
-    },
-    {
       "matches": ["http://www.deezer.com/*"],
       "js": ["scripts/interfaceTweaksDeezer.js", "scripts/page.js", "scripts/pageDeezer.js", "scripts/php.js"]
     },
     {
       "matches": ["http://listen.grooveshark.com/*", "http://grooveshark.com/*", "http://www.grooveshark.com/*"],
       "js": ["scripts/interfaceTweaksGrooveshark.js", "scripts/page.js", "scripts/pageGrooveshark.js", "scripts/php.js"]
+    },
+    {
+      "matches": ["http://music.google.com/*", "https://music.google.com/*"],
+      "js": ["scripts/interfaceTweaksGmusic.js", "scripts/page.js", "scripts/pageGmusic.js", "scripts/php.js"]
     },
 	{
 	  "run_at": "document_start",
@@ -43,5 +43,5 @@
   },
   "options_page": "options.html",
   "default_locale" : "en",
-  "permissions": ["notifications", "tabs", "http://*.deezer.com/", "http://*.wikipedia.org/", "http://*.last.fm/", "http://ws.audioscrobbler.com/", "http://*.lyrdb.com/", "http://ax.phobos.apple.com.edgesuite.net/"] 
+  "permissions": ["notifications", "tabs", "http://*.deezer.com/", "http://*.wikipedia.org/", "http://*.last.fm/", "http://ws.audioscrobbler.com/", "http://*.lyrdb.com/", "http://api.grooveshark.com/", "http://ax.phobos.apple.com.edgesuite.net/"] 
 }
