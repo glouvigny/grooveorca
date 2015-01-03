@@ -1,0 +1,111 @@
+{
+  "browser_action": {
+    "default_icon": "data/icons/Deezer_icon_32x32.png",
+    "default_popup": "data/popup.html",
+    "scripts": [
+        "ext/jquery/dist/jquery.js",
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/popup.js"
+    ],
+    "height": 700,
+    "width": 380
+  },
+
+  "manifest_version": 2,
+  "name": "GrooveOrca",
+  "version": "2.0.0.0",
+  "author": "Guillaume Louvigny",
+  "licence": "MIT",
+  "moz_id": "jid0xmwc4t7rw7j2x1or",
+  "permissions": [
+    "*://*.deezer.com/",
+    "*://*.spotify.com/",
+    "*://*.rdio.com/",
+    "*://*.wikipedia.org/",
+    "*://*.cloudfront.net/",
+    "*://*.viewlyrics.com/",
+    "*://*.wikia.com/",
+    "storage",
+    "notifications"
+  ],
+
+  "background": {
+    "scripts": ["lib/ext/caoutchouc/ext/requirejs/require.js", "lib/main.js"],
+    "persistent": false
+  },
+
+  "web_accessible_resources": [
+    "data/watchers/player/deezer.js",
+    "data/watchers/player/spotify.js",
+    "data/watchers/player/rdio.js",
+    "data/watchers/bridge-watcher.js"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.deezer.com/*"],
+      "js": [
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/music-bridge.js",
+        "data/watchers/bridge-watcher.js",
+        "data/watchers/player/deezer.js"
+      ]
+    },
+    {
+      "matches": ["*://*.deezer.ohai.fr/*"],
+      "js": [
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/music-bridge.js",
+        "data/watchers/bridge-watcher.js"
+      ]
+    },
+    {
+      "matches": ["*://*.spotify.com/*"],
+      "js": [
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/music-bridge.js",
+        "data/watchers/bridge-watcher.js",
+        "data/watchers/player/spotify.js"
+      ]
+    },
+    {
+      "matches": ["*://*.rdio.com/*"],
+      "js": [
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/music-bridge.js",
+        "data/watchers/bridge-watcher.js",
+        "data/watchers/player/rdio.js"
+      ]
+    }
+  ],
+  "commands": {
+    "previous": {
+      "suggested_key": {
+        "default": "MediaPrevTrack"
+      },
+      "global": true,
+      "description": "Skip to the previous listened track"
+    },
+    "playpause": {
+      "suggested_key": {
+        "default": "MediaPlayPause"
+      },
+      "global": true,
+      "description": "Toggle playback"
+    },
+    "next": {
+      "suggested_key": {
+        "default": "MediaNextTrack"
+      },
+      "global": true,
+      "description": "Skip to the next track in queue"
+    }
+  },
+
+  "default_locale": "en"
+}

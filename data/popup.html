@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popup</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./css/dplus-embedded.css">
+    <link rel="stylesheet" type="text/css" href="./css/dplus.css">
+    <script src="watchers/popup-chrome.js"></script>
+</head>
+<body>
+    <header>
+        <div class="now-playing">
+            <div data-fragment="current-track" class="current-track">Track</div>
+            <div>
+                <small class="muted">
+                    <strong data-fragment="current-artist">Artist</strong> –
+                    <span data-fragment="current-album">Album</span>
+                </small>
+            </div>
+        </div>
+        <div class="playback-control">
+            <a href="#" class="nav-btn" data-action="controls_previous"><i class="icon-to-start"></i></a>
+            <a href="#" class="nav-btn" data-action="controls_playpause"><i class="icon-play" data-fragment="current-state" data-state="paused"></i><i class="icon-pause" data-fragment="current-state" data-state="paused"></i></a>
+            <a href="#" class="nav-btn" data-action="controls_next"><i class="icon-to-end"></i></a>
+        </div>
+        <div class="now-playing-progress">
+            <span class="now-playing-progress-left">
+                <span data-fragment="current-position" data-time="null">--:--</span>
+            </span>
+            <span class="meter">
+                <div style="width: 0%" data-progress="0"
+                 data-fragment="current-progress"></div>
+            </span>
+            <span class="now-playing-progress-right">
+                <span data-fragment="current-duration" data-time="null">--:--</span>
+                <a href="#" class="nav-btn"><i class="icon-cw"></i></a>
+                <a href="#" class="nav-btn"><i class="icon-shuffle"></i></a>
+            </span>
+        </div>
+    </header>
+    <div class="top-container">
+        <nav></nav>
+        <content>
+            <div class="deck">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

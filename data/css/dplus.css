@@ -1,0 +1,182 @@
+nav {
+    height: 35px;
+    width: 100%;
+    overflow: auto;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 48px;
+    left: 0;
+    padding-top: 3px;
+    text-align: center;
+}
+
+
+.deck {
+    position: fixed;
+    left: 0;
+    top: 86px;
+    right: 0;
+    bottom:0;
+    overflow: auto;
+    padding: 8px;
+}
+
+nav, nav .nav-btn {
+    border: none;
+    background-color: #484848;
+    color: #bebebe;
+}
+
+nav .nav-btn {
+    padding-left: 8px;
+    padding-top: 8px;
+    font-size: 24px;
+    display: inline;
+    padding-bottom: 12px;
+}
+
+nav .nav-btn.active {
+    color: #2299ef;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background-color: #363636;
+    color: #bebebe;
+}
+
+header a {
+    color: #bebebe;
+}
+
+.now-playing {
+    margin-top: 3px;
+    margin-left: 3px;
+    font-size: 12px;
+    width: 275px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.playback-control {
+    position: absolute;
+    right: 0px;
+    top: 6px;
+    font-size: 21px;
+}
+
+footer .nav-btn:first-child {
+    float:left;
+    padding-left: 12px;
+}
+
+footer .nav-btn:last-child {
+    float:right;
+    padding-right: 12px;
+}
+
+footer .nav-btn {
+    font-size: 32px;
+}
+
+nav .nav-btn:active, footer .nav-btn:active {
+    color: #9e9e9e;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+    width: 380px;
+    min-height:540px;
+    max-height:700px;
+}
+
+.hidden {
+    display: none;
+}
+
+*[data-page-navigation] {
+    cursor: pointer;
+}
+
+section, .hidden section {
+    display: none;
+}
+
+section:last-child {
+    display: block;
+}
+
+.meter, .meter div {
+    height: 8px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.meter {
+    background-color: #484848;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    right: 75px;
+    left: 32px;
+    margin-top: 2px;
+}
+
+.meter div {
+    background-color: #2299ef;
+    overflow: hidden;
+}
+
+.current-track {
+    margin-top: 2px;
+}
+
+.now-playing-progress {
+    clear: both;
+    position: relative;
+    left: 3px;
+    right: 3px;
+    font-size: 11px;
+}
+
+.icon-play, .icon-pause {
+    display: none;
+}
+
+.icon-play[data-state="paused"],
+.icon-play[data-state="stopped"],
+.icon-pause[data-state="playing"] {
+    display: inline;
+}
+
+.now-playing-progress-left, .now-playing-progress-right {
+    position: absolute;
+}
+
+.now-playing-progress-left {
+    left: 0;
+    text-align: right;
+    width: 27px;
+}
+
+.now-playing-progress-right {
+    right: 0;
+    text-align: left;
+    width: 70px;
+}
+
+.muted {
+    color: #999;
+}
+
+.strong {
+    font-weight: bold;
+}

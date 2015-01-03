@@ -1,0 +1,35 @@
+{
+    "i18n_PlayPause": {
+        "message": "Play/Pause"
+    },
+    "i18n_Next": {
+        "message": "Next"
+    },
+    "i18n_lastfm_logged_as": {
+        "message": "Logged as %username%"
+    },
+    "i18n_lastfm_unlove": {
+        "message": "Remove this track from loved"
+    },
+    "i18n_lastfm_love": {
+        "message": "Add to loved tracks"
+    },
+    "i18n_lastfm_login": {
+        "message": "Last.fm login"
+    },
+    "i18n_lastfm_check_login": {
+        "message": "Confirm login"
+    },
+    "i18n_nothing_playing": {
+        "message": "Nothing is currently playing"
+    },
+    "i18n_lyrics_not_found": {
+        "message": "No lyrics has been found"
+    },
+    "i18n_unimplemented": {
+        "message": "This module has not been implemented"
+    },
+    "i18n_wikipedia_error": {
+        "message": "An error occurred while retrieving article from Wikipedia"
+    }
+}

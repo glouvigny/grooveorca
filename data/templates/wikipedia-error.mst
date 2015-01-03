@@ -1,0 +1,1 @@
+<p>{{ 'i18n_wikipedia_error' | trans }}</p>

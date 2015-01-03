@@ -1,0 +1,21 @@
+<div>
+    {% if username %}
+        {{ 'i18n_lastfm_logged_as'|trans|replace('%username%', username) }}
+        <div>
+            {% if loved %}
+                <a href="#" data-action="lastfm_love">
+                    {{ 'i18n_lastfm_unlove'|trans }}
+                </a>
+            {% else %}
+                <a href="#" data-action="lastfm_unlove">
+                    {{ 'i18n_lastfm_love'|trans }}
+                </a>
+            {% endif %}
+        </div>
+    {% else %}
+        <a href="#" data-action="lastfm_auth">{{ 'i18n_lastfm_login'|trans }}</a>
+        {% if has_token %}
+            <a href="#" data-action="lastfm_check">{{ 'i18n_lastfm_check_login'|trans }}</a>
+        {% endif %}
+    {% endif %}
+</div>

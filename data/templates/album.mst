@@ -1,0 +1,9 @@
+<div>
+    <ul>
+        {% for track in album.tracks %}
+            <li class="{{ track.id|eq(current_track_id)|_if("strong", "") }}">
+                {{ track.track_position }} - {{ track.name }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

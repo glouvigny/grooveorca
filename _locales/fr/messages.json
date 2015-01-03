@@ -1,0 +1,35 @@
+{
+    "i18n_PlayPause": {
+        "message": "Play/Pause"
+    },
+    "i18n_Next": {
+        "message": "Suivant"
+    },
+    "i18n_lastfm_logged_as": {
+        "message": "Connecté en tant que %username%"
+    },
+    "i18n_lastfm_unlove": {
+        "message": "Retirer des favoris"
+    },
+    "i18n_lastfm_love": {
+        "message": "Ajouter aux favoris"
+    },
+    "i18n_lastfm_login": {
+        "message": "Se connecter à Last.fm"
+    },
+    "i18n_lastfm_check_login": {
+        "message": "Confirmer la connexion"
+    },
+    "i18n_nothing_playing": {
+        "message": "Rien n'est actuellement à l'écoute"
+    },
+    "i18n_lyrics_not_found": {
+        "message": "Aucunes paroles n'ont été trouvées"
+    },
+    "i18n_unimplemented": {
+        "message": "Ce module n'est pas implémenté"
+    },
+    "i18n_wikipedia_error": {
+        "message": "Une erreur est survenue lors de la récupération de l'article Wikipédia"
+    }
+}

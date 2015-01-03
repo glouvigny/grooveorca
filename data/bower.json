@@ -1,0 +1,21 @@
+{
+  "name": "GrooveOrca - Popup",
+  "version": "2.0.0",
+  "authors": [
+    "Guillaume Louvigny <grooveorca@ohai.fr>"
+  ],
+  "description": "Popup UI for GrooveOrca",
+  "main": "popup.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "ext/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  }
+}
