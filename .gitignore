@@ -3,5 +3,6 @@ package.json
 data/ext/
 lib/ext/
 data/manifest.json
+manifest.json
 TODO.md
 bin/ext/
