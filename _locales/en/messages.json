@@ -31,5 +31,14 @@
     },
     "i18n_wikipedia_error": {
         "message": "An error occurred while retrieving article from Wikipedia"
+    },
+    "i18n_lastfm_track_playcount": {
+        "message": "You listened to this song %count% times."
+    },
+    "i18n_lastfm_artist_playcount": {
+        "message": "You listened %count% tracks of this artist."
+    },
+    "i18n_lastfm_logout": {
+        "message": "Logout"
     }
 }

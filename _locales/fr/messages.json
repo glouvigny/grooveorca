@@ -31,5 +31,14 @@
     },
     "i18n_wikipedia_error": {
         "message": "Une erreur est survenue lors de la récupération de l'article Wikipédia"
+    },
+    "i18n_lastfm_track_playcount": {
+        "message": "Vous avez écouté cette chanson %count% fois."
+    },
+    "i18n_lastfm_artist_playcount": {
+        "message": "Vous avez écouté %count% pistes de cet artiste."
+    },
+    "i18n_lastfm_logout": {
+        "message": "Déconnexion"
     }
 }

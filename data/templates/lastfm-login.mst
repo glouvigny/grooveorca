@@ -18,4 +18,28 @@
             <a href="#" data-action="lastfm_check">{{ 'i18n_lastfm_check_login'|trans }}</a>
         {% endif %}
     {% endif %}
+
+    <br>
+    <br>
+
+    {% if playcount_artist %}
+        <div>
+            {{ 'i18n_lastfm_artist_playcount'|trans|replace('%count%', playcount_artist) }}
+        </div>
+    {% endif %}
+
+    <br>
+
+    {% if playcount_track %}
+        <div>
+            {{ 'i18n_lastfm_track_playcount'|trans|replace('%count%', playcount_track) }}
+        </div>
+    {% endif %}
+
+    <br>
+    <br>
+
+    <div>
+        {{ wiki_artist }}
+    </div>
 </div>
