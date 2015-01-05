@@ -54,15 +54,6 @@
       ]
     },
     {
-      "matches": ["*://*.deezer.ohai.fr/*"],
-      "js": [
-        "data/watchers/messaging-chrome.js",
-        "data/watchers/messaging-firefox.js",
-        "data/watchers/music-bridge.js",
-        "data/watchers/bridge-watcher.js"
-      ]
-    },
-    {
       "matches": ["*://*.spotify.com/*"],
       "js": [
         "data/watchers/messaging-chrome.js",
