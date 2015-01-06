@@ -1,6 +1,12 @@
 <div>
     {% if username %}
-        {{ 'i18n_lastfm_logged_as'|trans|replace('%username%', username) }}
+        <div>
+            {{ 'i18n_lastfm_logged_as'|trans|replace('%username%', username) }}
+            -
+            <a href="#" data-action="lastfm_logout">
+                {{ 'i18n_lastfm_logout'|trans }}
+            </a>
+        </div>
         <div>
             {% if loved %}
                 <a href="#" data-action="lastfm_love">
