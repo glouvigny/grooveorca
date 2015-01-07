@@ -1,6 +1,7 @@
-/* jshint moz: true */
 try {
-    window.mozContact = window.mozContact;
+    if (window.mozContact === undefined) {
+        throw new Error();
+    }
 
     var recvs = [];
 
@@ -10,8 +11,11 @@ try {
         },
 
         recv: function (options) {
-            for each (var recv in recvs) {
-                recv(options);
+            for (var i in recvs) {
+                if (recvs.hasOwnProperty(i)) {
+                    var recv = recvs[i];
+                    recv(options);
+                }
             }
         },
 
