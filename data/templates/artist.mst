@@ -1,0 +1,9 @@
+<div>
+    <ul>
+        {% for album in artist.albums %}
+            <li>
+                {{ album.name }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
