@@ -1,1 +1,1 @@
-<p>{{ 'i18n_nothing_playing' | trans }}</p>
+<p>{{ 'i18n_nothing_playing'|trans }}</p>

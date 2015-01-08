@@ -1,1 +1,1 @@
-<p>{{ 'i18n_lyrics_not_found' | trans }}</p>
+<p>{{ 'i18n_lyrics_not_found'|trans }}</p>
