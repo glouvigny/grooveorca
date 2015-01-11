@@ -20,7 +20,7 @@
         </div>
     {% else %}
         <a href="#" data-action="lastfm_auth">{{ 'i18n_lastfm_login'|trans }}</a>
-        {% if has_token %}
+        {% if token %}
             <a href="#" data-action="lastfm_check">{{ 'i18n_lastfm_check_login'|trans }}</a>
         {% endif %}
     {% endif %}
