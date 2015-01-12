@@ -33,7 +33,7 @@ nav .nav-btn {
     padding-top: 8px;
     font-size: 24px;
     display: inline;
-    padding-bottom: 12px;
+    padding-bottom: 0;
 }
 
 nav .nav-btn.active {
