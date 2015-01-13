@@ -34,30 +34,30 @@
         };
     };
 
-    var updateTrack =  function () {
-        updateData('song', dzSongToApi(dzPlayer.getCurrentSong()));
+    var updateTrack =  function (force) {
+        updateData('song', dzSongToApi(dzPlayer.getCurrentSong()), force);
     };
 
-    var updatePosition = function () {
-        updateData('position', parseInt(dzPlayer.getPosition(), 10));
+    var updatePosition = function (force) {
+        updateData('position', parseInt(dzPlayer.getPosition(), 10), force);
     };
 
-    var updateVolume = function () {
-        updateData('volume', dzPlayer.getVolume());
+    var updateVolume = function (force) {
+        updateData('volume', dzPlayer.getVolume(), force);
     };
 
-    var updateQueue = function () {
-        updateData('queue', dzPlayer.getTrackList().map(dzSongToApi));
+    var updateQueue = function (force) {
+        updateData('queue', dzPlayer.getTrackList().map(dzSongToApi), force);
     };
 
-    var updateState = function () {
+    var updateState = function (force) {
         if (dzPlayer.isPlaying()) {
-            return updateData('state', 'playing');
+            return updateData('state', 'playing', force);
         } else if (dzPlayer.isPaused()) {
-            return updateData('state', 'paused');
+            return updateData('state', 'paused', force);
         }
 
-        return updateData('state', 'stopped');
+        return updateData('state', 'stopped', force);
     };
 
     var eltsToWatch = {
@@ -92,6 +92,7 @@
             var modes = {'none': 0, 'all': 1, 'song': 2};
             dzPlayer.control.setRepeat(modes[param.mode]);
         },
+        'update_track': function() { updateTrack(true); },
     };
 
     bridgeWatcher.registerActions(actions);

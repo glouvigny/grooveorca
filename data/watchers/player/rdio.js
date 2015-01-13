@@ -13,7 +13,7 @@
     var bridgeWatcher = new BridgeWatcher();
     var updateData = bridgeWatcher.updateData.bind(bridgeWatcher);
 
-    var updateTrack =  function () {
+    var updateTrack =  function (force) {
         var raw = _r().player._model.get('playingTrack').attributes;
         if (!raw) {
             return;
@@ -30,25 +30,25 @@
             album_art: raw.bigIcon1200,
             disk_number: raw.disc,
             track_number: raw.number,
-        });
+        }, force);
     };
 
-    var updatePosition = function () {
-        updateData('position', _r().player.position());
+    var updatePosition = function (force) {
+        updateData('position', _r().player.position(), force);
     };
 
-    var updateVolume = function () {
-        updateData('volume', _r().player.volume());
+    var updateVolume = function (force) {
+        updateData('volume', _r().player.volume(), force);
     };
 
-    var updateState = function () {
+    var updateState = function (force) {
         if (_r().player.isPlaying()) {
-            return updateData('state', 'playing');
+            return updateData('state', 'playing', force);
         } else if (_r().player.playState() == _r().player.PLAYSTATE_PAUSED) {
-            return updateData('state', 'paused');
+            return updateData('state', 'paused', force);
         }
 
-        return updateData('state', 'stopped');
+        return updateData('state', 'stopped', force);
     };
 
     var eltsToWatch = {
@@ -71,6 +71,7 @@
             var modes = {'none': 0, 'all': 2, 'song': 1};
             _r().player.setRepeat(modes[param.mode]);
         },
+        'update_track': function() { updateTrack(true); },
     };
 
     bridgeWatcher.registerActions(actions);

@@ -81,12 +81,12 @@ BridgeWatcher.prototype.actionsWatcher = function (actions) {
     obs.observe(this.bridge, {attributes: true});
 };
 
-BridgeWatcher.prototype.updateData = function (name, value) {
+BridgeWatcher.prototype.updateData = function (name, value, force) {
     value = JSON.stringify(value);
 
     currValue = this.bridge.getAttribute('data-plpl-' + name);
 
-    if (currValue === value) {
+    if (!force && currValue === value) {
         return false;
     }
 

@@ -17,7 +17,7 @@
         return Spotify.Shuttle._initContext.contextPlayer;
     };
 
-    var updateTrack = function () {
+    var updateTrack = function (force) {
         var raw = _getCtxPlayer().getCurrentTrack();
 
         if (!raw) {
@@ -35,28 +35,28 @@
             album_art: raw.image,
             disk_number: raw.disc,
             track_number: raw.number,
-        });
+        }, force);
     };
 
-    var updatePosition = function () {
+    var updatePosition = function (force) {
         var player = _getPlayer();
         if (!player) {
             return;
         }
 
-        updateData('position', parseInt(player.position() / 1000, 10));
+        updateData('position', parseInt(player.position() / 1000, 10), force);
     };
 
-    var updateVolume = function () {
+    var updateVolume = function (force) {
         var player = _getPlayer();
         if (!player) {
             return;
         }
 
-        updateData('volume', _getPlayer().getVolume());
+        updateData('volume', _getPlayer().getVolume(), force);
     };
 
-    var updateState = function () {
+    var updateState = function (force) {
         var state = 'stopped';
         var player = _getPlayer();
 
@@ -66,7 +66,7 @@
             state = 'paused';
         }
 
-        updateData('state', state);
+        updateData('state', state, force);
     };
 
     var eltsToWatch = [
@@ -93,6 +93,7 @@
             var modes = {'none': 'none', 'all': 'context', 'song': 'track'};
             _getCtxPlayer().setRepeat(modes[param.mode]);
         },
+        'update_track': function() { updateTrack(true); },
     };
 
     bridgeWatcher.registerElementsToWatch(eltsToWatch);
