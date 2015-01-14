@@ -69,11 +69,17 @@
         updateData('state', state, force);
     };
 
+    var updateShuffle = function (force) {
+        updateData('shuffle', Spotify.Shuttle._initContext
+            .contextPlayer._shuffled, force);
+    };
+
     var eltsToWatch = [
         updatePosition,
         updateTrack,
         updateVolume,
         updateState,
+        updateShuffle,
     ];
 
     var actions = {
@@ -82,6 +88,11 @@
         'previous': function() { _getCtxPlayer().previous("backbtn"); },
         'volume': function(param) { _getCtxPlayer().setVolume(param.volume); },
         'shuffle': function(param) {
+            if (param.shuffle === undefined) {
+                param.shuffle = !Spotify.Shuttle._initContext
+                    .contextPlayer._shuffled;
+            }
+
             _getCtxPlayer().setShuffle(param.shuffle);
         },
         'play': function() { _getCtxPlayer().resume(); },

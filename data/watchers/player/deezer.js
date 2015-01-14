@@ -50,6 +50,10 @@
         updateData('queue', dzPlayer.getTrackList().map(dzSongToApi), force);
     };
 
+    var updateShuffle = function (force) {
+        updateData('shuffle', dzPlayer.shuffle, force);
+    };
+
     var updateState = function (force) {
         if (dzPlayer.isPlaying()) {
             return updateData('state', 'playing', force);
@@ -71,6 +75,7 @@
         '.progress-time': updatePosition,
         '.player-track': updateTrack,
         '[data-panel="queuelist"]': updateQueue,
+        '.control.control-shuffle': updateShuffle,
         // Both
         '.volume-progress': updateVolume,
         '.control.control-play': updateState,
@@ -81,7 +86,13 @@
         'next': dzPlayer.control.nextSong,
         'previous': dzPlayer.control.prevSong,
         'volume': dzPlayer.control.setVolume,
-        'shuffle': dzPlayer.control.setShuffle,
+        'shuffle': function (param) {
+            if (param.shuffle === undefined) {
+                param.shuffle = !dzPlayer.shuffle;
+            }
+
+            dzPlayer.control.setShuffle(param.shuffle);
+        },
         'play': dzPlayer.control.play,
         'pause': dzPlayer.control.pause,
         'seek': function (param) {

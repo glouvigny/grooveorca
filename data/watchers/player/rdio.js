@@ -51,11 +51,16 @@
         return updateData('state', 'stopped', force);
     };
 
+    var updateShuffle = function (force) {
+        updateData('shuffle', _r().player.shuffle(), force);
+    };
+
     var eltsToWatch = {
         '.player_bottom .time': updatePosition,
         '.text_metadata': updateTrack,
         '.Slider.volume': updateVolume,
         '.play_pause': updateState,
+        '.shuffle': updateShuffle,
     };
 
     var actions = {
@@ -63,7 +68,6 @@
         'next': function () { _r().player.next(); },
         'previous': function () { _r().player.previous(); },
         'volume': function (param) { _r().player.setVolume(param.volume); },
-        'shuffle': function (param) { _r().player.setShuffle(param.shuffle); },
         'play': function () { _r().player.play(); },
         'pause': function () { _r().player.pause(); },
         'seek': function (param) { _r().player.seek(param.position); },
@@ -72,6 +76,13 @@
             _r().player.setRepeat(modes[param.mode]);
         },
         'update_track': function() { updateTrack(true); },
+        'shuffle': function (param) {
+            if (param.shuffle === undefined) {
+                param.shuffle = !_r().player.shuffle();
+            }
+
+            _r().player.setShuffle(param.shuffle);
+        },
     };
 
     bridgeWatcher.registerActions(actions);
