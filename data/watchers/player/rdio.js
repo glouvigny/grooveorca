@@ -13,6 +13,9 @@
     var bridgeWatcher = new BridgeWatcher();
     var updateData = bridgeWatcher.updateData.bind(bridgeWatcher);
 
+    var nextRepeatMode = {0: 2, 2: 1, 1: 0};
+    var repeatModes = {'none': 0, 'song': 1, 'all': 2};
+
     var updateTrack =  function (force) {
         var raw = _r().player._model.get('playingTrack').attributes;
         if (!raw) {
@@ -55,12 +58,26 @@
         updateData('shuffle', _r().player.shuffle(), force);
     };
 
+    var updateRepeat = function (force) {
+        var repeat = 'none';
+        for (var i in repeatModes) {
+            if (repeatModes.hasOwnProperty(i)) {
+                if (repeatModes[i] === R.player.repeat()) {
+                    repeat = i;
+                }
+            }
+        }
+
+        updateData('repeat', repeat, force);
+    };
+
     var eltsToWatch = {
         '.player_bottom .time': updatePosition,
         '.text_metadata': updateTrack,
         '.Slider.volume': updateVolume,
         '.play_pause': updateState,
         '.shuffle': updateShuffle,
+        '.repeat': updateRepeat,
     };
 
     var actions = {
@@ -72,8 +89,13 @@
         'pause': function () { _r().player.pause(); },
         'seek': function (param) { _r().player.seek(param.position); },
         'repeat': function (param) {
-            var modes = {'none': 0, 'all': 2, 'song': 1};
-            _r().player.setRepeat(modes[param.mode]);
+            if (param.mode === undefined) {
+                param.mode = nextRepeatMode[R.player.repeat()];
+            } else {
+                param.mode = repeatModes[param.mode];
+            }
+
+            _r().player.setRepeat(param.mode);
         },
         'update_track': function() { updateTrack(true); },
         'shuffle': function (param) {

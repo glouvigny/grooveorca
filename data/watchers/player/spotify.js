@@ -6,6 +6,15 @@
         }
     }
 
+    var nextRepeatMode = {
+        'none': 'track',
+        'track': 'context',
+        'context': 'none',
+    };
+    var repeatModes = {'none': 'none', 'all': 'context', 'song': 'track'};
+
+
+
     var Spotify = window.Spotify || unsafeWindow.Spotify;
     var bridgeWatcher = new BridgeWatcher();
     var updateData = bridgeWatcher.updateData.bind(bridgeWatcher);
@@ -74,12 +83,26 @@
             .contextPlayer._shuffled, force);
     };
 
+    var updateRepeat = function (force) {
+        var repeat = 'none';
+        for (var i in repeatModes) {
+            if (repeatModes.hasOwnProperty(i)) {
+                if (repeatModes[i] === _getCtxPlayer()._repeatMode) {
+                    repeat = i;
+                }
+            }
+        }
+
+        updateData('repeat', repeat, force);
+    };
+
     var eltsToWatch = [
         updatePosition,
         updateTrack,
         updateVolume,
         updateState,
         updateShuffle,
+        updateRepeat,
     ];
 
     var actions = {
@@ -89,8 +112,7 @@
         'volume': function(param) { _getCtxPlayer().setVolume(param.volume); },
         'shuffle': function(param) {
             if (param.shuffle === undefined) {
-                param.shuffle = !Spotify.Shuttle._initContext
-                    .contextPlayer._shuffled;
+                param.shuffle = !_getCtxPlayer()._shuffled;
             }
 
             _getCtxPlayer().setShuffle(param.shuffle);
@@ -101,8 +123,15 @@
             _getCtxPlayer().seek(param.position * 1000);
         },
         'repeat': function (param) {
-            var modes = {'none': 'none', 'all': 'context', 'song': 'track'};
-            _getCtxPlayer().setRepeat(modes[param.mode]);
+            if (param.mode === undefined) {
+                param.mode = nextRepeatMode[_getCtxPlayer()._repeatMode];
+            } else {
+                param.mode = repeatModes[param.mode];
+            }
+
+            console.log(param);
+
+            _getCtxPlayer().setRepeat(param.mode);
         },
         'update_track': function() { updateTrack(true); },
     };

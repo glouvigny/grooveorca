@@ -36,8 +36,19 @@ nav .nav-btn {
     padding-bottom: 0;
 }
 
-nav .nav-btn.active, [data-enabled="1"] {
+nav .nav-btn.active, [data-enabled="1"],
+[data-repeat-mode="all"], [data-repeat-mode="song"] {
     color: #2299ef;
+}
+
+[data-repeat-mode="song"]::after {
+    content: "1";
+    font-size: 75%;
+    color: white;
+    text-align: center;
+    position: relative;
+    left: -6px;
+    top: 4px;
 }
 
 header {

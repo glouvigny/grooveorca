@@ -29,6 +29,7 @@ MusicBridge.prototype.bridgeData = {
     'state': ['state_changed', 'stopped'],
     'volume': ['volume_changed', '1'],
     'shuffle': ['shuffle_changed', 'false'],
+    'repeat': ['repeat_changed', 'none'],
     'queue': ['queue_changed', '[]'],
 };
 

@@ -11,6 +11,9 @@
     var bridgeWatcher = new BridgeWatcher();
     var updateData = bridgeWatcher.updateData.bind(bridgeWatcher);
 
+    var nextRepeatMode = {0: 1, 1: 2, 2: 0};
+    var repeatModes = {'none': 0, 'all': 1, 'song': 2};
+
     var dzSongToApi = function (raw) {
         var title = raw.SNG_TITLE;
         if (raw.VERSION) {
@@ -54,6 +57,19 @@
         updateData('shuffle', dzPlayer.shuffle, force);
     };
 
+    var updateRepeat = function (force) {
+        var repeat = 'none';
+        for (var i in repeatModes) {
+            if (repeatModes.hasOwnProperty(i)) {
+                if (repeatModes[i] === dzPlayer.repeat) {
+                    repeat = i;
+                }
+            }
+        }
+
+        updateData('repeat', repeat, force);
+    };
+
     var updateState = function (force) {
         if (dzPlayer.isPlaying()) {
             return updateData('state', 'playing', force);
@@ -76,6 +92,7 @@
         '.player-track': updateTrack,
         '[data-panel="queuelist"]': updateQueue,
         '.control.control-shuffle': updateShuffle,
+        '.control.control-repeat': updateRepeat,
         // Both
         '.volume-progress': updateVolume,
         '.control.control-play': updateState,
@@ -100,8 +117,13 @@
                 dzPlayer.getCurrentSong().DURATION);
         },
         'repeat': function (param) {
-            var modes = {'none': 0, 'all': 1, 'song': 2};
-            dzPlayer.control.setRepeat(modes[param.mode]);
+            if (param.mode === undefined) {
+                param.mode = nextRepeatMode[dzPlayer.repeat];
+            } else {
+                param.mode = repeatModes[param.mode];
+            }
+
+            dzPlayer.control.setRepeat(param.mode);
         },
         'update_track': function() { updateTrack(true); },
     };
