@@ -46,5 +46,11 @@
     },
     "i18n_notifications_options_enable": {
         "message": "Activer les notifications"
+    },
+    "i18n_wikipedia": {
+        "message": "Wikipédia"
+    },
+    "i18n_wikipedia_language": {
+        "message": "Langue des articles Wikipédia"
     }
 }
