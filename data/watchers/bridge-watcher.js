@@ -1,3 +1,25 @@
+// Amazon replaces .prototype.bind
+Function.prototype.grooveOrcaBind = function (oThis) {
+    if (typeof this !== "function") {
+      throw new TypeError("Function.prototype.bind - " +
+        "what is trying to be bound is not callable");
+    }
+
+    var aArgs = Array.prototype.slice.call(arguments, 1),
+        fToBind = this,
+        fNOP = function () {},
+        fBound = function () {
+          return fToBind.apply(this instanceof fNOP && oThis ? this : oThis,
+                 aArgs.concat(Array.prototype.slice.call(arguments)));
+        };
+
+    fNOP.prototype = this.prototype;
+    fBound.prototype = new fNOP();
+
+    return fBound;
+  };
+
+
 var BridgeWatcher = function () {
     this.actions = {};
     this.bridge = document.querySelector('#playerplus-exchange');
@@ -28,7 +50,7 @@ BridgeWatcher.prototype.watchElt = function (elt, fct, rule) {
         cb();
     };
 
-    var handler = mutationHandler.bind(null, fct);
+    var handler = mutationHandler.grooveOrcaBind(null, fct);
     var obs = new MutationObserver(handler);
 
     obs.observe(elt, {attributes: true, subtree: true, childList: true});
@@ -75,8 +97,8 @@ BridgeWatcher.prototype.actionsWatcher = function (actions) {
                 mut.target.setAttribute('data-plpl-api-actions',
                     JSON.stringify(new_actions));
             }
-        }.bind(this));
-    }.bind(this));
+        }.grooveOrcaBind(this));
+    }.grooveOrcaBind(this));
 
     obs.observe(this.bridge, {attributes: true});
 };
@@ -102,8 +124,8 @@ BridgeWatcher.prototype.newNodesWatcher = function (toWatch) {
                     this.mutationWatcher(toWatch, parent);
                 }
             }
-        }.bind(this));
-    }.bind(this));
+        }.grooveOrcaBind(this));
+    }.grooveOrcaBind(this));
 
     obs.observe(document, {subtree: true, childList: true});
 };

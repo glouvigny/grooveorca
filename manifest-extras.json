@@ -24,6 +24,7 @@
     "*://*.rdio.com/",
     "*://*.wikipedia.org/",
     "*://*.cloudfront.net/",
+    "*://*.amazonaws.com/",
     "*://*.viewlyrics.com/",
     "*://*.wikia.com/",
     "storage",
@@ -36,6 +37,7 @@
   },
 
   "web_accessible_resources": [
+    "data/watchers/player/amazon.js",
     "data/watchers/player/deezer.js",
     "data/watchers/player/spotify.js",
     "data/watchers/player/rdio.js",
@@ -71,6 +73,16 @@
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/rdio.js"
+      ]
+    },
+    {
+      "matches": ["*://*.amazon.fr/gp/dmusic/cloudplayer/*"],
+      "js": [
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/music-bridge.js",
+        "data/watchers/bridge-watcher.js",
+        "data/watchers/player/amazon.js"
       ]
     }
   ],
