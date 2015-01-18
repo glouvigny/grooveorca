@@ -40,5 +40,11 @@
     },
     "i18n_lastfm_logout": {
         "message": "Logout"
+    },
+    "i18n_notifications": {
+        "message": "Notifications"
+    },
+    "i18n_notifications_options_enable": {
+        "message": "Enable notifications"
     }
 }

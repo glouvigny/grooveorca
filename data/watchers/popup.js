@@ -155,5 +155,20 @@ $('.meter, .meter span').on('click', function (evt) {
     });
 });
 
+$(document).on('change', '*[data-setting-name]', function () {
+    var value = $(this).val();
+    if ($(this).attr('type') === 'checkbox' && !$(this).is(':checked')) {
+        value = '';
+    }
+
+    Messaging.send({
+        name: 'settings_save',
+        data: {
+            param_ref: $(this).data('setting-name'),
+            param_value: value,
+        }
+    });
+});
+
 
 Messaging.send({name: 'popup_page'});
