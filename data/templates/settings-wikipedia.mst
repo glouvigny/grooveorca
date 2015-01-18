@@ -1,0 +1,10 @@
+<h2>{{ 'i18n_wikipedia'|trans }}</h2>
+<label>
+    {{ 'i18n_wikipedia_language'|trans }}
+    <br>
+    <select data-setting-name="wikipedia#language">
+        {% for language in languages %}
+            <option value="{{ language.code }}" {{ context.settings.language|eq(language.code)|_if('selected="selected"', '') }}>{{ language.* }}</option>
+        {% endfor %}
+    </select>
+</label>

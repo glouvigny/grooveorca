@@ -52,5 +52,11 @@
     },
     "i18n_wikipedia_language": {
         "message": "Wikipedia language"
+    },
+    "i18n_lastfm": {
+        "message": "Last.fm"
+    },
+    "i18n_lastfm_language": {
+        "message": "Last.fm language"
     }
 }

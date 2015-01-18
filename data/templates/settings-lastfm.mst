@@ -1,0 +1,10 @@
+<h2>{{ 'i18n_lastfm'|trans }}</h2>
+<label>
+    {{ 'i18n_lastfm_language'|trans }}
+    <br>
+    <select data-setting-name="lastfm#language">
+        {% for language in languages %}
+            <option value="{{ language.code }}" {{ context.settings.language|eq(language.code)|_if('selected="selected"', '') }}>{{ language.name }}</option>
+        {% endfor %}
+    </select>
+</label>
