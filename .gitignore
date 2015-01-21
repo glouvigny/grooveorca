@@ -2,7 +2,8 @@ locale/
 package.json
 data/ext/
 lib/ext/
-data/manifest.json
+data/manifest-extras.json
 manifest.json
 TODO.md
 bin/ext/
+lib/main-built.js

@@ -32,7 +32,7 @@
   ],
 
   "background": {
-    "scripts": ["lib/ext/caoutchouc/ext/requirejs/require.js", "lib/main.js"],
+    "scripts": ["lib/ext/caoutchouc/ext/requirejs/require.js", "lib/main-built.js"],
     "persistent": false
   },
 
