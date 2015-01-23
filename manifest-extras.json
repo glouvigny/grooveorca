@@ -28,7 +28,7 @@
     "*://*.viewlyrics.com/",
     "*://*.wikia.com/",
     "*://*.grooveshark.com/",
-    "*://gs-cdn.net/",
+    "*://*.gs-cdn.net/",
     "storage",
     "notifications"
   ],

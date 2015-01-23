@@ -56,7 +56,15 @@
     };
 
     var updateState = function (force) {
-        // TODO
+        var state = _gs().getCurrentPlayStatus();
+
+        if (state === 6 || state === 0) {
+            return updateData('state', 'stopped', force);
+        } else if (state === 4) {
+            return updateData('state', 'paused', force);
+        }
+
+        return updateData('state', 'playing', force);
     };
 
     var updateShuffle = function (force) {
