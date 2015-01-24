@@ -58,5 +58,8 @@
     },
     "i18n_lastfm_language": {
         "message": "Langue des articles Last.fm"
+    },
+    "i18n_lastfm_options_enable_scrobbling": {
+        "message": "Activer le scrobbling"
     }
 }

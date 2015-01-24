@@ -1,10 +1,22 @@
 <h2>{{ 'i18n_lastfm'|trans }}</h2>
+<div>
+    <label>
+        {{ 'i18n_lastfm_language'|trans }}
+        <br>
+        <select data-setting-name="lastfm#language">
+            {% for language in languages %}
+                <option value="{{ language.code }}" {{ context.settings.language|eq(language.code)|_if('selected="selected"', '') }}>{{ language.name }}</option>
+            {% endfor %}
+        </select>
+    </label>
+</div>
+<div>
 <label>
-    {{ 'i18n_lastfm_language'|trans }}
-    <br>
-    <select data-setting-name="lastfm#language">
-        {% for language in languages %}
-            <option value="{{ language.code }}" {{ context.settings.language|eq(language.code)|_if('selected="selected"', '') }}>{{ language.name }}</option>
-        {% endfor %}
-    </select>
-</label>
+    <input
+        type="checkbox"
+        data-setting-name="lastfm#scrobbling"
+        value="1"
+        {{ context.settings.scrobbling|_if('checked="checked"', '') }}
+    >
+    {{ 'i18n_lastfm_options_enable_scrobbling'|trans }}
+</label></div>
