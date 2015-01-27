@@ -1,6 +1,6 @@
 <div>
     <ul>
-        {% for album in artist.albums %}
+        {% for album in data.albums %}
             <li>
                 {{ album.name }}
             </li>
