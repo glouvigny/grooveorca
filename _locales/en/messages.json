@@ -61,5 +61,11 @@
     },
     "i18n_lastfm_options_enable_scrobbling": {
         "message": "Enable scrobbling"
+    },
+    "i18n_lastfm_scrobbled": {
+        "message": "Scrobbled"
+    },
+    "i18n_lastfm_not_scrobbled": {
+        "message": "Not scrobbled"
     }
 }
