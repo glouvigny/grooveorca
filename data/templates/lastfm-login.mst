@@ -8,6 +8,16 @@
             </a>
         </div>
         <div>
+            <span>
+                {% if scrobbled %}
+                    {{ 'i18n_lastfm_scrobbled'|trans }}
+                {% else %}
+                    {{ 'i18n_lastfm_not_scrobbled'|trans }}
+                {% endif %}
+            </span>
+
+            -
+
             {% if loved %}
                 <a href="#" data-action="lastfm_love">
                     {{ 'i18n_lastfm_unlove'|trans }}
