@@ -1,0 +1,6 @@
+{
+  "global": {
+    "require": true,
+    "define": true
+  }
+}
