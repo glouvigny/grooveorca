@@ -107,7 +107,7 @@
 
     var actions = {
         'playpause': function() { _getCtxPlayer().togglePlay(); },
-        'next': function() { _getCtxPlayer().next("fwdbtn"); },
+        'next': function() { _getCtxPlayer().next("fwdbtn"); },
         'previous': function() { _getCtxPlayer().previous("backbtn"); },
         'volume': function(param) { _getCtxPlayer().setVolume(param.volume); },
         'shuffle': function(param) {
