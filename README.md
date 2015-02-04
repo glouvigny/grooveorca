@@ -9,6 +9,7 @@ It currently supports:
 
 - Amazon Music
 - Deezer
+- Google Play Music
 - Grooveshark
 - Rdio
 - Spotify

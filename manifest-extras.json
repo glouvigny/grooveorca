@@ -36,6 +36,7 @@
     "*://*.wikia.com/",
     "*://*.grooveshark.com/",
     "*://*.gs-cdn.net/",
+    "*://*.ggpht.com/",
     "storage",
     "notifications"
   ],
@@ -51,6 +52,7 @@
     "data/watchers/player/spotify.js",
     "data/watchers/player/rdio.js",
     "data/watchers/player/grooveshark.js",
+    "data/watchers/player/googleplay.js",
     "data/watchers/bridge-watcher.js"
   ],
 
@@ -105,6 +107,18 @@
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/grooveshark.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://play.google.com/music/*"
+      ],
+      "js": [
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/music-bridge.js",
+        "data/watchers/bridge-watcher.js",
+        "data/watchers/player/googleplay.js"
       ]
     }
   ],
