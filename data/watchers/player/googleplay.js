@@ -15,6 +15,22 @@
         'song': 'SINGLE_REPEAT'
     };
 
+    var clickSlider = function (elt, x, y) {
+            var event = new MouseEvent('mousedown', {
+                bubbles: true,
+                cancelable: true,
+                view: window,
+                clientX: x,
+                offsetX: x,
+                layerX: x,
+                clientY: y,
+                offsetY: y,
+                layerY: y,
+            });
+            elt.dispatchEvent(event);
+
+    };
+
     var updateTrack =  function (force) {
         if (!document.querySelector('#playerSongInfo').textContent) {
             return;
@@ -112,7 +128,16 @@
         'previous': function () {
             document.querySelector('#player [data-id="rewind"]').click();
         },
-        'volume': function (param) {},
+        'volume': function (param) {
+            var elt = document.querySelector('#vslider');
+
+            var posX = elt.offsetLeft;
+            var sizX = elt.offsetWidth;
+
+            var x = posX + parseInt(param.volume * sizX, 10);
+
+            clickSlider(elt, x, 0);
+        },
         'play': function () {
             var playPause = document.querySelector('[data-id="play-pause"]');
 
@@ -136,15 +161,7 @@
 
             var x = posX + parseInt((param.position / max) * sizX, 10);
 
-            var event = new MouseEvent('mousedown', {
-                bubbles: true,
-                cancelable: true,
-                view: window,
-                clientX: x,
-                offsetX: x,
-                layerX: x,
-            });
-            elt.dispatchEvent(event);
+            clickSlider(elt, x, 0);
         },
         'repeat': function (param) {
             document.querySelector('#player [data-id="repeat"]').click();
