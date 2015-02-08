@@ -67,5 +67,8 @@
     },
     "i18n_lastfm_not_scrobbled": {
         "message": "Pas encore scrobblé"
+    },
+    "i18n_open_in_new_tab": {
+        "message": "Ouvrir dans un nouvel onglet"
     }
 }

@@ -191,3 +191,10 @@ section:last-child {
 .strong {
     font-weight: bold;
 }
+
+.flash-open-external {
+    text-align: center;
+    font-size: 110%;
+    background-color: #eee;
+    padding: 3px;
+}
