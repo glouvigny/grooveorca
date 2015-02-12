@@ -58,8 +58,8 @@ Messaging.addRecv(function (options) {
         mode = 'html';
     }
 
-    createOrGetStack(options.stack).append(
-        $('<section>')[mode](options.output.view)
+    createOrGetStack(options.stack)[mode](
+        $('<section>').html(options.output.view)
     );
 });
 
