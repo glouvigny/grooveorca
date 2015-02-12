@@ -11,7 +11,7 @@ if (/chrome/i.test(navigator.userAgent)) {
 
         window.setTimeout(function () {
             loadScripts(scripts);
-        }, 0);
+        }, 50);
 
         return true;
     };
