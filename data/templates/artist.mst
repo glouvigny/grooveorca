@@ -1,8 +1,17 @@
 <div>
-    <ul>
+    <div class="centered">
+        <img src="{{ data.picture }}" alt="{{ data.name }}" class="main-page-picture">
+        <h1>{{ data.name }}</strong></h1>
+    </div>
+
+    <ul class="album-list">
         {% for album in data.albums %}
-            <li>
-                {{ album.name }}
+            <li class="album-entry">
+                <img src="{{ album.picture }}" alt="{{ album.name }}">
+                <span>
+                    <strong>{{ album.name }}</strong><br>
+                    <span class="muted">{{ data.name }}</span>
+                </span>
             </li>
         {% endfor %}
     </ul>

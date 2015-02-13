@@ -198,3 +198,46 @@ section:last-child {
     background-color: #eee;
     padding: 3px;
 }
+
+.flash-open-external, .album-entry {
+    border: #eee 1px solid;
+    background-color: #fbfbfb;
+}
+
+.album-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.album-entry {
+    display: block;
+    height: 60px;
+    width: 345px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-bottom: 5px;
+}
+
+.album-entry span {
+    vertical-align: middle;
+    height: 60px;
+}
+
+.album-entry img {
+    float: left;
+    max-height: 60px;
+    max-width: 60px;
+    min-height: 60px;
+    min-width: 60px;
+    padding-right: 10px;
+    padding-left: 7px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.main-page-picture {
+    max-height: 200px;
+    max-width: 200px;
+}
