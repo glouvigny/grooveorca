@@ -1,8 +1,28 @@
 <div>
-    <ul>
+    <div class="centered">
+        <img src="{{ data.picture }}" alt="{{ data.name }}" class="main-page-picture">
+        <h1>{{ data.name }}</strong></h1>
+    </div>
+
+    <ul class="track-list">
         {% for track in data.tracks %}
-            <li class="{{ track.id|eq(current_song.track_id)|_if("strong", "") }}">
-                {{ track.track_position }} - {{ track.name }}
+            <li class="track-entry">
+                <img src="{{ track.album.picture }}" alt="{{ track.album.name }}">
+                <div class="pull-right">
+                    {{ track.duration|duration }}
+                </div>
+                <div>
+                    <strong>
+                    {{ track.id|eq(current_song.track_id)|_if('<i class="icon-play"></i>', "") }}
+                    {{ track.track_position }} - {{ track.name }}
+                    </strong>
+                </div>
+                <div class="muted">
+                    {{ track.artist.name }}
+                </div>
+                <div>
+                    {{ track.album.name }}
+                </div>
             </li>
         {% endfor %}
     </ul>
