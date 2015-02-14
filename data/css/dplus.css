@@ -246,3 +246,7 @@ header .icon-play, header .icon-pause {
 .pull-right {
     float: right;
 }
+
+.clear {
+    clear: both;
+}

@@ -1,59 +1,55 @@
 <div>
-    {% if username %}
-        <div>
-            {{ 'i18n_lastfm_logged_as'|trans|replace('%username%', username) }}
-            -
-            <a href="#" data-action="lastfm_logout">
-                {{ 'i18n_lastfm_logout'|trans }}
-            </a>
-        </div>
-        <div>
-            <span>
-                {% if scrobbled %}
-                    {{ 'i18n_lastfm_scrobbled'|trans }}
-                {% else %}
-                    {{ 'i18n_lastfm_not_scrobbled'|trans }}
-                {% endif %}
-            </span>
-
-            -
-
-            {% if loved %}
-                <a href="#" data-action="lastfm_love">
-                    {{ 'i18n_lastfm_unlove'|trans }}
-                </a>
+    <div>
+        <div class="pull-right">
+            {% if username %}
+                {{ username }}
+                <a href="#" data-action="lastfm_logout"><i class="icon-block" alt="{{ 'i18n_lastfm_logout'|trans }}"></i></a>
             {% else %}
-                <a href="#" data-action="lastfm_unlove">
-                    {{ 'i18n_lastfm_love'|trans }}
-                </a>
+                {% if token %}
+                    <a href="#" data-action="lastfm_check">{{ 'i18n_lastfm_check_login'|trans }}</a>
+                {% else %}
+                    <a href="#" data-action="lastfm_auth">{{ 'i18n_lastfm_login'|trans }}</a>
+                {% endif %}
             {% endif %}
         </div>
-    {% else %}
-        <a href="#" data-action="lastfm_auth">{{ 'i18n_lastfm_login'|trans }}</a>
-        {% if token %}
-            <a href="#" data-action="lastfm_check">{{ 'i18n_lastfm_check_login'|trans }}</a>
+        <div class="pull-left">
+            {% if username %}
+                <span>
+                    <i class="icon-user"></i>
+                    {{ playcount_artist }}
+                </span>
+
+                <span>
+                    <i class="icon-music"></i>
+                    {{ playcount_track }}
+                </span>
+
+                <span>
+                    {% if loved %}
+                        <a href="#" data-action="lastfm_love"><i class="icon-heart" title="{{ 'i18n_lastfm_unlove'|trans }}"></i></a>
+                    {% else %}
+                        <a href="#" data-action="lastfm_unlove"><i class="icon-heart-empty" title="{{ 'i18n_lastfm_love'|trans }}"></i></a>
+                    {% endif %}
+                </span>
+
+                <span>
+                    <i class="icon-lastfm" {% if scrobbled %}style="color:red;"{% endif %} alt="{% if scrobbled %}
+                            {{ 'i18n_lastfm_scrobbled'|trans }}
+                        {% else %}
+                            {{ 'i18n_lastfm_not_scrobbled'|trans }}
+                        {% endif %}">
+                    </i>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="centered clear">
+        {% if artist_picture %}
+            <img src="{{ artist_picture }}" alt="{{ current.artist }}" class="main-page-picture">
         {% endif %}
-    {% endif %}
-
-    <br>
-    <br>
-
-    {% if playcount_artist %}
-        <div>
-            {{ 'i18n_lastfm_artist_playcount'|trans|replace('%count%', playcount_artist) }}
-        </div>
-    {% endif %}
-
-    <br>
-
-    {% if playcount_track %}
-        <div>
-            {{ 'i18n_lastfm_track_playcount'|trans|replace('%count%', playcount_track) }}
-        </div>
-    {% endif %}
-
-    <br>
-    <br>
+        <h1>{{ current.artist }}</strong></h1>
+    </div>
 
     <div>
         {{ wiki_artist }}
