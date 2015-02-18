@@ -1,1 +1,4 @@
-<div>Artist not found</div>
+<div class="centered">
+    <i class="icon-frown content-icon muted"></i>
+    <p>{{ 'i18n_artist_not_found'|trans }}</p>
+</div>

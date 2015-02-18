@@ -1,1 +1,4 @@
-<p>{{ 'i18n_nothing_playing'|trans }}</p>
+<div class="centered">
+    <i class="icon-headphones content-icon muted"></i>
+    <p>{{ 'i18n_nothing_playing'|trans }}</p>
+</div>

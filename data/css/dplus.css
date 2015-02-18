@@ -250,3 +250,7 @@ header .icon-play, header .icon-pause {
 .clear {
     clear: both;
 }
+
+.content-icon {
+    font-size: 96px;
+}

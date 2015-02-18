@@ -70,5 +70,11 @@
     },
     "i18n_open_in_new_tab": {
         "message": "Open in a new tab"
+    },
+    "i18n_album_not_found": {
+        "message": "Album not found"
+    },
+    "i18n_artist_not_found": {
+        "message": "Artist not found"
     }
 }
