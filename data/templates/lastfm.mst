@@ -52,6 +52,13 @@
     </div>
 
     <div>
-        {{ wiki_artist }}
+        {% if wiki_artist %}
+            {{ wiki_artist }}
+        {% else %}
+            <div class="centered">
+                <i class="icon-frown content-icon muted"></i>
+                <p>{{ 'i18n_nothing_found'|trans }}</p>
+            </div>
+        {% endif %}
     </div>
 </div>

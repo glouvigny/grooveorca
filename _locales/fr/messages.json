@@ -76,5 +76,8 @@
     },
     "i18n_artist_not_found": {
         "message": "Artiste introuvable"
+    },
+    "i18n_nothing_found": {
+        "message": "Rien n'a été trouvé"
     }
 }
