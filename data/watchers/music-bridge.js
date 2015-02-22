@@ -1,7 +1,24 @@
 // Bridge from the unprivileged page script.
-var MusicBridge = function (site) {
+var MusicBridge = function (site, whitelist) {
+    this.loaded = false;
+
     if (site === undefined) {
         console.error('Couldn\'t initialize MusicBridge');
+        return;
+    }
+
+    for (var i in whitelist) {
+        var pattern = whitelist[i]
+            .replace(/\./g, '\\.')
+            .replace(/\*/g, '.*');
+        var regexp = new RegExp(pattern);
+        if (regexp.test(location.href)) {
+            this.loaded = true;
+            break;
+        }
+    }
+
+    if (!this.loaded) {
         return;
     }
 
@@ -87,14 +104,33 @@ MusicBridge.prototype.watcher = function () {
 };
 
 MusicBridge.prototype.loadChromeScript = function() {
-    if (typeof chrome !== 'undefined' &&
+    var scripts = ['bridge-watcher.js', 'player/' + this.site + '.js'];
+
+    if (typeof safari !== 'undefined' &&
+        typeof safari.self !== 'undefined') {
+        scripts = scripts.map(
+            function (script) {
+                return safari.extension.baseURI + 'data/watchers/' + script;
+            });
+
+    } else if (typeof chrome !== 'undefined' &&
         typeof chrome.i18n !== 'undefined') {
-        ['bridge-watcher.js', 'player/' + this.site + '.js'].map(function (i) {
+        scripts = scripts.map(
+            function (script) {
+                return chrome.extension.getURL('data/watchers/' + script);
+            });
+    } else {
+        scripts = [];
+    }
+
+    if (scripts.length > 0) {
+        scripts.map(function (url) {
             var script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = chrome.extension.getURL('data/watchers/' + i);
+            script.src = url;
             document.getElementsByTagName('*')[0].appendChild(script);
         });
+
         return true;
     }
 

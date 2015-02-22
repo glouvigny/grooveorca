@@ -25,6 +25,9 @@
   "author": "Guillaume Louvigny",
   "licence": "MIT",
   "moz_id": "jid0xmwc4t7rw7j2x1or",
+  "safari_id": "fr.ohai.deezer-plus-safari",
+  "safari_dev_id": "YK9X25PDWE",
+  "safari_rev": "1",
   "permissions": [
     "*://*.deezer.com/",
     "*://*.spotify.com/",
@@ -43,7 +46,7 @@
   ],
 
   "background": {
-    "scripts": ["lib/ext/caoutchouc/ext/requirejs/require.js", "lib/main-built.js"],
+    "scripts": ["lib/ext/caoutchouc/ext/requirejs/require.js", "lib/main.js"],
     "persistent": false
   },
 
@@ -63,6 +66,7 @@
       "js": [
         "data/watchers/messaging-chrome.js",
         "data/watchers/messaging-firefox.js",
+        "data/watchers/messaging-safari.js",
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/deezer.js"
@@ -73,6 +77,7 @@
       "js": [
         "data/watchers/messaging-chrome.js",
         "data/watchers/messaging-firefox.js",
+        "data/watchers/messaging-safari.js",
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/spotify.js"
@@ -83,6 +88,7 @@
       "js": [
         "data/watchers/messaging-chrome.js",
         "data/watchers/messaging-firefox.js",
+        "data/watchers/messaging-safari.js",
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/rdio.js"
@@ -93,6 +99,7 @@
       "js": [
         "data/watchers/messaging-chrome.js",
         "data/watchers/messaging-firefox.js",
+        "data/watchers/messaging-safari.js",
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/amazon.js"
@@ -105,6 +112,7 @@
       "js": [
         "data/watchers/messaging-chrome.js",
         "data/watchers/messaging-firefox.js",
+        "data/watchers/messaging-safari.js",
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/grooveshark.js"
@@ -117,6 +125,7 @@
       "js": [
         "data/watchers/messaging-chrome.js",
         "data/watchers/messaging-firefox.js",
+        "data/watchers/messaging-safari.js",
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/googleplay.js"

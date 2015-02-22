@@ -1,7 +1,9 @@
 (function () {
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('amazon');
-        if (mb.scriptReloaded) {
+        var mb = new MusicBridge('amazon', [
+            '*://*.amazon.fr/gp/dmusic/cloudplayer/*',
+        ]);
+        if (mb.scriptReloaded || !mb.loaded) {
             return;
         }
     }

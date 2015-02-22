@@ -1,7 +1,7 @@
 (function () {
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('spotify');
-        if (mb.scriptReloaded) {
+        var mb = new MusicBridge('spotify', ['*://*.spotify.com/*']);
+        if (mb.scriptReloaded || !mb.loaded) {
             return;
         }
     }

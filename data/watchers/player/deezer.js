@@ -1,8 +1,8 @@
 (function() {
     // ! Deezer overrides things such as console.log, setTimeout
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('deezer');
-        if (mb.scriptReloaded) {
+        var mb = new MusicBridge('deezer', ['*://*.deezer.com/*']);
+        if (mb.scriptReloaded || !mb.loaded) {
             return;
         }
     }

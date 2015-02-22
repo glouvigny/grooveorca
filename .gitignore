@@ -7,3 +7,5 @@ manifest.json
 TODO.md
 bin/ext/
 lib/main-built.js
+Info.plist
+safari-background.html

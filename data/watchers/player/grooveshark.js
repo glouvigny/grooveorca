@@ -1,7 +1,7 @@
 (function () {
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('grooveshark');
-        if (mb.scriptReloaded) {
+        var mb = new MusicBridge('grooveshark', ['*://*.grooveshark.com/*']);
+        if (mb.scriptReloaded || !mb.loaded) {
             return;
         }
     }
