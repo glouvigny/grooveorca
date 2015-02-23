@@ -156,5 +156,6 @@
     }
   },
 
-  "default_locale": "en"
+  "default_locale": "en",
+  "available_locales": ["en", "fr"]
 }
