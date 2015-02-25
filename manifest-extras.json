@@ -41,6 +41,8 @@
     "*://*.grooveshark.com/",
     "*://*.gs-cdn.net/",
     "*://*.ggpht.com/",
+    "*://*.audioscrobbler.com/",
+    "*://*.xboxlive.com/",
     "storage",
     "notifications"
   ],
@@ -57,6 +59,7 @@
     "data/watchers/player/rdio.js",
     "data/watchers/player/grooveshark.js",
     "data/watchers/player/googleplay.js",
+    "data/watchers/player/xboxmusic.js",
     "data/watchers/bridge-watcher.js"
   ],
 
@@ -129,6 +132,19 @@
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/googleplay.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://music.xbox.com/*"
+      ],
+      "js": [
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/messaging-safari.js",
+        "data/watchers/music-bridge.js",
+        "data/watchers/bridge-watcher.js",
+        "data/watchers/player/xboxmusic.js"
       ]
     }
   ],

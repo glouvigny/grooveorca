@@ -2,8 +2,8 @@ GrooveOrca
 ==========
 
 GrooveOrca is an extension for Google Chrome (Chromium and compatible browsers
-such as Opera) and Firefox aiming to enhance on demand music websites. This
-project uses Caoutchouc abstraction around proprietary JS extension APIs. 
+such as Opera), Firefox and Safari, aiming to enhance on demand music websites.
+This project uses Caoutchouc abstraction around proprietary JS extension APIs.
 
 It currently supports:
 
@@ -13,6 +13,7 @@ It currently supports:
 - Grooveshark
 - Rdio
 - Spotify
+- Xbox Music
 
 Features currently included:
 
