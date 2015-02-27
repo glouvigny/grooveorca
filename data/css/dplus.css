@@ -254,11 +254,3 @@ header .icon-play, header .icon-pause {
 .content-icon {
     font-size: 96px;
 }
-
-a[href="#"], a[href="#"]:visited {
-    color: #000;
-}
-
-a, a:visited {
-    color: blue;
-}
