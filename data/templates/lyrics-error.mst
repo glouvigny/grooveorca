@@ -2,6 +2,3 @@
     <i class="icon-frown content-icon muted"></i>
     <p>{{ 'i18n_lyrics_not_found'|trans }}</p>
 </div>
-
-
-<p>{{ 'i18n_lyrics_not_found'|trans }}</p>
