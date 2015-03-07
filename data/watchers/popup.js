@@ -46,6 +46,15 @@ Messaging.addRecv(function (options) {
             .attr({'title': tab.name, 'data-switch-view': tab.view})
             .append($('<i>').addClass(tab.icon))
     );
+
+    var first_view = localStorage['popup-tab'];
+    if (first_view === undefined) {
+        first_view = 'artist_page';
+    }
+
+    if (first_view === tab.view) {
+        switchToStack(tab.view);
+    }
 });
 
 Messaging.addRecv(function (options) {
@@ -84,7 +93,10 @@ Messaging.addRecv(function (options) {
 });
 
 $(document).on('click', 'nav a[data-switch-view]', function (evt) {
-    switchToStack($(this).data('switch-view'));
+    var stack_name = $(this).data('switch-view');
+
+    switchToStack(stack_name);
+    localStorage['popup-tab'] = stack_name;
 });
 
 
