@@ -79,5 +79,29 @@
     },
     "i18n_nothing_found": {
         "message": "Nothing found"
+    },
+    "i18n_album": {
+        "message": "Album"
+    },
+    "i18n_artist": {
+        "message": "Artist"
+    },
+    "i18n_hotkeys": {
+        "message": "Hotkeys"
+    },
+    "i18n_lyrics": {
+        "message": "Lyrics"
+    },
+    "i18n_notifications": {
+        "message": "Notifications"
+    },
+    "i18n_player_media_controls": {
+        "message": "Control player"
+    },
+    "i18n_popup_update": {
+        "message": "Popup updates"
+    },
+    "i18n_settings": {
+        "message": "Settings"
     }
 }
