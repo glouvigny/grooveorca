@@ -14,6 +14,8 @@
         </div>
         <div class="pull-left">
             {% if username %}
+            {% if current.artist %}
+            {% if current.track %}
                 <span>
                     <i class="icon-user"></i>
                     {{ playcount_artist }}
@@ -40,6 +42,8 @@
                         {% endif %}">
                     </i>
                 </span>
+            {% endif %}
+            {% endif %}
             {% endif %}
         </div>
     </div>
