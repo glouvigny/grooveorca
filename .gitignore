@@ -6,6 +6,7 @@ data/manifest-extras.json
 manifest.json
 TODO.md
 bin/ext/
+out/
 lib/main-built.js
 Info.plist
 safari-background.html

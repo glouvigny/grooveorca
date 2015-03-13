@@ -4,7 +4,7 @@
 
     // TODO: get scripts from manifest.json#browser_action.scripts
     var scripts = [
-        'ext/jquery/dist/jquery.js',
+        'ext/jquery/dist/jquery.min.js',
         'watchers/messaging-chrome.js',
         'watchers/messaging-safari.js',
         'watchers/popup.js'

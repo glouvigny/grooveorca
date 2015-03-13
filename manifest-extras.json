@@ -3,7 +3,7 @@
     "default_icon": "data/icons/icon_32x32.png",
     "default_popup": "data/popup.html",
     "scripts": [
-        "ext/jquery/dist/jquery.js",
+        "ext/jquery/dist/jquery.min.js",
         "data/watchers/messaging-chrome.js",
         "data/watchers/messaging-firefox.js",
         "data/watchers/popup.js"
@@ -48,7 +48,7 @@
   ],
 
   "background": {
-    "scripts": ["lib/ext/caoutchouc/ext/requirejs/require.js", "lib/main.js"],
+    "scripts": ["lib/ext/caoutchouc/ext/requirejs/require.js", "lib/main-built.js"],
     "persistent": false
   },
 
