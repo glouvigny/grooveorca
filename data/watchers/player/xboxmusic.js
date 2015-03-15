@@ -1,7 +1,13 @@
 (function () {
+    if (typeof ConditionalLoading !== 'undefined') {
+        if (!ConditionalLoading.check('data/watchers/player/xboxmusic.js')) {
+            return;
+        }
+    }
+
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('xboxmusic', ['*://music.xbox.com/*']);
-        if (mb.scriptReloaded || !mb.loaded) {
+        var mb = new MusicBridge('xboxmusic');
+        if (mb.scriptReloaded) {
             return;
         }
     }

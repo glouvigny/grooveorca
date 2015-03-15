@@ -1,8 +1,14 @@
-(function() {
+(function () {
+    if (typeof ConditionalLoading !== 'undefined') {
+        if (!ConditionalLoading.check('data/watchers/player/deezer.js')) {
+            return;
+        }
+    }
+
     // ! Deezer overrides things such as console.log, setTimeout
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('deezer', ['*://*.deezer.com/*']);
-        if (mb.scriptReloaded || !mb.loaded) {
+        var mb = new MusicBridge('deezer');
+        if (mb.scriptReloaded) {
             return;
         }
     }

@@ -3,9 +3,11 @@ try {
         throw new Error();
     }
 
+    var Messaging = {};
+
     var recvs = [];
 
-    var Messaging = {
+    Messaging = {
         send: function (options) {
             self.port.emit('message', options);
         },

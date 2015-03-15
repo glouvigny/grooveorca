@@ -1,7 +1,13 @@
 (function () {
+    if (typeof ConditionalLoading !== 'undefined') {
+        if (!ConditionalLoading.check('data/watchers/player/grooveshark.js')) {
+            return;
+        }
+    }
+
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('grooveshark', ['*://*.grooveshark.com/*']);
-        if (mb.scriptReloaded || !mb.loaded) {
+        var mb = new MusicBridge('grooveshark');
+        if (mb.scriptReloaded) {
             return;
         }
     }

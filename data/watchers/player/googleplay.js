@@ -1,7 +1,13 @@
 (function () {
+    if (typeof ConditionalLoading !== 'undefined') {
+        if (!ConditionalLoading.check('data/watchers/player/googleplay.js')) {
+            return;
+        }
+    }
+
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('googleplay', ['*://play.google.com/music/*']);
-        if (mb.scriptReloaded || !mb.loaded) {
+        var mb = new MusicBridge('googleplay');
+        if (mb.scriptReloaded) {
             return;
         }
     }

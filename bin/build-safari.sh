@@ -21,5 +21,5 @@ rm -rf $OUT/lib/ext/requirejs/
 find $OUT/lib/ -type f -not -name 'main-built.js' -a -not -name 'require.js' | xargs rm -rf
 
 cd $OUT/
-node ../../bin/ext/chr2moz/info-plist.js
+node $SCRIPTPATH/ext/chr2moz/info-plist.js
 find . -type d -empty | xargs rmdir -p

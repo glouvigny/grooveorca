@@ -1,9 +1,9 @@
-var Messaging = Messaging || {};
-
 try {
     if (safari === undefined || safari.self === undefined) {
         throw new Error();
     }
+
+    var Messaging = {};
 
     var isPopup = function () {
         var ret = false;

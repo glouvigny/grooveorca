@@ -1,7 +1,13 @@
 (function () {
+    if (typeof ConditionalLoading !== 'undefined') {
+        if (!ConditionalLoading.check('data/watchers/player/spotify.js')) {
+            return;
+        }
+    }
+
     if (typeof MusicBridge !== 'undefined') {
-        var mb = new MusicBridge('spotify', ['*://*.spotify.com/*']);
-        if (mb.scriptReloaded || !mb.loaded) {
+        var mb = new MusicBridge('spotify');
+        if (mb.scriptReloaded) {
             return;
         }
     }

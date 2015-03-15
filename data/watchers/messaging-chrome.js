@@ -1,9 +1,9 @@
-var Messaging = Messaging || {};
-
 try {
     if (chrome === undefined || chrome.i18n === undefined) {
         throw new Error();
     }
+
+    var Messaging = {};
 
     var recvs = [];
 
