@@ -1,29 +1,30 @@
 #!/bin/bash
 
+OUT='out/chrome'
+OUT_ZIP=$OUT.zip
+
 pushd `dirname $0` > /dev/null
 SCRIPTPATH=`pwd`
 popd > /dev/null
 
-mkdir -p out/chrome/
+rm -rf $OUT
+mkdir -p $OUT
 
-cp ./manifest-extras.json ./data/manifest-extras.json
+cp -rf data lib _locales manifest-extras.json $OUT
 
-cd lib/
-r.js -o baseUrl=. name=main out=main-built.js findNestedDependencies=true
-cd ..
+r.js -o baseUrl=$OUT/lib/ name=main out=$OUT/lib/main-built.js findNestedDependencies=true
 
+cp ./manifest-extras.json $OUT/data/manifest-extras.json
+
+rm -rf $OUT/lib/ext/requirejs/
+find $OUT/lib/ -type f -not -name 'main-built.js' -a -not -name 'require.js' | xargs rm -rf
+find $OUT/data/ext/jquery/ -type f -not -name 'jquery.min.js' | xargs rm -rf
+
+cd $OUT/
 node $SCRIPTPATH/ext/chr2moz/manifest.js
 
-cp -rf data lib _locales manifest.json out/chrome/
-
-find out/chrome/data/ext/jquery/ -type f -not -name 'jquery.min.js' | xargs rm -rf
-
-cd out/chrome/lib/
-rm -rf ext/requirejs/
-find . -type f -not -name 'main-built.js' -a -not -name 'require.js' | xargs rm -rf
-
-cd ../
 find . -type d -empty | xargs rmdir -p
 
-cd ../
-zip -r chrome.zip chrome
+cd -
+
+zip -r $OUT_ZIP $OUT
