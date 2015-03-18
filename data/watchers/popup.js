@@ -93,6 +93,7 @@ Messaging.addRecv(function (options) {
 });
 
 $(document).on('click', 'nav a[data-switch-view]', function (evt) {
+    evt.preventDefault();
     var stack_name = $(this).data('switch-view');
 
     switchToStack(stack_name);
@@ -101,6 +102,7 @@ $(document).on('click', 'nav a[data-switch-view]', function (evt) {
 
 
 $(document).on('click', '*[data-page-navigation]', function (evt) {
+    evt.preventDefault();
     var options = {
         name: $(this).data('page-navigation'),
         stack: currentStack().attr('id'),
@@ -119,10 +121,12 @@ $(document).on('click', '*[data-page-navigation]', function (evt) {
 });
 
 $(document).on('click', '*[data-action]', function (evt) {
+    evt.preventDefault();
     Messaging.send({name: $(this).data('action')});
 });
 
-$(document).on('click', '*[data-action="back"]', function () {
+$(document).on('click', '*[data-action="back"]', function (evt) {
+    evt.preventDefault();
     var sections = currentStack().find('section');
     if (sections.size() > 1) {
         sections.last().remove();
@@ -156,6 +160,7 @@ obs.observe(document.querySelector("header"), {attributes: true, subtree: true,
     childList: true});
 
 $('.meter, .meter span').on('click', function (evt) {
+    evt.preventDefault();
     var x = evt.offsetX === undefined ? evt.originalEvent.layerX : evt.offsetX;
     var percent = x / $('.meter div').closest('.meter').width();
     var position = percent * $('[data-fragment=current-duration]').data('time');
@@ -167,7 +172,8 @@ $('.meter, .meter span').on('click', function (evt) {
     });
 });
 
-$(document).on('change', '*[data-setting-name]', function () {
+$(document).on('change', '*[data-setting-name]', function (evt) {
+    evt.preventDefault();
     var value = $(this).val();
     if ($(this).attr('type') === 'checkbox' && !$(this).is(':checked')) {
         value = '';
@@ -182,5 +188,13 @@ $(document).on('change', '*[data-setting-name]', function () {
     });
 });
 
+$(document).on('click', 'a[target]', function (evt) {
+    evt.preventDefault();
+
+    Messaging.send({
+        name: 'open_tab',
+        data: $(this).attr('href'),
+    });
+});
 
 Messaging.send({name: 'popup_page'});
