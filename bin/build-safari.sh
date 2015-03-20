@@ -18,6 +18,7 @@ cp ./manifest-extras.json $OUT/data/manifest-extras.json
 find $OUT/data/ext/jquery/ -type f -not -name 'jquery.min.js' | xargs rm -rf
 
 rm -rf $OUT/lib/ext/requirejs/
+find $OUT/ -type d -iname ".*" -print0 | xargs rm -rf
 find $OUT/lib/ -type f -not -name 'main-built.js' -a -not -name 'require.js' | xargs rm -rf
 
 cd $OUT/
