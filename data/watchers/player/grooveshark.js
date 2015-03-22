@@ -13,25 +13,18 @@
     }
 
     var _gs = function () {
-        return window.GS || unsafeWindow.GS;
-    };
-
-    var _gshark = function () {
         return window.Grooveshark || unsafeWindow.Grooveshark;
     };
 
     var bridgeWatcher = new BridgeWatcher();
     var updateData = bridgeWatcher.updateData.grooveOrcaBind(bridgeWatcher);
 
-    var nextRepeatMode = {0: 1, 1: 2, 2: 0};
-    var repeatModes = {'none': 0, 'song': 2, 'all': 1};
-
     var updateTrack =  function (force) {
-        if (!_gshark().getCurrentSongStatus().song) {
+        if (!_gs().getCurrentSongStatus().song) {
             return;
         }
 
-        var raw = _gshark().getCurrentSongStatus().song;
+        var raw = _gs().getCurrentSongStatus().song;
 
         if (!raw) {
             return;
@@ -44,7 +37,7 @@
             album_id: raw.albumName,
             track_id: raw.songID,
             artist_id: raw.artistID,
-            duration: parseInt(raw.estimateDuration, 10),
+            duration: parseInt(raw.calculatedDuration / 1000, 10),
             album_art: raw.artURL,
             disk_number: 0,
             track_number: raw.trackNum,
@@ -52,41 +45,33 @@
     };
 
     var updatePosition = function (force) {
-        updateData('position', parseInt(0, 10), force); /* TODO */
+        var raw = _gs().getCurrentSongStatus().song;
+        if (!raw) {
+            return;
+        }
+
+        updateData('position', parseInt(raw.position / 1000, 10), force);
     };
 
     var updateVolume = function (force) {
-        updateData('volume', _gshark().getVolume() / 100, force);
+        updateData('volume', _gs().getVolume(), force);
     };
 
     var updateState = function (force) {
-        var state = _gs().getCurrentPlayStatus();
+        var state = _gs().getCurrentSongStatus().status;
 
-        if (state === 6 || state === 0) {
-            return updateData('state', 'stopped', force);
-        } else if (state === 4) {
+        if (state === 'buffering' || state === 'loading' ||
+            state === 'playing') {
+            return updateData('state', 'playing', force);
+        } else if (state === 'paused') {
             return updateData('state', 'paused', force);
         }
 
-        return updateData('state', 'playing', force);
+        return updateData('state', 'stopped', force);
     };
 
-    var updateShuffle = function (force) {
-        updateData('shuffle', false, force); /* TODO */
-    };
-
-    var updateRepeat = function (force) {
-        var repeat = 'none';
-        for (var i in repeatModes) {
-            if (repeatModes.hasOwnProperty(i)) {
-                if (repeatModes[i] === 'none') { /* TODO */
-                    repeat = i;
-                }
-            }
-        }
-
-        updateData('repeat', repeat, force);
-    };
+    var updateShuffle = function (force) { /* TODO, hack */ };
+    var updateRepeat = function (force) { /* TODO, hack */ };
 
     var eltsToWatch = [
         updatePosition,
@@ -98,20 +83,26 @@
     ];
 
     var actions = {
-        'playpause': function () { _gshark().togglePlayPause(); },
-        'next': function () { _gshark().next(); },
-        'previous': function () { _gshark().previous(); },
+        'playpause': function () { _gs().togglePlayPause(); },
+        'next': function () { _gs().next(); },
+        'previous': function () { _gs().previous(); },
         'volume': function (param) {
-            _gshark().setVolume(param.volume);
+            _gs().setVolume(param.volume);
         },
-        'play': function () { _gshark().togglePlayPause(); /* TODO */ },
-        'pause': function () { _gshark().pause(); },
+        'play': function () {
+            if (_gs().getCurrentSongStatus().status === 'paused') {
+                _gs().togglePlayPause();
+            } else {
+                _gs().play();
+            }
+        },
+        'pause': function () { _gs().pause(); },
         'seek': function (param) {
-            _gshark().seekTo(param.position * 1000);
+            _gs().seekToPosition(param.position * 1000);
         },
-        'repeat': function (param) { /* TODO */ },
+        'repeat': function (param) { /* TODO, hack */ },
         'update_track': function() { updateTrack(true); },
-        'shuffle': function (param) { /* TODO */ },
+        'shuffle': function (param) { /* TODO, hack */ },
     };
 
     bridgeWatcher.registerActions(actions);
