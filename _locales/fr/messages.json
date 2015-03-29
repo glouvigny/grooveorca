@@ -103,5 +103,11 @@
     },
     "i18n_settings": {
         "message": "Paramètres"
+    },
+    "i18n_play": {
+        "message": "Play"
+    },
+    "i18n_pause": {
+        "message": "Pause"
     }
 }
