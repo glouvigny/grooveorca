@@ -8,3 +8,13 @@
     >
     {{ 'i18n_notifications_options_enable'|trans }}
 </label>
+<br>
+<label>
+    <input
+        type="checkbox"
+        data-setting-name="notifications#onplaypause"
+        value="1"
+        {{ settings.onplaypause|_if('checked="checked"', '') }}
+    >
+    {{ 'i18n_notifications_options_enable_playpause'|trans }}
+</label>

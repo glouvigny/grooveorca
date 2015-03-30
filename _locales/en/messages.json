@@ -109,5 +109,8 @@
     },
     "i18n_pause": {
         "message": "Pause"
+    },
+    "i18n_notifications_options_enable_playpause": {
+        "message": "Show notification on play/resume"
     }
 }
