@@ -2,6 +2,8 @@
     <a href="{{ url }}" target="_blank">{{ 'i18n_open_in_new_tab'|trans }}</a>
 </div>
 
-<div>
-{{ lyrics }}
+<div class="centered">
+    <big>
+        {{ lyrics }}
+    </big>
 </div>
