@@ -2,7 +2,7 @@
 
 OUT='out/firefox/'
 TEST=0
-PROFILE='~/.tmp/firefox/test-profile'
+PROFILE=`echo ~/.tmp/firefox/test-profile`
 
 while getopts t:o:p: opts; do
    case ${opts} in
