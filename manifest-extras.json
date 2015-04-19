@@ -43,6 +43,7 @@
     "*://*.ggpht.com/",
     "*://*.audioscrobbler.com/",
     "*://*.xboxlive.com/",
+    "*://*.soundcloud.com/",
     "storage",
     "notifications"
   ],
@@ -60,6 +61,7 @@
     "data/watchers/player/grooveshark.js",
     "data/watchers/player/googleplay.js",
     "data/watchers/player/xboxmusic.js",
+    "data/watchers/player/soundcloud.js",
     "data/watchers/bridge-watcher.js"
   ],
 
@@ -145,6 +147,19 @@
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/xboxmusic.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.soundcloud.com/*"
+      ],
+      "js": [
+        "data/watchers/messaging-chrome.js",
+        "data/watchers/messaging-firefox.js",
+        "data/watchers/messaging-safari.js",
+        "data/watchers/music-bridge.js",
+        "data/watchers/bridge-watcher.js",
+        "data/watchers/player/soundcloud.js"
       ]
     }
   ],
