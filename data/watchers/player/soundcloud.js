@@ -15,21 +15,93 @@
     var bridgeWatcher = new BridgeWatcher();
     var updateData = bridgeWatcher.updateData.grooveOrcaBind(bridgeWatcher);
 
-    var updateTrack =  function (force) {
-        raw = {};
+    var SC_API_ID = 'dd8d7103e93deaa4cb9498b098a1ee64';
+    var SC_API_EP = 'https://api.soundcloud.com/';
 
-        updateData('song', {
-            artist: raw.artistName,
-            track: raw.songName,
-            album: raw.albumName,
-            album_id: raw.albumName,
-            track_id: raw.songID,
-            artist_id: raw.artistID,
-            duration: parseInt(raw.calculatedDuration / 1000, 10),
-            album_art: raw.artURL,
-            disk_number: 0,
-            track_number: raw.trackNum,
-        }, force);
+    var apiQueries = {};
+
+    var fetchApi = function (path, cb) {
+        if (apiQueries[path] !== undefined) {
+            return (apiQueries[path] !== true) ? cb(apiQueries[path]) : false;
+        }
+
+        apiQueries[path] = true;
+
+        var url = SC_API_EP + 'resolve.json?url=http://soundcloud.com' + path +
+            '&client_id=' + SC_API_ID;
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener('load', function () {
+            var json = JSON.parse(this.responseText);
+            apiQueries[path] = json;
+            return cb(json);
+        }, false);
+
+        xhr.addEventListener('error', function () {
+            apiQueries[path] = undefined;
+        }, false);
+
+        xhr.open('get', url);
+        xhr.send();
+    };
+
+    var getSongAndArtistName = function (raw) {
+        var song = raw.title;
+        var artist = raw.user.username;
+
+        if (raw.label_name === raw.user.username) {
+            if (song.indexOf(' - ') != -1) {
+                artist = song.substr(0, song.indexOf(' - '));
+                song = song.substr(song.indexOf(' - ') + 3);
+            } else if (song.toLowerCase().indexOf(raw.genre) !== -1) {
+                var start = song.toLowerCase().indexOf(raw.genre);
+                var len = raw.genre.length;
+
+                song = song.split('');
+                artist = song.splice(start, len).join('');
+                song = song.join('');
+            }
+        }
+
+        if (song.substr(0, artist.length) == artist) {
+            if (song.indexOf(' - ') !== -1) {
+                song = song.substr(song.indexOf(' - ') + 3);
+            } else {
+                song = song.substr(artist.length + 1);
+            }
+        }
+
+        return {
+            'song': song,
+            'artist': artist,
+        };
+    };
+
+    var updateTrack = function (force) {
+        var permalink = document.querySelector('.playbackSoundBadge__title');
+        if (permalink === null) {
+            return;
+        }
+
+        var path = permalink.getAttribute('href');
+
+        fetchApi(path, function (raw) {
+            songArtist = getSongAndArtistName(raw);
+
+            updateData('song', {
+                artist: songArtist.artist,
+                track: songArtist.song,
+                album: '',
+                album_id: '',
+                track_id: raw.id,
+                artist_id: raw.user.id,
+                duration: parseInt(raw.duration / 1000, 10),
+                album_art: raw.artwork_url || raw.user.avatar_url,
+                disk_number: 0,
+                track_number: 0,
+            }, force);
+        });
     };
 
     var updatePosition = function (force) {
@@ -54,8 +126,6 @@
             parseInt(slider.getAttribute('aria-valuenow'), 10) /
             parseInt(slider.getAttribute('aria-valuemax'), 10),
             force);
-
-        updateData('volume', _gs().getVolume(), force);
     };
 
     var updateState = function (force) {
