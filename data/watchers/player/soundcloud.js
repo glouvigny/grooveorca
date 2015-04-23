@@ -162,12 +162,30 @@
     ];
 
     var actions = {
-        'playpause': function () {},
-        'next': function () {},
-        'previous': function () {},
+        'playpause': function () {
+            document.querySelector('button.playControl').click();
+        },
+        'next': function () {
+            document.querySelector('button.skipControl.skipControl__next')
+                .click();
+        },
+        'previous': function () {
+            document.querySelector('button.skipControl.skipControl__previous')
+                .click();
+        },
         'volume': function (param) {},
-        'play': function () {},
-        'pause': function () {},
+        'play': function () {
+            if (document.querySelector('button.playControl.playing') === null) {
+                document.querySelector('#player [data-id="play-pause"]')
+                    .click();
+            }
+        },
+        'pause': function () {
+            if (document.querySelector('button.playControl.playing') !== null) {
+                document.querySelector('#player [data-id="play-pause"]')
+                    .click();
+            }
+        },
         'seek': function (param) {},
         'repeat': function (param) {},
         'update_track': function() { updateTrack(true); },
