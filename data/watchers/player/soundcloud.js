@@ -15,6 +15,21 @@
     var bridgeWatcher = new BridgeWatcher();
     var updateData = bridgeWatcher.updateData.grooveOrcaBind(bridgeWatcher);
 
+    var clickSlider = function (elt, x, y, evt) {
+            var event = new MouseEvent(evt, {
+                bubbles: true,
+                cancelable: true,
+                view: window,
+                clientX: x,
+                offsetX: x,
+                layerX: x,
+                clientY: y,
+                offsetY: y,
+                layerY: y,
+            });
+            elt.dispatchEvent(event);
+    };
+
     var SC_API_ID = 'dd8d7103e93deaa4cb9498b098a1ee64';
     var SC_API_EP = 'https://api.soundcloud.com/';
 
@@ -104,17 +119,28 @@
         });
     };
 
-    var updatePosition = function (force) {
-        var pos = document
-            .querySelector('.playControls .playbackTimeline__timePassed')
-            .innerText;
+    var parseTime = function (elt) {
+        if (elt === undefined || elt === null) {
+            return 0;
+        }
+
+        var pos = elt.innerText;
 
         if (pos === '') {
-            pos = 0;
-        } else {
-            pos = parseInt(pos.substr(0, pos.indexOf(':')), 10) * 60 +
-                parseInt(pos.substr(pos.indexOf(':') + 1), 10);            
+            return 0;
         }
+
+        return parseInt(pos.substr(0, pos.indexOf(':')), 10) * 60 +
+            parseInt(pos.substr(pos.indexOf(':') + 1), 10);
+    };
+
+    var updatePosition = function (force) {
+        if (document.querySelector('.playbackTimeline.is-dragging') !== null) {
+            return;
+        }
+
+        var pos = parseTime(document
+            .querySelector('.playControls .playbackTimeline__timePassed'));
 
         updateData('position', pos, force);
     };
@@ -173,7 +199,7 @@
             document.querySelector('button.skipControl.skipControl__previous')
                 .click();
         },
-        'volume': function (param) {},
+        'volume': function (param) { /* TODO */ },
         'play': function () {
             if (document.querySelector('button.playControl.playing') === null) {
                 document.querySelector('#player [data-id="play-pause"]')
@@ -186,8 +212,23 @@
                     .click();
             }
         },
-        'seek': function (param) {},
-        'repeat': function (param) {},
+        'seek': function (param) {
+            var max = parseTime(document
+                .querySelector('.playbackTimeline__duration'));
+            var elt = document
+                .querySelector('.playbackTimeline__progressWrapper');
+
+            var posX = elt.getBoundingClientRect().left;
+            var sizX = elt.getBoundingClientRect().width;
+
+            var x = posX + parseInt((param.position / max) * sizX, 10);
+
+            clickSlider(elt, x, 0, 'mousedown');
+            clickSlider(elt, x, 0, 'mouseup');
+        },
+        'repeat': function (param) {
+            document.querySelector('.repeatControl').click();
+        },
         'update_track': function() { updateTrack(true); },
         'shuffle': function (param) { /* N/A */ },
     };
