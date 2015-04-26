@@ -28,9 +28,14 @@
 
                 <span>
                     {% if loved %}
-                        <a href="#" data-action="lastfm_love"><i class="icon-heart" title="{{ 'i18n_lastfm_unlove'|trans }}"></i></a>
+                        <a href="#" data-action="lastfm_unlove"><i class="icon-heart" title="{{ 'i18n_lastfm_unlove'|trans }}"></i></a>
                     {% else %}
-                        <a href="#" data-action="lastfm_unlove"><i class="icon-heart-empty" title="{{ 'i18n_lastfm_love'|trans }}"></i></a>
+                        <a href="#" data-action="lastfm_love"><i class="icon-heart-empty" title="{{ 'i18n_lastfm_love'|trans }}"></i></a>
+                    {% endif %}
+                    {% if current.disable %}
+                        <a href="#" data-action="lastfm_enable_song">{{ 'i18n_ignored'|trans }}</a>
+                    {% else %}
+                        <a href="#" data-action="lastfm_disable_song">{{ 'i18n_ignore_song'|trans }}</a>
                     {% endif %}
                 </span>
 

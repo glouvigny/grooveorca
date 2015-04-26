@@ -112,5 +112,11 @@
     },
     "i18n_notifications_options_enable_playpause": {
         "message": "Show notification on play/resume"
+    },
+    "i18n_ignored": {
+        "message": "Ignored"
+    },
+    "i18n_ignore_song": {
+        "message": "Ignore song"
     }
 }
