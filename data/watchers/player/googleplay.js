@@ -22,6 +22,7 @@
     };
 
     var clickSlider = function (elt, x, y) {
+        console.log(['clickSlider', x, y ]);
             var event = new MouseEvent('mousedown', {
                 bubbles: true,
                 cancelable: true,
@@ -46,7 +47,8 @@
             artist: document
                 .querySelector('#playerSongInfo [data-type="artist"]')
                 .textContent,
-            track: document.querySelector('#playerSongTitle').textContent,
+            track: document.querySelector('#currently-playing-title')
+                .textContent,
             album: document
                 .querySelector('#playerSongInfo [data-type="album"]')
                 .textContent,
@@ -56,10 +58,10 @@
             artist_id: document
                 .querySelector('#playerSongInfo [data-type="artist"]')
                 .getAttribute('data-id'),
-            duration: parseInt(document.querySelector('#slider')
+            duration: parseInt(document.querySelector('#sliderBar')
                 .getAttribute('aria-valuemax') / 1000, 10),
             album_art: document
-                .querySelector('#playingAlbumArt').getAttribute('src'),
+                .querySelector('#playerBarArt').getAttribute('src'),
             // Missing information:
             track_id: '',
             disk_number: 0,
@@ -68,14 +70,15 @@
     };
 
     var updatePosition = function (force) {
-        updateData('position', parseInt(document.querySelector('#slider')
+        updateData('position', parseInt(document.querySelector('#sliderBar')
             .getAttribute('aria-valuenow') / 1000, 10), force);
     };
 
     var updateVolume = function (force) {
-        updateData('volume', parseInt(document.querySelector('#vslider')
-            .getAttribute('aria-valuenow'), 10) /
-            parseInt(document.querySelector('#vslider')
+        updateData('volume',
+            parseInt(document.querySelector('#material-vslider')
+                .getAttribute('aria-valuenow'), 10) /
+            parseInt(document.querySelector('#material-vslider')
                 .getAttribute('aria-valuemax'), 10),
             force);
     };
@@ -96,7 +99,7 @@
     var updateShuffle = function (force) {
         updateData('shuffle', document
             .querySelector('#player [data-id="shuffle"]')
-            .value !== 'NO_SHUFFLE', force);
+            .getAttribute('class').indexOf('active') !== -1, force);
     };
 
     var updateRepeat = function (force) {
@@ -159,10 +162,10 @@
             }
         },
         'seek': function (param) {
-            var elt = document.querySelector('#slider');
+            var elt = document.querySelector('#sliderBar');
             var max = parseInt(elt.getAttribute("aria-valuemax") / 1000, 10);
 
-            var posX = elt.offsetLeft;
+            var posX = 90; // size of album art
             var sizX = elt.offsetWidth;
 
             var x = posX + parseInt((param.position / max) * sizX, 10);

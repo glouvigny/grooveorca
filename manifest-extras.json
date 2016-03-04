@@ -31,20 +31,15 @@
   "permissions": [
     "*://*.deezer.com/",
     "*://*.spotify.com/",
-    "*://*.rdio.com/",
     "*://*.wikipedia.org/",
     "*://*.cloudfront.net/",
     "*://*.amazonaws.com/",
     "*://*.viewlyrics.com/",
     "*://*.wikia.com/",
     "*://*.metrolyrics.com/",
-    "*://*.grooveshark.com/",
-    "*://*.gs-cdn.net/",
     "*://*.ggpht.com/",
     "*://*.audioscrobbler.com/",
     "*://*.xboxlive.com/",
-    "*://*.soundcloud.com/",
-    "*://*.sndcdn.com/",
     "storage",
     "notifications"
   ],
@@ -58,11 +53,8 @@
     "data/watchers/player/amazon.js",
     "data/watchers/player/deezer.js",
     "data/watchers/player/spotify.js",
-    "data/watchers/player/rdio.js",
-    "data/watchers/player/grooveshark.js",
     "data/watchers/player/googleplay.js",
     "data/watchers/player/xboxmusic.js",
-    "data/watchers/player/soundcloud.js",
     "data/watchers/bridge-watcher.js"
   ],
 
@@ -90,17 +82,6 @@
       ]
     },
     {
-      "matches": ["*://*.rdio.com/*"],
-      "js": [
-        "data/watchers/messaging-chrome.js",
-        "data/watchers/messaging-firefox.js",
-        "data/watchers/messaging-safari.js",
-        "data/watchers/music-bridge.js",
-        "data/watchers/bridge-watcher.js",
-        "data/watchers/player/rdio.js"
-      ]
-    },
-    {
       "matches": ["*://*.amazon.fr/gp/dmusic/cloudplayer/*"],
       "js": [
         "data/watchers/messaging-chrome.js",
@@ -109,19 +90,6 @@
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/amazon.js"
-      ]
-    },
-    {
-      "matches": [
-        "*://*.grooveshark.com/*"
-      ],
-      "js": [
-        "data/watchers/messaging-chrome.js",
-        "data/watchers/messaging-firefox.js",
-        "data/watchers/messaging-safari.js",
-        "data/watchers/music-bridge.js",
-        "data/watchers/bridge-watcher.js",
-        "data/watchers/player/grooveshark.js"
       ]
     },
     {
@@ -139,7 +107,7 @@
     },
     {
       "matches": [
-        "*://music.xbox.com/*"
+        "*://music.microsoft.com/*"
       ],
       "js": [
         "data/watchers/messaging-chrome.js",
@@ -148,19 +116,6 @@
         "data/watchers/music-bridge.js",
         "data/watchers/bridge-watcher.js",
         "data/watchers/player/xboxmusic.js"
-      ]
-    },
-    {
-      "matches": [
-        "*://*.soundcloud.com/*"
-      ],
-      "js": [
-        "data/watchers/messaging-chrome.js",
-        "data/watchers/messaging-firefox.js",
-        "data/watchers/messaging-safari.js",
-        "data/watchers/music-bridge.js",
-        "data/watchers/bridge-watcher.js",
-        "data/watchers/player/soundcloud.js"
       ]
     }
   ],

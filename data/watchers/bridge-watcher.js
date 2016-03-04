@@ -45,7 +45,6 @@ BridgeWatcher.prototype.watchElt = function (elt, fct, rule) {
 
     watched[rule] = elt;
 
-    console.info('Watching elt');
     var mutationHandler = function (cb, mutations) {
         cb();
     };
