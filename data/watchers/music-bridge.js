@@ -25,11 +25,11 @@ var MusicBridge ;
         this.watcher();
         this.scriptReloaded = this.loadChromeScript();
 
-        window.onunload(function () {
+        window.onunload = function () {
             Messaging.send({
                 name: 'player_unload',
             });
-        });
+        };
     };
 
     MusicBridge.prototype.bridgeData = {
