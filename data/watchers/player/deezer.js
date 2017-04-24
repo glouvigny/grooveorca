@@ -87,22 +87,28 @@
     };
 
     var eltsToWatch = {
-        // Old
-        '#player_track_progress': updatePosition,
-        '#player_track_position': updatePosition,
-        '#player_track_progress_handler': updatePosition,
-        '#player_track_title': updateTrack,
-        '#current-list': updateQueue,
-        // New
         '.progress-time': updatePosition,
+        '.player-progress': updatePosition,
         '.player-track': updateTrack,
+        '.player-track-title': updateTrack,
+        '.player-track-link': updateTrack,
         '[data-panel="queuelist"]': updateQueue,
         '.control.control-shuffle': updateShuffle,
         '.control.control-repeat': updateRepeat,
-        // Both
         '.volume-progress': updateVolume,
         '.control.control-play': updateState,
     };
+
+    eltsToWatch = [
+        updatePosition,
+        updateTrack,
+        updateVolume,
+        updateState,
+        updateShuffle,
+        updateRepeat,
+        // updateQueue,
+    ];
+
 
     var actions = {
         'playpause': dzPlayer.control.togglePause,
@@ -135,5 +141,6 @@
     };
 
     bridgeWatcher.registerActions(actions);
-    bridgeWatcher.registerElementsToWatch(eltsToWatch, true);
+    //bridgeWatcher.registerElementsToWatch(eltsToWatch, true);
+    bridgeWatcher.registerElementsToWatch(eltsToWatch);
 })();
