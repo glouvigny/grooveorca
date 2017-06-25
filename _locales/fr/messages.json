@@ -118,5 +118,11 @@
     },
     "i18n_ignore_song": {
         "message": "Ignorer la chanson"
+    },
+    "i18n_lockscreen_playback_pause": {
+        "message": "Mettre en pause la musique quand l'écran est verrouillé"
+    },
+    "i18n_lockscreen_playback_pause_enable": {
+        "message": "Activer la pause lors du verrouillage"
     }
 }

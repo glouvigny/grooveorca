@@ -1,0 +1,10 @@
+<h2>{{ 'i18n_lockscreen_playback_pause'|trans }}</h2>
+<label>
+    <input
+        type="checkbox"
+        data-setting-name="lockscreen_playback#enabled"
+        value="1"
+        {{ settings.enabled|_if('checked="checked"', '') }}
+    >
+    {{ 'i18n_lockscreen_playback_pause_enable'|trans }}
+</label>

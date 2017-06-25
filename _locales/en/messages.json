@@ -118,5 +118,11 @@
     },
     "i18n_ignore_song": {
         "message": "Ignore song"
+    },
+    "i18n_lockscreen_playback_pause": {
+        "message": "Pause playback when screen is locked"
+    },
+    "i18n_lockscreen_playback_pause_enable": {
+        "message": "Enable pause on lock"
     }
 }
